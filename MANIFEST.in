@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include telemedicina *.css
+recursive-include telemedicina *.csv
+recursive-include telemedicina *.html
+recursive-include telemedicina *.ico
+recursive-include telemedicina *.js
+recursive-include telemedicina *.json
+recursive-include telemedicina *.md
+recursive-include telemedicina *.png
+recursive-include telemedicina *.py
+recursive-include telemedicina *.svg
+recursive-include telemedicina *.txt
+recursive-exclude telemedicina *.pyc

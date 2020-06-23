@@ -1,0 +1,21 @@
+
+<div>{{ frappe.get_url() }}</div>
+<h1>Demos de frappe</h1>
+<h3>{{ frappe.format('2020-02-02', {'fieldtype': 'Date'}) }}</h3>
+
+
+<h2>{% set doc = frappe.get_doc('Item', 'Serologia') %}
+    {{ doc.name }}</h2>
+
+
+
+    <div>
+        {% set tasks = frappe.get_all('Item',  fields=['name']) %}
+        {% for task in tasks %}
+        <div>
+            <p>{{ task.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <p>{% set telemedicina = frappe.get_doc('TelemedicinaDoc', 'TD-2020-06-17-00001') %} {{ telemedicina.firstname }} {{ telemedicina.lastname }} <br/> {{ telemedicina.gender }}</p>
+  
