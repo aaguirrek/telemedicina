@@ -1,0 +1,19 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("My Account") }}{% endblock %}
+{% block header %}<h1>{{ _("My Account") }}</h1>{% endblock %}
+
+{% block page_content %}
+<!-- no-cache -->
+<div class="row">
+	<div class="your-account-info card col-sm-4">
+		<div class="card-body">
+			<ul class="list-unstyled">
+				<li><a href="/update-password">{{ _("Reset Password") }}</a></li>
+				<li><a href="/update-profile?name={{ user }}">{{ _("Edit Profile") }}</a></li>
+				<li><a href="/third_party_apps">{{ _("Manage Third Party Apps") }}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
