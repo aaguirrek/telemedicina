@@ -6,10 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="generator" content="frappe">
 
+    
 	{% block meta_block %}
 		{% include "templates/includes/meta_block.html" %}
 	{% endblock %}
-
+    <meta name="theme-color" content="#232223">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#232223">
+	<!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#232223">
+    
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+	<meta name="mobile-web-app-capable" content="yes">
+	
 	<title>{% block title %}{{ title | striptags }}{% endblock %}</title>
 
 	{% block favicon %}
