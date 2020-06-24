@@ -1,0 +1,98 @@
+{% macro render_item(dataname, item, submenu=False, parent=False ) %}
+    {% if item.child_items %}
+        <li>
+            <a href="#" data-toggle="collapse" data-target="#collapseMenuLevel{{item.idx}}" aria-expanded="true"
+                aria-controls="collapseMenuLevel" class="rotate-arrow-icon collapsed">
+                <i class="simple-icon-arrow-down"></i> <span class="d-inline-block">{{ item.label }}</span>
+            </a>
+            {% for child in item.child_items %}
+                <div id="collapseMenuLevel{{item.idx}}" class="collapse" data-parent="#{{ data-name }}">
+                    <ul class="list-unstyled inner-level-menu">
+                        {{ render_item(child, True) }}
+                    </ul>
+                </div>
+            {% endfor %}
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ (item.url or '') | abs_url }}" {{ item.target or '' }}>
+                <span class="d-inline-block">{{ item.label }}</span>
+            </a>
+        </li>
+    {% endif %}
+{% endmacro %}
+
+
+
+
+
+    <div class="menu">
+        <div class="main-menu">
+            <div class="scroll">
+                <ul class="list-unstyled">
+                    {% if show_sidebar and sidebar_items %}
+                    <li>
+                        <a href="#web">
+                            <i class="iconsminds-home"></i>
+                            <span>Menú</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#portal">
+                            <i class="simple-icon-user"></i> Portal
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="active">
+                        <a href="#web">
+                            <i class="iconsminds-home"></i>
+                            <span>Menú</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/me">
+                            <i class="simple-icon-user"></i> Portal
+                        </a>
+                    </li>
+                    {% endif %}
+                    <!--<li>
+                        <a href="#menu">
+                            <i class="iconsminds-three-arrow-fork"></i> Menu
+                        </a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="sub-menu">
+            <div class="scroll">
+                <ul class="list-unstyled" data-link="web" id="web">
+                    {% if top_bar_items -%}
+                        {%- for item in top_bar_items -%}
+                            {% if not item.parent_label and not item.right -%}
+                                {{ render_item("web", item, parent=True) }}
+                            {%- endif -%}
+                        {%- endfor %}
+                    {%- endif %}
+                </ul>
+                <ul class="list-unstyled" data-link="portal" id="portal">
+                    <li>
+                        
+                    </li>
+                    {% if show_sidebar and sidebar_items %}
+                        {% for item in sidebar_items -%}
+                        <li>
+                            {% if item.type != 'input' %}
+                                <a href="{{ item.route }}" class="nav-link {{ 'active' if pathname==item.route else ''}}"
+                                    {% if item.target %}target="{{ item.target }}"{% endif %}>
+                                    {{ _(item.title or item.label) }}
+                                </a>
+                            {% endif %}
+                        </li>
+                        {%- endfor %}
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </div>

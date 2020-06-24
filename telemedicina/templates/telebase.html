@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- Built on Frappe. https://frappe.io/ -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="frappe">
+
+	{% block meta_block %}
+		{% include "templates/includes/meta_block.html" %}
+	{% endblock %}
+
+	<title>{% block title %}{{ title | striptags }}{% endblock %}</title>
+
+	{% block favicon %}
+	<link
+		rel="shortcut icon"
+		href="{{ (favicon or "/assets/frappe/images/favicon.png") | abs_url }}"
+		type="image/x-icon"
+	>
+	{% endblock %}
+
+	{%- block head -%}
+		{% if head_html is defined -%}
+		{{ head_html or "" }}
+		{%- endif %}
+
+		{% if theme.theme_url %}
+		<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+		{% else %}
+		<!--<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css"> -->
+
+		{%- for link in web_include_css %}
+		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+		{%- endfor -%}
+		{% endif %}
+	{%- endblock -%}
+
+    
+    <link rel="stylesheet" href="/assets/telemedicina/font/iconsmind-s/css/iconsminds.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/font/simple-line-icons/css/simple-line-icons.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/dropzone.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/bootstrap.rtl.only.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/fullcalendar.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/datatables.responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/select2.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/glide.core.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/bootstrap-stars.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/nouislider.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/vendor/component-custom-switch.min.css" />
+    <link rel="stylesheet" href="/assets/telemedicina/css/main.css" />
+    <style>
+    .section-body{
+        width:100%!important;
+        display: flex;
+    }
+    .card-head {
+        padding: 1.5rem;
+        padding-bottom: 0;
+    }
+    #datatable{
+        margin-top: 2rem;
+    }
+    #datatable > table > thead{
+        background-color: unset!important;
+        color: unset!important;
+    }
+    #datatable > table > thead > tr > th{
+        border:none!important;
+        padding-bottom: 2rem;
+    }
+    #datatable > table > tbody > tr > td {
+        padding: .75rem;
+        vertical-align: top;
+        border-top: unset;
+        border-bottom: 1px solid ;
+    }
+    </style>
+
+	{%- block head_include %}
+		{{ head_include or "" }}
+	{% endblock -%}
+
+	{%- block style %}{%- endblock -%}
+
+	<script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+		window.socketio_port = {{ (frappe.socketio_port or 'null') }};
+    </script>
+</head>
+<body id="app-container" class="menu-default show-spinner" frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {% endif -%}>
+    
+	{%- block navbar -%}
+		{% include "templates/includes/navbar/telenavbar.html" %}
+	{%- endblock -%}
+    {%- block menu -%}
+		{% include "templates/includes/navbar/telemenu.html" %}
+	{%- endblock -%}
+
+	{% block content %}
+        
+            {{ content }}
+        
+	{% endblock %}
+
+	{%- block footer -%}
+		{% include "templates/includes/footer/telefooter.html" %}
+	{%- endblock -%}
+
+	{% block base_scripts %}
+	<!-- js should be loaded in body! -->
+	<!-- <script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script> -->
+    
+    <script src="/assets/telemedicina/js/vendor/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script> 
+    <script src="/assets/telemedicina/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/Chart.bundle.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/chartjs-plugin-datalabels.js"></script>
+    <script src="/assets/telemedicina/js/vendor/moment.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/fullcalendar.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/datatables.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/perfect-scrollbar.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/progressbar.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/jquery.barrating.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/select2.full.js"></script>
+    <script src="/assets/telemedicina/js/vendor/nouislider.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/bootstrap-datepicker.js"></script>
+    <script src="/assets/telemedicina/js/vendor/Sortable.js"></script>
+    <script src="/assets/telemedicina/js/vendor/mousetrap.min.js"></script>
+    <script src="/assets/telemedicina/js/vendor/glide.min.js"></script>
+    <script src="/assets/telemedicina/js/dore.script.js"></script>
+    <script src="/assets/telemedicina/js/scripts.js?12"></script>
+    
+
+	{% endblock %}
+
+	{%- for link in web_include_js %}
+	<script type="text/javascript" src="{{ link | abs_url }}"></script>
+	{%- endfor -%}
+
+	{%- block script %}{%- endblock %}
+	<!-- csrf_token -->
+    {%- block body_include %}{{ body_include or "" }}{% endblock -%}
+    <script>
+        frappe.ready(function() {
+            $('div[role="form"]').parent().parent().addClass("card");
+            $('div[role="form"]').addClass("card-body");            
+            $('div[role="form"]').parent().parent().children(".header-pages").addClass("card-head");
+            $('#datatable').addClass("card card-body");
+        });
+</script>
+</body>
+</html>

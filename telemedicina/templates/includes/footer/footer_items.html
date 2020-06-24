@@ -1,0 +1,11 @@
+{% for page in footer_items %}
+    {% if not page.parent_label %}
+        <li class="breadcrumb-item mb-0">
+        {% if not page.parent_label -%}
+            <a {% if not page.child_items -%} href="{{ (page.url or '')|abs_url }}" {%- endif %} {% if page.child_items %} onclick="return false;" {% endif %} {{ page.target or ''}} class="btn-link" >
+                {{ page.label }}
+            </a>
+        {%- endif -%}
+        </li>
+    {% endif %}
+{% endfor %}

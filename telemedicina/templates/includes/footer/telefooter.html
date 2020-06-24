@@ -1,0 +1,25 @@
+<footer class="page-footer">
+    <div class="footer-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <p class="mb-0 text-muted">{% if copyright %}
+						&copy; {{ copyright }}
+					{% endif %}
+					{% if footer_address %}
+						{% if copyright %}<br>{% endif %}
+						{{ footer_address }}
+					{% endif %}</p>
+                </div>
+                <div class="col-sm-6 d-none d-sm-block">
+                    {% if footer_items -%}
+                    <ul class="breadcrumb pt-0 pr-0 float-right">
+                        {% include "templates/includes/footer/footer_items.html" %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
