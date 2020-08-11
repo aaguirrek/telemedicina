@@ -15,7 +15,7 @@
 	<meta name="msapplication-navbutton-color" content="#232223">
 	<!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#232223">
-    
+    <meta name="yandex-verification" content="149310673c3c057c" />
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="white">
@@ -89,6 +89,94 @@
         vertical-align: top;
         border-top: unset;
         border-bottom: 1px solid ;
+    }
+    .standard-image {
+        border-radius: 50%;
+        vertical-align: middle;
+        min-height: 36px;
+        height: 36px;
+        width: 36px;
+        min-width: 36px;
+        border: 1px solid var(--theme-color-6);
+        overflow: hidden;
+        display: inline-block;
+        font-size: 23px;
+        color: var(--theme-color-1);
+    }
+    .user-image-wrapper{
+        min-width: 36px;
+        min-height: 36px;
+        display: inline-table;
+        vertical-align: middle;
+        padding-right: 7px;
+    }
+    .datepicker{
+        margin-top: -145px;
+    }
+    .add-comment-section .login-required{display:none!important}
+    .datepicker.datepicker-dropdown{
+        margin-top: 0px;
+    }
+    article.web-page-content{
+        margin-top: 2rem;
+    }
+    .btn.btn-more{
+        margin-top: 1rem;
+    }
+    .control-value.like-disabled-input{
+        height: calc(2em + 0.8rem);
+        vertical-align: middle;
+        padding: 0.5rem;
+        border: var(--theme-color-4-10) 1px solid;
+    }
+    .blog-container .media{
+        height: unset;
+    }
+    .media-body .mt-0{
+        padding-top: 1.5rem;
+    }
+    div[itemprop="articleBody"] img{
+        max-width: 100%;
+        border-radius: 0.75rem;
+    }
+    .avatar.avatar-small{
+        display: inline-block;
+    }
+    .avatar-frame{
+        min-height: 36px;
+        height: 36px;
+        width: 36px;
+        min-width: 36px;
+        display: grid;
+        background-size: contain;
+        border-radius: 50%;
+    }
+    .web-list-item.transaction-list-item{
+            margin-bottom: 1rem;
+    }
+    .web-list-item.transaction-list-item .indicator.small{
+        color: var(--theme-color-1);
+        font-size: 1rem;
+    }
+    .web-list-item.transaction-list-item .indicator.small.orange{
+        color: var(--primary-color);
+        font-size: 1rem;
+    }
+    .col-sm-3.text-right.bold {
+        font-weight: 700;
+        color: var(--theme-color-1);
+    }
+    .more-block.hidden button.btn.btn-light.btn-more.btn-sm {
+        background: var(--theme-color-1);
+        border-color: var(--theme-color-1);
+        color: white;
+    }
+    .result{
+        border-bottom: none;
+    }
+    .row.transaction-subheading{
+        color: var(--theme-color-3);
+        font-weight: 600;
     }
     </style>
 
@@ -165,9 +253,25 @@
     <script>
         frappe.ready(function() {
             $('div[role="form"]').parent().parent().addClass("card");
-            $('div[role="form"]').addClass("card-body");            
+            $('.contact-content').parent().addClass("card card-body");
+            $('.result > .blog-list-item > .row > .col-12 > .row > div.justify-content-between').addClass("card card-body");
+            $('div[role="form"]').addClass("card-body");      
+            $('.carousel-inner').addClass("card");      
             $('div[role="form"]').parent().parent().children(".header-pages").addClass("card-head");
             $('#datatable').addClass("card card-body");
+            $('article.web-page-content').addClass("card card-body");
+            $('.blog-content').addClass("card card-body");
+            $('.blog-container .media').addClass("card card-body card-group");
+            $('.no-comment').addClass("card card-body");
+            $(".comment-row.media").addClass("card card-body card-group");
+            $("#comment-form").addClass("card card-body");
+            $(".web-list-item.transaction-list-item").addClass("card card-body");
+            $(".order-container").addClass("card card-body");
+            $(".order-container").parent().addClass("card card-body");
+            
+            $(".text-dark").removeClass("text-dark");
+            $('.control-input[style="display: none;"]').parent().parent().hide();
+
         });
 </script>
 </body>

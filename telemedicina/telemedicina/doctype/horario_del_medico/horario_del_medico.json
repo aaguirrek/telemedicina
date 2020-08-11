@@ -1,0 +1,134 @@
+{
+ "creation": "2020-08-02 14:59:14.809093",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "departament",
+  "schedule",
+  "medico",
+  "first_name",
+  "last_name",
+  "op_consulting_charge",
+  "department",
+  "image",
+  "user_id",
+  "hospital"
+ ],
+ "fields": [
+  {
+   "fieldname": "departament",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Departamento",
+   "options": "Medical Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Horario",
+   "options": "Practitioner Schedule",
+   "reqd": 1
+  },
+  {
+   "fieldname": "medico",
+   "fieldtype": "Link",
+   "label": "Medico",
+   "options": "Healthcare Practitioner",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "medico.first_name",
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Nombre"
+  },
+  {
+   "fetch_from": "medico.last_name",
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Apellido"
+  },
+  {
+   "fetch_from": "medico.op_consulting_charge",
+   "fieldname": "op_consulting_charge",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Cargo de consulta"
+  },
+  {
+   "fetch_from": "medico.department",
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "department"
+  },
+  {
+   "fetch_from": "medico.image",
+   "fieldname": "image",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "image"
+  },
+  {
+   "fetch_from": "medico.user_id",
+   "fieldname": "user_id",
+   "fieldtype": "Data",
+   "label": "user_id"
+  },
+  {
+   "fetch_from": "medico.hospital",
+   "fieldname": "hospital",
+   "fieldtype": "Data",
+   "label": "hospital"
+  }
+ ],
+ "modified": "2020-08-03 02:33:37.428305",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Horario del medico",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Patient",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Physician",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

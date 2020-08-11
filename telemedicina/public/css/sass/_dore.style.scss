@@ -4512,7 +4512,74 @@ div.error {
   padding-right: 10px;
   height: calc(2em);
 }
+.datepicker {
+  color: $button-text-color!important;
+  border: 1px solid $separator-color !important;
+  background: $background-color !important;
+  padding: 10px 10px !important;
+  border-radius: $border-radius ;
+}
+.datepicker--pointer {
+  color: $button-text-color!important;
+  border-top: 1px solid $separator-color !important;
+  border-right: 1px solid $separator-color !important;
+  background: $background-color !important;
+}
+.datepicker:before {
+border-top: 7px solid rgba($primary-color, 0.2);
+}
 
+.datepicker--cell.datepicker--cell-day, .datepicker--days-names, .datepicker--day-name{
+  color: $primary-color!important;
+  border-radius: $border-radius;
+}
+
+.datepicker--cell.datepicker--cell-day:hover,
+.datepicker--cell.datepicker--cell-day.-focus- {
+  background: $separator-color;
+}
+
+.datepicker--cell.datepicker--cell-day.-current-{
+  color: $primary-color!important;
+  background: $background-color !important;
+  border-color: $background-color;
+
+}
+.datepicker--cell.datepicker--cell-day.-current-:hover,
+.datepicker--cell.datepicker--cell-day.-current-.-focus- {
+  background: $separator-color!important;
+}
+.datepicker--cell.datepicker--cell-day.-current-.-selected-{
+  color: $background-color!important;
+  background-color: $theme-color-1!important;
+  border-color: $theme-color-1!important;
+
+}
+.datepicker--button{
+  color: $theme-color-1!important;
+}
+.datepicker--button:hover,.datepicker--button.-focus-,.datepicker--nav-action:hover,.datepicker--nav-title:hover,.datepicker--nav-action.-focus-,.datepicker--nav-title.-focus-{
+  color: $theme-color-1!important;
+  background: $separator-color!important;
+  border-radius: $border-radius;
+}
+.datepicker--cell.datepicker--cell-day.-selected-, .datepicker--cell.datepicker--cell-day.-selected-:hover, .datepicker--cell.datepicker--cell-day.-selected-.-focus-{
+  color: $background-color!important;
+  background-color: $theme-color-1;
+  border-color: $theme-color-1;
+
+}
+.datepicker--cell.datepicker--cell-day.-other-month-{
+    color: $muted-color!important;
+
+
+}
+.datepicker--nav {
+  border:none!important;
+}
+.datepicker--buttons {
+  border:none!important;
+}
 .datepicker-dropdown {
   transform: translateY(-150px);
 
@@ -7325,7 +7392,10 @@ i.large-icon {
     @include respond-below(xs) {
     }
   }
+  .datepicker{
+    border-radius: $border-radius-rounded!important;
 
+  }
   .card-img,
   .card-img-fluid,
   .card-img-overlay {

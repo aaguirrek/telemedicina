@@ -1,0 +1,22 @@
+{% extends "templates/web.html" %}
+<div class="col-12 col-md-12 col-xl-8 col-left">
+
+	{% block title %}{{ blog_title or _("Blog") }}{% endblock %}
+	{% block header %}<h1>{{ blog_title or _("Blog") }}</h1>{% endblock %}
+	{% block hero %}{% endblock %}
+	{% block page_content %}
+	
+</div>
+
+<!-- no-header -->
+<!-- no-breadcrumbs -->
+<div class="blog-list-content">
+	<div id="blog-list">
+		{% include "templates/includes/list/list.html" %}
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>{% include "templates/includes/list/list.js" %}</script>
+{% endblock %}

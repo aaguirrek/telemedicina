@@ -15,22 +15,34 @@ app_license = "MIT"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/telemedicina/css/telemedicina.css"
-# app_include_js = "/assets/telemedicina/js/telemedicina.js"
+app_include_css = [ "/assets/telemedicina/css/fullcalendar@5.2.0/main.min.css",
+                    "/assets/telemedicina/css/dashboard_medico.css"
+                  ]
+app_include_js = [
+  "/assets/telemedicina/js/sha1.min.js",
+  "/assets/telemedicina/js/video_conferencia.js",
+  "/assets/telemedicina/js/imgcache.js",
+  "/assets/telemedicina/js/moment.luxon.js"
+  ]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/telemedicina/css/telemedicina.css"
-# web_include_js = "/assets/telemedicina/js/telemedicina.js"
+web_include_js = "/assets/telemedicina/js/sha1.min.js"
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+page_js = {"hisalud-dashboard" : ["public/js/fullcalendar@5.2.0/main.min.js","public/js/slimscroll.min.js"]}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {
+  "Patient Appointment":"public/appoiment.js",
+}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
-
+doctype_calendar_js = {
+  "Patient Appointment":"public/appoiment.js",
+}
 # Home Pages
 # ----------
 
@@ -79,13 +91,17 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+    "Patient Appointment": {
+        "on_submit": "telemedicina.api.create_conference"
+	},
+    "Payment Entry": {
+        "on_submit": "telemedicina.api.create_conference"
+	},
+    "Sales Invoice": {
+        "on_submit": "telemedicina.api.create_conference"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

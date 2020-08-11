@@ -20,13 +20,18 @@
                 <rect x="0.5" y="15.5" width="25" height="1" />
             </svg>
         </a>
-
-        <div class="search" data-search-path="Pages.Search.html?q=">
-            <input placeholder="Search...">
-            <span class="search-icon">
-                <i class="simple-icon-magnifier"></i>
-            </span>
-        </div>
+        {% if navbar_search %}
+        <form action='/search'>
+            <div class="search" data-search-path="/search?q=">
+                <input name='q' class='form-control navbar-search' type='text'
+                value='{{ frappe.form_dict.q or ''}}'
+                {% if not frappe.form_dict.q%}placeholder="{{ _("Search...") }}"{% endif %}>
+                <span class="search-icon">
+                    <i class="simple-icon-magnifier"></i>
+                </span>
+            </div>
+        </form>
+        {% endif %}
 
         <!--<a class="btn btn-sm btn-outline-primary ml-3 d-none d-md-inline-block"
             href="https://1.envato.market/5kAb">&nbsp;BUY&nbsp;</a> -->
@@ -34,8 +39,8 @@
 
 
     <a class="navbar-logo" href="/">
-        <span class="logo d-none d-xs-block"></span>
-        <span class="logo-mobile d-block d-xs-none"></span>
+        <span class="logo d-none d-xs-block"  style="background: url(/assets/telemedicina/img/logo.png) no-repeat; background-size: contain;"></span>
+        <span class="logo-mobile d-block d-xs-none"  style="background: url(/assets/telemedicina/img/logo.png) no-repeat; background-size: contain;"></span>
     </a>
 
     <div class="navbar-right">
@@ -56,32 +61,32 @@
                 <div class="dropdown-menu dropdown-menu-right mt-3  position-absolute" id="iconMenuDropdown">
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-equalizer d-block"></i>
-                        <span>Settings</span>
+                        <span>Mi Perfil</span>
                     </a>
 
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-male-female d-block"></i>
-                        <span>Users</span>
+                        <span>Medicos</span>
                     </a>
 
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-puzzle d-block"></i>
-                        <span>Components</span>
+                        <span>Telemedicina</span>
                     </a>
 
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-bar-chart-4 d-block"></i>
-                        <span>Profits</span>
+                        <span>Estadísticas</span>
                     </a>
 
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-file d-block"></i>
-                        <span>Surveys</span>
+                        <span>Encuestas</span>
                     </a>
 
                     <a href="#" class="icon-menu-item">
                         <i class="iconsminds-suitcase d-block"></i>
-                        <span>Tasks</span>
+                        <span>Agenda</span>
                     </a>
 
                 </div>
@@ -154,23 +159,10 @@
             </button>
 
         </div>
-
-        <div class="user d-inline-block">
-            <button class="btn btn-empty p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <span class="name">Sarah Kortney</span>
-                <span>
-                    <img alt="Profile Picture" src="/assets/telemedicina/img/profile-pic-l.jpg" />
-                </span>
-            </button>
-
-            <div class="dropdown-menu dropdown-menu-right mt-3">
-                <a class="dropdown-item" href="#">Account</a>
-                <a class="dropdown-item" href="#">Features</a>
-                <a class="dropdown-item" href="#">History</a>
-                <a class="dropdown-item" href="#">Support</a>
-                <a class="dropdown-item" href="#">Sign out</a>
-            </div>
-        </div>
+        
+    
+        {% include "templates/includes/navbar/navbar_login.html" %}
+    
+    
     </div>
 </nav>

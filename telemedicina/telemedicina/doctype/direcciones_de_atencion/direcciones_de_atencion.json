@@ -1,0 +1,53 @@
+{
+ "creation": "2020-08-07 21:56:46.079820",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "direccion",
+  "ciudad",
+  "provincia",
+  "distrito"
+ ],
+ "fields": [
+  {
+   "fieldname": "direccion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Direccion",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ciudad",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ciudad",
+   "reqd": 1
+  },
+  {
+   "fieldname": "provincia",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Provincia",
+   "reqd": 1
+  },
+  {
+   "fieldname": "distrito",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Distrito",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-08-07 21:56:46.079820",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Direcciones de atencion",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

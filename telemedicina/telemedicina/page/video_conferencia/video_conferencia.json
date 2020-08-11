@@ -1,0 +1,26 @@
+{
+ "content": null,
+ "creation": "2020-07-06 21:05:30.650714",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2020-07-06 21:06:44.324039",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "video-conferencia",
+ "owner": "Administrator",
+ "page_name": "Video Conferencia",
+ "roles": [
+  {
+   "role": "Physician"
+  },
+  {
+   "role": "System Manager"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Video Conferencia"
+}
