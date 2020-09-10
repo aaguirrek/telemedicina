@@ -1,15 +1,15 @@
-ImgCache.options.debug = true;
-ImgCache.options.chromeQuota = 50*1024*1024;
-var DateTime = luxon.DateTime;
-var Interval = luxon.Interval;
-luxon.Settings.defaultOuputCalendar = 'spanish';
-ImgCache.init(function () {
-    
-}, function () {
-});
+
 var page;
-var telemedicina = {};
-telemedicina.Form = {};
+ 
+var horario_dias={
+  lunes:[],
+  martes:[],
+  miercoles:[],
+  jueves:[],
+  viernes:[],
+  sabado:[],
+  domingo:[]
+};
 frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 	page = frappe.ui.make_app_page({
 		parent: wrapper,
@@ -22,342 +22,80 @@ frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 			"background-size": "cover",
 			"background-position-y": "center"});
   })
+  localStorage.setItem("medico-name","Melissa Hu");
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
-		$.get("https://app.hisalud.com/api/bing",function(response){
-      $(".cabecera-medico").css({"background": "url("+response.url+")",
-			"background-size": "cover",
-			"background-position-y": "center"});
-      ImgCache.cacheBackground(target, function () {
-        ImgCache.useCachedBackground(target, function () {
-        }, function(){
-        })
-      });
-      
-			
-		});
-		var doctype = telemedicina.DocType.vital_sings();
-		telemedicina.fieldgroup.make_fieldgroup(page.wrapper.find("#Vital-form"), doctype.fields );
     telemedicina.DocType.patient_encounter();
-    
+    telemedicina.DocType.vital_sings();
+    telemedicina.DocType.addOther();
+    telemedicina.datosmedico.init();
 		
 	});
+  var horario_id ="";
+	$("#hlunes").html( frappe.render_template("horario",{"dia":"lunes",dia_n:1 } ));
+	$("#hmartes").html( frappe.render_template("horario",{"dia":"martes",dia_n:2 } ));
+	$("#hmiercoles").html( frappe.render_template("horario",{"dia":"miercoles",dia_n:3 } ));
+	$("#hjueves").html( frappe.render_template("horario",{"dia":"jueves",dia_n:4 } ));
+	$("#hviernes").html( frappe.render_template("horario",{"dia":"viernes",dia_n:5 } ));
+	$("#hsabado").html( frappe.render_template("horario",{"dia":"sabado",dia_n:6 } ));
+  $("#hdomingo").html( frappe.render_template("horario",{"dia":"domingo",dia_n:7 } )).promise().done(function(){
+				horario_dias = JSON.parse(localStorage.getItem("horario_del_medico"));
+        for(var key in horario_dias){
+          horario_dias[key].forEach(function(value,item){
+              horario_id = key+"_"+value.replace(":","");
+              $("#"+horario_id).addClass("selected");
+          })
+        }
+        
+			});
 }
 
-telemedicina.DocType = {
-    vital_sings: function(){
-        let el = null;
-        frappe.call({
-            method: "frappe.client.get",
-            args: {
-                  doctype:"DocType",
-                  name:"Vital Signs"
-            },
-            async: false,
-            callback: function(r) {
-                el = r.message;
-            } 
-        });
-        return el;
-    },
-	labs: function(){
-        let el = null;
-        frappe.call({
-            method: "frappe.client.get",
-            args: {
-                  doctype:"DocType",
-                  name:"Lab Test"
-            },
-            async: false,
-            callback: function(r) {
-                el = r.message;
-            } 
-        });
-        return el;
-    },
-	patient_encounter: function(){
-    $("#medicacion").collapse();
-    var parent = $('.form_patient_info');
-    telemedicina.Form.patient_encounter = {};
-    telemedicina.Form.patient_encounter.patient = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Paciente',
-          fieldname: 'patient',
-          fieldtype: 'Link',
-          options: 'Patient',
-          change(){
-              frappe.db.get_value('Patient', telemedicina.Form.patient_encounter.patient.get_value(), ['patient_name','dob','sex'])
-              .then(r => {
-                  console.log(r);
-                  var a = DateTime.fromISO(r.message.dob);
-                  var dif = a.until((DateTime.local()));
-                  var diff = dif.toDuration(['years', 'months', 'days']).toObject();
-                  diff.label ="";
-                  if (diff.years == 1){
-                    diff.label += "1 Año ";
-                  }else{
-                   if (diff.years > 1){ 
-                     diff.label += diff.years+" Años ";
-                   }
-                  }
-                  if (diff.months == 1){
-                    diff.label = "1 mes ";
-                  }else{
-                    if (diff.months > 1){
-                      diff.label += diff.months+" meses ";
-                    }
-                    
-                  }
-                  diff.days = Math.floor(diff.days);
-                  if (diff.days == 1){
-                    diff.label = "1 día ";
-                  }else{
-                   if (diff.days > 1){
-                      diff.label += diff.days+" días ";
-                    } 
-                  }
-                  
-                  telemedicina.Form.patient_encounter.patient_name.set_value(r.message.patient_name);
-                  telemedicina.Form.patient_encounter.patient_age.set_value( diff.label );
-                  telemedicina.Form.patient_encounter.patient_sex.set_value( r.message.sex );
-              })
-          }
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.patient_name = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Nombre del Paciente',
-          fieldname: 'patient_name',
-          fieldtype: 'Read Only',
-          fetch_from: 'patient.patient_name'
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.patient_age = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Edad del paciente',
-          fieldname: 'patient_age',
-          fieldtype: 'Read Only',
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.patient_sex = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Genero del paciente',
-          fieldname: 'patient_sex',
-          fieldtype: 'Read Only',
-      },
-      render_input: true
-    });
-    parent = $('.form_practtioner_info');
-    telemedicina.Form.patient_encounter.practitioner = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Profesional de la Salud',
-          fieldname: 'practitioner',
-          fieldtype: 'Link',
-          options: 'Healthcare Practitioner',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.visit_department = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Especialidad',
-          fieldname: 'visit_department',
-          fieldtype: 'Link',
-          options: 'Medical Department',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.encounter_date = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Fecha de la cita',
-          fieldname: 'encounter_date',
-          fieldtype: 'Date',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.encounter_time = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Hora de la cita',
-          fieldname: 'encounter_time',
-          fieldtype: 'Time',
-          change(){}
-      },
-      render_input: true
-    });
-    parent = $('.form_sintomas');
-    telemedicina.Form.patient_encounter.symptoms_select = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Selección de síntomas',
-          fieldname: 'symptoms_select',
-          fieldtype: 'Link',
-          options:"Complaint",
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.symptoms = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Lista de síntomas',
-          fieldname: 'symptoms',
-          fieldtype: 'Text',
-          read_only:1,
-          change(){}
-      },
-      render_input: true
-    });
-    parent = $('.form_diagnostico');
-    telemedicina.Form.patient_encounter.diagnosis_select = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Selección de diagnóstico',
-          fieldname: 'diagnosis_select',
-          fieldtype: 'Link',
-          options:"Diagnosis",
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.diagnosis = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Lista de diagnóstico',
-          fieldname: 'diagnosis',
-          fieldtype: 'Text',
-          read_only:1,
-          change(){}
-      },
-      render_input: true
-    });
-    parent = $('.medicamentos1');
-    telemedicina.Form.patient_encounter.drug_code = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Nombre del medicamento',
-          fieldname: 'drug_code',
-          fieldtype: 'Link',
-          options: 'Item',
-          filters:{'item_group': 'Droga'},
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.dosage = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Dosificación',
-          fieldname: 'dosage',
-          fieldtype: 'Link',
-          options: 'Prescription Dosage',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.dosage_form = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Forma de dosificación',
-          fieldname: 'dosage_form',
-          fieldtype: 'Link',
-          options: 'Dosage Form',
-          change(){}
-      },
-      render_input: true
-    });
-    parent = $('.medicamentos2');
-    telemedicina.Form.patient_encounter.drug_name = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'fuerza de la dosis',
-          fieldname: 'drug_name',
-          fieldtype: 'Data',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.period = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Periodo',
-          fieldname: 'period',
-          fieldtype: 'Link',
-          options: 'Prescription Duration',
-          change(){}
-      },
-      render_input: true
-    });
-    telemedicina.Form.patient_encounter.comment = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Comentario',
-          fieldname: 'comment',
-          fieldtype: 'Text',
-          change(){}
-      },
-      render_input: true
-    });
-    
-    
-	}
-}
-telemedicina.fieldgroup = {
-		make_fieldgroup: function (parent, ddf_list) {
-		
-		let fg = new frappe.ui.FieldGroup({
-			"fields": ddf_list,
-			"parent": parent
-		});
-		fg.make();
-
-/*		
-		fg.set_df_property("theme","change",Pantallas.Theme.Change)
-		fg.set_df_property("multimedia","change",Pantallas.UI.Change.Multimedia)*/
-		//frm = fg;
-		//frm.set_value("theme","PATE-2019-06-00001");
-		/*$('#page-pantalla-publicidad [data-fieldname]').hide();
-		$('#page-pantalla-publicidad [data-fieldname="theme"]').show();*/
-	}
-}
-function initCalendar(){
-	  var calendarEl = document.getElementById('calendario');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      
-}
 var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
+  /**/
+  telemedicina.doc.signs.docstatus = 1;
+  telemedicina.doc.patient_encounter.docstatus = 1;
+  telemedicina.DocType.insert_patient_encounter();
+  telemedicina.DocType.insert_sign();
+  /**/
 	$("#bigbluebutton").fadeOut("slow");
+  $("#bbb-frame").attr("src","");
+}
+var  abrirIntro = () =>{
+  $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");
+  $("#videointro").fadeIn();
 }
 var iniciarCita = function(){
+  conferencia.Patient_dashboard_create();
 	$("#bigbluebutton").fadeIn("slow").promise().done(function(){
-		show_patient_info("Whiny Guevara Merma","cita-body");
-		get_documents("Whiny Guevara Merma",".registros-cita")
+		
 		//$("#cita-tabss").slimscroll({height:"auto"});
 		$('#pageprincipal').hide();
 		$('#pageprincipal2').hide();
+    if(intro == "no"){
+      abrirIntro();
+    }
+    
 	});
 	
 	
 
 }
 
+var  cerrarIntro = () =>{
+  
+  $("#videointro").fadeOut();
+  intro = "si";
+  localStorage.setItem("intro","si");
+  $("#introframe").attr("src","#");
+}
 var show_patient_info = function(patient, me){
+  localStorage.setItem("patient-name",patient)
+  if($("#cita-body").length){ 
+    $("#cita-body").show();
+    $("#paciente-body").show();
+  }
+  $("#"+me).html("");
 	frappe.call({
 		"method": "erpnext.healthcare.doctype.patient.patient.get_patient_detail",
 		args: {
@@ -388,7 +126,7 @@ var show_patient_info = function(patient, me){
 			if(data.surrounding_factors) details +=  `<div class="row"><div class="col-xs-4"><b>Factores de riesgo laborales: </b></div><div class="col-xs-8">${data.surrounding_factors.replace("\n", "<br>")}</div></div>`;
 			if(data.other_risk_factors) details += `<div class="row"><div class="col-xs-4"><b>Otros factores de riego: </b></div><div class="col-xs-8">${data.other_risk_factors.replace("\n", "<br>")}</div></div>`;
 			if(data.patient_details) details += `<div class="row"><div class="col-xs-4"><b>Más información: </b></div><div class="col-xs-8"><textarea id="${me}moreinfo" class="form-control textarea-html" disabled>${data.patient_details}</textarea></div></div>`;
-
+      
 			$("#"+me).html(details).promise().done(function(){
 				textAreaAdjust(me+"moreinfo",me);
 			});
@@ -429,6 +167,7 @@ var add_date_separator = function(data) {
 };
 
 var get_documents = function(patient, me){
+  $(me).html("");
 	frappe.call({
 		"method": "erpnext.healthcare.page.patient_history.patient_history.get_feed",
 		args: {

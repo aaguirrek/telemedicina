@@ -1,9 +1,15 @@
 :root {
   --theme-color-1: #F6561E;
-  --theme-color-2: #D42F19;
-  --theme-color-3: #EB293E;
+  --theme-color-2: #20c0f3;
+  --theme-color-3: #20c0f3;
   --theme-color-4: #D41989;
   --theme-color-5: #EA1EF6;
+  
+  --hisalud-5: rgba(246,86,30,1);
+  --hisalud-4: rgba(212,47,25,1);
+  --hisalud-3: rgba(235,41,62,1);
+  --hisalud-2: rgba(212,25,137,1);
+  --hisalud-1: rgba(234,30,246,1);
   
   --theme-color-1-80: rgba(246,86,30,0.8);
   --theme-color-2-80: rgba(212,47,25,0.8);
@@ -25,6 +31,99 @@
   --theme-color-3-20: rgba(235,41,62,0.2);
   --theme-color-4-20: rgba(212,25,137,0.2);
   --theme-color-5-20: rgba(234,30,246,0.2);
+}
+body[data-route="hisalud-dashboard"] .pacientesAnt{
+  border-top: 5px solid var(--theme-color-1) !important;
+ }
+body[data-route="hisalud-dashboard"] .pacientes{    
+  margin-top: 20px!important
+ }
+body[data-route="hisalud-dashboard"] .pacients{
+  background-color:#222;
+  margin: -16px;
+  display: grid;
+  grid-template-areas: "menu menu2";
+  margin-bottom: 20px;
+}
+.dropdown-help{
+  display:none!important;
+}
+body[data-route="hisalud-dashboard"] .col-md-2.horaDisp span {
+    background: #efefef;
+    color: #666;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+body[data-route="hisalud-dashboard"] .col-md-2.horaDisp span:hover {
+    color: white;
+    background: #212121;
+}
+body[data-route="hisalud-dashboard"] .col-md-2.horaDisp span.selected {
+    color: white;
+    background: linear-gradient(to right, rgb(225 28 199) 0%, rgba(234,30,246,1) 100%);
+}
+body[data-route="hisalud-dashboard"] .pacients.horario{
+  background-color:#222;
+  margin: -16px;
+  display: grid;
+  grid-template-areas: "menu menu2 menu3 menu4 menu5 menu6 menu7";
+  margin-bottom: 20px;
+}
+body[data-route="hisalud-dashboard"] .pacients>li{
+  text-align: center;
+}
+body[data-route="hisalud-dashboard"] .pacients>li>a{
+  font-size: 12pt;
+  color: #999;
+  border: none;
+  border-radius: 0;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin: 0;
+}
+body[data-route="hisalud-dashboard"] .pacients>li.active>a, 
+body[data-route="hisalud-dashboard"] .pacients>li.active>a:focus,
+body[data-route="hisalud-dashboard"] .pacients>li.active>a:hover,
+body[data-route="hisalud-dashboard"] .pacients>li>a:active,
+body[data-route="hisalud-dashboard"] .pacients>li>a:hover,
+body[data-route="hisalud-dashboard"] .pacients>li>a:focus,
+body[data-route="hisalud-dashboard"] .pacients>li.active,
+body[data-route="hisalud-dashboard"] .pacients> li.active:hover{
+  background-color: rgba(255,255,255,0.1)!important;  
+  color: white!important;
+  border: none!important;
+  border-radius: 0!important;
+}
+body[data-route="hisalud-dashboard"] .menu:hover{
+  cursor:pointer;
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.menu:hover{
+  background-color: rgba(255,255,255,0.03)!important;  
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.hsalud1.menu:hover,body[data-route="hisalud-dashboard"] .col-xs-2.hsalud1.menu.active{
+  color: var(--hisalud-1);  
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.hsalud2.menu:hover,body[data-route="hisalud-dashboard"] .col-xs-2.hsalud2.menu.active{
+  color: var(--hisalud-2);  
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.hsalud3.menu:hover,body[data-route="hisalud-dashboard"] .col-xs-2.hsalud3.menu.active{
+  color: var(--hisalud-3);  
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.hsalud4.menu:hover,body[data-route="hisalud-dashboard"] .col-xs-2.hsalud4.menu.active{
+  color: var(--hisalud-4);  
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.hsalud5.menu:hover,body[data-route="hisalud-dashboard"] .col-xs-2.hsalud5.menu.active{
+  color: var(--hisalud-5);  
 }
 body[data-route="hisalud-dashboard"] .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -49,7 +148,8 @@ body[data-route="hisalud-dashboard"] .card .card-body .thumb{
     max-height: 70px;
     display: inline-block;
 }
-body[data-route="hisalud-dashboard"] .card .card-body .person-card, .card .card-body .profile{
+body[data-route="hisalud-dashboard"] .card .card-body .person-card,
+body[data-route="hisalud-dashboard"] .card .card-body .profile{
     display:flex;
 }
 body[data-route="hisalud-dashboard"] .card .card-body .person-card .card-content{
@@ -160,3 +260,48 @@ body[data-route="hisalud-dashboard"] .datepickers-container{
 body[data-route="hisalud-dashboard"] .modal.fade.in {
         z-index: 9999992!important;
 }
+
+
+
+
+
+/***********************************************/
+
+
+
+
+  body[data-route="hisalud-dashboard"]{
+    background:#efefef;
+  }
+  body[data-route="hisalud-dashboard"] .img-profile {
+    max-height: 10rem;
+    border-radius: 5px;
+    border:none;
+}
+  
+body[data-route="hisalud-dashboard"] .col-xs-2.menu {
+    width: 100px;
+    max-width: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    padding-right: 10px;
+}
+body[data-route="hisalud-dashboard"] .col-xs-2.menu i{
+    display: block;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+body[data-route="hisalud-dashboard"] .navbar.navbar-default.navbar-fixed-top {
+  display: none;
+}
+body[data-route="hisalud-dashboard"] .card {
+  background:#ffffff;
+}
+div#page-hisalud-dashboard {
+  margin-top: 0;
+  background:#efefef;
+}
+  

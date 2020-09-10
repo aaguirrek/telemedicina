@@ -253,6 +253,28 @@ conferencia.playback = function (){
 		}})
 }
 
+conferencia.addOtherUser = function (){
+    var medico = telemedicina.Form.addOther.get_value();
+    var med = medico;
+    var url = 'https://meet.hisalud.com/bigbluebutton/api/join?';
+    var txt = '&meetingID='+conferencia.meetingID;
+        txt += '&fullName='+medico;
+        txt += '&password='+conferencia.attendeePW;
+    txt += '&checksum='+sha1('getRecordings'+txt+conferencia.secret);
+    frappe.db.insert({
+        doctype: 'UrlShortener',
+        url: url+txt,
+        acortador:"Meet Hisalud"
+    }).then(doc => {
+        $(".enlace-creado").fadeIn("slow");
+        $("#mensajefinal").html(`<p>envía el siguiente vinculo a ${med} para que pueda unirse a la cita clínica: </p><br>
+          <a onclick="copiarAlPortapapeles('https://${window.location.hostname}/b?name=${doc.name}')" style="color:#15558d;">
+          "https://${window.location.hostname}/b?name=${doc.name}</a>`);
+            copiarAlPortapapeles(`https://${window.location.hostname}/b?name=${doc.name}`
+          );            
+    });
+}
+
 conferencia.addOther = function (){
   
   let d = new frappe.ui.Dialog({
@@ -293,10 +315,8 @@ conferencia.addOther = function (){
 
       }
   });
-
   d.show();
 }
-
 function copiarAlPortapapeles(text) {
   var aux = document.createElement("input");
   aux.setAttribute("value", text);
@@ -305,3 +325,90 @@ function copiarAlPortapapeles(text) {
   document.execCommand("copy");
   document.body.removeChild(aux);
 }
+conferencia.Patient_dashboard_create = function() {
+    var d = new Date();
+    var n = d.getTime();
+
+    frappe.call({
+		method:"frappe.client.get_list",
+        args:{ 
+            doctype     : 'Video Conferencia', 
+            fields      : "*", 
+            filters     : [ ["cita","=", Ncita ] ] 
+        },
+		async:false,
+        callback: function(r) {
+            console.log(r);
+            if(r.message.length > 0){
+                doc = r.message[0];
+            }
+        }
+    });
+
+    if(doc == null){
+        return;
+    }
+
+    var url = 'https://meet.hisalud.com/bigbluebutton/api/create?';
+    var txt = 'name='+frappe.user.name;
+        txt += '&allowStartStopRecording=false';
+        txt += '&attendeePW='+frappe.utils.get_random(10);
+        txt += '&autoStartRecording=true';
+        txt += '&record=true';
+        txt += '&meetingID='+"room-"+n;
+        //txt += '&duration=30';
+        txt += '&moderatorPW='+frappe.utils.get_random(12);
+        txt += '&checksum='+sha1('create'+txt+conferencia.secret);
+    
+    frappe.call({
+		method:"telemedicina.api.create",
+		args:{"url": url+txt},
+		async: true,
+		callback: function(r) {
+            var xml, parser;
+            parser = new DOMParser();
+            xml = parser.parseFromString(r.message,"text/xml"); 
+            conferencia.returnCode = $(xml).find("returncode").text();
+            if( conferencia.returnCode == "SUCCESS"){
+                conferencia.createTime = $(xml).find("createTime").text();
+                conferencia.internalMeetingID = $(xml).find("internalMeetingID").text();
+                conferencia.meetingID = $(xml).find("meetingID").text();
+                conferencia.attendeePW = $(xml).find('attendeePW').text();
+                conferencia.moderatorPW = $(xml).find('moderatorPW').text();
+                conferencia.duration = $(xml).find('duration').text();
+                conferencia.parentMeetingID = $(xml).find('parentMeetingID').text();
+                conferencia.hasUserJoined = $(xml).find('hasUserJoined').text();
+
+                doc.returncode = $(xml).find("returncode").text();
+                doc.createtime = $(xml).find("createTime").text();
+                doc.internalmeetingid = $(xml).find("internalMeetingID").text();
+                doc.meetingid = $(xml).find("meetingID").text();
+                doc.attendeepw = $(xml).find('attendeePW').text();
+                doc.moderatorpw = $(xml).find('moderatorPW').text();
+                doc.duration = $(xml).find('duration').text();
+                doc.parentmeetingid = $(xml).find('parentMeetingID').text();
+                doc.hasuserjoined = $(xml).find('hasUserJoined').text();
+
+                
+                var urljoin = 'https://meet.hisalud.com/bigbluebutton/api/join?';
+                var join = 'meetingID='+conferencia.meetingID;
+                    join +='&fullName='+frappe.user.name;
+                    join +='&createTime='+conferencia.createTime;
+                    join +='&password='+conferencia.moderatorPW;
+                    join +='&checksum='+sha1('join'+join+conferencia.secret);
+                    $("#bbb-frame").attr("src",urljoin+join);
+                frappe.db.set_value('Video Conferencia', doc.name, doc ).then(r => {
+                    let doc = r.message;
+                   
+                })
+            }
+        }})
+}
+$(document).ready(function(e) {
+  
+      if( frappe.user_roles.length == 3 && ( frappe.user_roles[0] == "Physician" || frappe.user_roles[1] == "Physician" || frappe.user_roles[2] == "Physician" ) && window.location.href != "https://hisalud.com/desk#hisalud-dashboard" )
+      {
+        location.href="https://hisalud.com/desk#hisalud-dashboard"; 
+      }
+  
+ })

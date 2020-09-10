@@ -7,15 +7,30 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "dni",
   "nombre",
-  "column_break_2",
   "apellidos",
+  "column_break_2",
+  "codigo_de_verificaci\u00f3n",
+  "fecha_de_nacimiento",
+  "archivos_verificacion",
+  "firma",
+  "column_break_9",
+  "foto",
+  "selfie",
+  "column_break_12",
+  "dni_frontal",
+  "dni_trasero",
   "colegiatura_section",
   "colegio_profesional",
   "numero_de_colegiatura",
   "column_break_7",
   "fecha_de_colegiatura",
-  "especialidad"
+  "especialidad",
+  "experiencia_laboral_section",
+  "experiencia_laboral",
+  "column_break_21",
+  "ubicacion"
  ],
  "fields": [
   {
@@ -53,16 +68,89 @@
   },
   {
    "fieldname": "fecha_de_colegiatura",
-   "fieldtype": "Data",
+   "fieldtype": "Date",
    "label": "Fecha de Colegiatura"
   },
   {
    "fieldname": "especialidad",
    "fieldtype": "Data",
-   "label": "Especialidad"
+   "label": "Especialidad Principal"
+  },
+  {
+   "fieldname": "dni",
+   "fieldtype": "Data",
+   "label": "DNI"
+  },
+  {
+   "fieldname": "codigo_de_verificaci\u00f3n",
+   "fieldtype": "Data",
+   "label": "Codigo de Verificaci\u00f3n"
+  },
+  {
+   "fieldname": "fecha_de_nacimiento",
+   "fieldtype": "Date",
+   "label": "Fecha de nacimiento"
+  },
+  {
+   "fieldname": "experiencia_laboral",
+   "fieldtype": "Data",
+   "label": "Centro de salud"
+  },
+  {
+   "fieldname": "firma",
+   "fieldtype": "Attach Image",
+   "label": "Firma"
+  },
+  {
+   "fieldname": "foto",
+   "fieldtype": "Attach Image",
+   "label": "Foto de perfil"
+  },
+  {
+   "fieldname": "selfie",
+   "fieldtype": "Attach Image",
+   "label": "Selfie sujentando su DNI"
+  },
+  {
+   "fieldname": "dni_frontal",
+   "fieldtype": "Attach Image",
+   "label": "DNI frontal"
+  },
+  {
+   "fieldname": "dni_trasero",
+   "fieldtype": "Attach Image",
+   "label": "DNI trasero"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "archivos_verificacion",
+   "fieldtype": "Section Break",
+   "label": "Archivos de verificaci\u00f3n"
+  },
+  {
+   "fieldname": "experiencia_laboral_section",
+   "fieldtype": "Section Break",
+   "label": "Donde trabajas"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ubicacion",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
   }
  ],
- "modified": "2020-08-07 22:08:26.135229",
+ "modified": "2020-09-09 14:37:38.717154",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",

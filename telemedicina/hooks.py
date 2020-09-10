@@ -10,27 +10,41 @@ app_icon = "octicon octicon-file-directory"
 app_color = "pink"
 app_email = "a.aguirre@frappe.technology"
 app_license = "MIT"
+app_logo_url = '/assets/telemedicina/img/favicon.svg'
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
 app_include_css = [ "/assets/telemedicina/css/fullcalendar@5.2.0/main.min.css",
-                    "/assets/telemedicina/css/dashboard_medico.css"
+                    "/assets/telemedicina/css/dashboard_medico.css",
+                   "/assets/telemedicina/css/guide.css"
                   ]
 app_include_js = [
   "/assets/telemedicina/js/sha1.min.js",
   "/assets/telemedicina/js/video_conferencia.js",
   "/assets/telemedicina/js/imgcache.js",
-  "/assets/telemedicina/js/moment.luxon.js"
+  "/assets/telemedicina/js/moment.luxon.js",
+  "/assets/telemedicina/js/guide.js"
+  
   ]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/telemedicina/css/telemedicina.css"
 web_include_js = "/assets/telemedicina/js/sha1.min.js"
 
+
 # include js in page
-page_js = {"hisalud-dashboard" : ["public/js/fullcalendar@5.2.0/main.min.js","public/js/slimscroll.min.js"]}
+page_js = {"hisalud-dashboard" : [
+  "public/js/fullcalendar@5.2.0/main.min.js",
+  "public/hisalud-dashboard/init.js",
+  "public/hisalud-dashboard/dashboard.js",
+  "public/hisalud-dashboard/vital_sings.js",
+  "public/hisalud-dashboard/medico.js",
+  "public/hisalud-dashboard/fields.js",
+  "public/hisalud-dashboard/datosMedico.js",
+  
+]}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
@@ -60,6 +74,11 @@ doctype_calendar_js = {
 # Generators
 # ----------
 
+
+website_context = {
+	'favicon': 	'/assets/telemedicina/img/favicon.svg',
+	'splash_image': '/assets/telemedicina/img/favicon.svg'
+}
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
 

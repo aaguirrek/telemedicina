@@ -1,33 +1,27 @@
-<div  class="container">
-    <div id="pageprincipal" class="row ini-page">
-        
-        
-        
-        
+<style>
+</style>
+<div  class="container" style="margin:0;width: calc(100vw - 120px);padding: 0;margin-left: 120px;">
+    <div id="pageprincipal" class="row ini-page" style="margin-right: 0;margin-left: 0;">
         <div id="pageprincipal2" class="col-xs-12">
             
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="card cabecera-medico" style="">
+                    <div class="card cabecera-medico" style="background-color: #15558d;">
                         <div class="card-body">
                             <div class="row">
                               
                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                  <div class="card" style="background: rgba(0,0,0,0.5);
-                                        color: white;
-                                        font-weight: 700;
-                                        margin: -15px;
-                                        margin-bottom: 35px;
-                                        border-radius: 0;
-                                        backdrop-filter: blur(20px);">
-                                        <div class="card-body">
-                                            <div class="row menu text-center">
-                                                    <div class="col-xs-2 menu bordered-menu">Mi Usuario</div>
-                                                    <div class="col-xs-2 menu bordered-menu">Mis Datos Médicos</div>
-                                                    <div class="col-xs-2 menu bordered-menu">Mis Especialidades</div>
-                                                    <div class="col-xs-2 menu bordered-menu">Mis Horarios de atención</div>
-                                                    <div class="col-xs-2 menu bordered-menu">Crear Cita de Seguimiento</div>
-                                                    <div class="col-xs-2 menu">Mis Cobros</div>
+                                  <div class="card" style="background: #212121;color: white;font-weight: 700;border-radius: 0;position: fixed;left: 0;max-width: 100px;display: flex;padding-top: 0px;height: 100%;top: 0;z-index: 1030;margin: 0;">
+                                        <div class="card-body" style="padding: 0;">
+                                            <div class="row menu text-center" style="margin: 0;display: grid;border: none;">
+                                                    <div class="col-xs-2 menu" style="padding: 20px;background: #323232;">
+                                                      <img src="/files/logo.png" class="img-responsive">
+                                                    </div>  
+                                                    <div class="col-xs-2 hsalud1 menu active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
+                                                    <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user"></i>Datos Médicos</div>
+                                                    <div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="especialidad"><i class="fa fa-check-square-o"></i>Especialidad</div>
+                                                    <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
+                                                    <div class="col-xs-2 hsalud5 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
                                             </div>
                                         </div>
                                     </div>
@@ -36,67 +30,112 @@
                                     <div>
                                         <img src="/assets/telemedicina/img/profile.jpeg" class="img-responsive img-profile" alt="Image">
                                     </div>
-                                    <div class="profile-content">
-                                        <h1 class="medico-full-name">Melissa Hu</h1>
-                                        <h3>Urología</h4>
+                                    <div class="profile-content"> 
+                                      <h1 class="medico-full-name" style="margin-top: 0;">Melissa Hu</h1> 
+                                      <h3 style="margin-top: 0;">Urología</h3> 
                                     </div>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 saldo-medico">
-                                    <h1>Acomulado</h1>
-                                    <h3>S/.100.00</h3>
+                                    <h1 style="margin-top: 0;">Acomulado</h1> 
+                                  <h3 style="margin-top: 0;">S/.100.00</h3> 
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="row">    
+          <div class="vpanel panelcitas">
+            <div class="row nocitas">
+              <div class="col-md-12">
+                <div class="empty-state" style="
+                      text-align: center;
+                      padding: 150px;
+                      border: #dedede 1px solid;
+                      border-radius: 5px;
+                      background: white;
+                      margin-top: 7px;
+                  ">
+                  <span style="margin-top: -100px;color: #aaa;">
+                    <i class="mega-octicon octicon-telescope status-icon">
+                      <i class="fa fa-square cover twinkle-one hide" style="left:0px;"></i>
+                      <i class="fa fa-square cover twinkle-two hide" style="left:8px; top:5px;"></i>
+                      <i class="fa fa-square cover twinkle-three hide" style="left:13px; top:-3px;"></i>
+                    </i>
+                    <p></p>
+                    <p>No cuenta con citas pendientes por el momento</p>
+                    <p></p>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row concitas" style="display:none">    
                 <div class="col-xs-4">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Proximas Citas Médicas</h3>
-                            <div class="card pacientes">
-                                <div class="card-body">   
-                                    <div class="person-card">
-                                        <div>
-                                            <img src="/files/gordita_profile.jpg" class="img-responsive thumb" alt="Image">
-                                        </div>
-                                        <div class="card-content">
-                                            <span class="full-name">Whiny Guevara Merma</span>
-                                            <p>Martes 9:30 am</p>
-                                        </div>
-                                    </div>
-                                </div>
+                           <!-- Nav tabs -->
+                            <ul class="nav nav-tabs pacients" role="tablist">
+                              <li role="presentation" class="active" style="grid-area: menu;">
+                                <a href="#pacienteslista" aria-controls="pacienteslista" role="tab" data-toggle="tab">
+                                  <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Proximas Citas
+                                </a>
+                              </li>
+                              <li role="presentation" style="grid-area: menu2;">
+                                <a href="#pacienteslistaAnt" aria-controls="pacienteslistaAnt" role="tab" data-toggle="tab">
+                                  <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Citas Anteriores
+                                </a>
+                              </li>
+                            </ul>
+
+                            <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane fade in active" id="pacienteslista"></div>
+                              <div role="tabpanel" class="tab-pane fade" id="pacienteslistaAnt"></div>
                             </div>
+                            
+                          
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-8">
+              
+                  <div class="col-xs-8 noseleccionados">
+                    <div class="empty-state" style="text-align: center;padding: 150px;border: #dedede 1px solid;border-radius: 5px;background: white;margin-top: 7px;">
+                      <span style="margin-top: -100px;color: #aaa;">
+                        <i class="mega-octicon octicon-telescope status-icon">
+                          <i class="fa fa-square cover twinkle-one hide" style="left:0px;"></i>
+                          <i class="fa fa-square cover twinkle-two hide" style="left:8px; top:5px;"></i>
+                          <i class="fa fa-square cover twinkle-three hide" style="left:13px; top:-3px;"></i>
+                        </i>
+                        <p></p>
+                        <p>Todavia no ha seleccionado a ningún paciente</p>
+                        <p></p>
+                      </span>
+                    </div>
+                  </div>
+              
+                <div class="col-xs-8 seleccionado1" style="display:none">
                     <div class="card" style="overflow:hidden">
                         <div class="card-body">
                             <div class="card-head descripcion">
-                                <img id="patient-bg" src="/files/gordita_profile.jpg" class="img-responsive card-head-bg" alt="Image">
+                                <img id="patient-bg" src="" class="img-responsive card-head-bg" alt="Image">
                                 <div class="iniciar-conferencia" style="margin-bottom: 15px;">
                                     <button type="button" onclick="iniciarCita()" class="btn btn-large btn-block btn-primary">Haga click aquí para empezar la cita</button>
                                 </div>
                                 <div class="descripcion">
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-3 col-md-2">
-                                            <img id="patient-image" src="/files/gordita_profile.jpg" class="img-responsive" alt="Image" style="border-radius: 50%;border: 4px solid #2C3E50;">
+                                            <img id="patient-image" src="" class="img-responsive" alt="Image" style="border-radius: 50%;border: 4px solid #2C3E50;">
                                         </div>
                                         <div class="col-xs-8 col-sm-9 col-md-10">
-                                            <span id="patient-name" class="full-name">Whiny Guevara Merma</span>
-                                            <p id="patient-subtitle">Femenino - 29/07/1995</p>
+                                            <span id="patient-name" class="full-name"></span>
+                                            <p id="patient-subtitle"></p>
                                         </div>
                                         
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-8">
-                                            <h4>la cita es para el martes 11/08/2020 a las 09:30 am</h3>
+                                            <h4 id="citaprogramada"></h3>
                                         </div>
                                         <div class="col-xs-4 text-right" style="margin-top: 10px;">
-                                            <span class="bag-especialidad">Urología</span>
+                                            <span id="bag-especialidad" class="bag-especialidad"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -128,27 +167,144 @@
                 </div>    
             </div>
         </div>
-        
-        
-    </div>    
-</div>
+          </div>
+          <div class="row vpanel datosmedico" style="display:none">
+              <div class="col-md-12">
+                  <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6 datosbase"></div>
+                              <div class="col-md-6 datosbase2"></div>
+                           </div>
+                          <div class="row">
+                              <div class="col-md-12 curriculumVitae"></div>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+            </div>
+          <div class="row vpanel horarioMedico" style="display:none">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                   <!-- Nav tabs -->
+                    <ul class="nav nav-tabs pacients horario" role="tablist">
+                      <li role="presentation" class="active" style="grid-area: menu;">
+                        <a href="#hlunes" aria-controls="hlunes" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Lunes
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu2;">
+                        <a href="#hmartes" aria-controls="hmartes" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Martes
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu3;">
+                        <a href="#hmiercoles" aria-controls="hmiercoles" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Miercoles
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu4;">
+                        <a href="#hjueves" aria-controls="hjueves" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Jueves
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu5;">
+                        <a href="#hviernes" aria-controls="hviernes" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Viernes
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu6;">
+                        <a href="#hsabado" aria-controls="hsabado" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Sábado
+                        </a>
+                      </li>
+                      <li role="presentation" style="grid-area: menu7;">
+                        <a href="#hdomingo" aria-controls="hdomingo" role="tab" data-toggle="tab">
+                          <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Domingo
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane fade in active" id="hlunes"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hmartes"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hmiercoles"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hjueves"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hviernes"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hsabado"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hdomingo"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row vpanel especialidad" style="display:none"></div>
+          <div class="row vpanel misCobros" style="display:none"></div>
 
-<div id="bigbluebutton" style="display:none">
-   <div class="container" style="width: calc(100% - 40px);">
-        <div class="row">
-            <div class="col-xs-6 card" style="background: white; margin:0;">
-                <div class="card-body cita-body" id="cita-tabss" style="overflow: auto;">
+      </div>    
+  </div>
+
+  <style>
+    #bigbluebutton .nav-tabs>li.active>a,#bigbluebutton  .nav-tabs>li.active>a:focus,#bigbluebutton  .nav-tabs>li.active>a:hover{
+      color: white;
+      border: none;
+      border-radius: 0;
+      background:rgba(255,255,255,0.1);
+    }
+    
+    #bigbluebutton .nav>li>a{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    #bigbluebutton .nav>li>a:focus,#bigbluebutton  .nav>li>a:hover {
+      text-decoration: none;
+      background-color: rgba(255,255,255,0.1);
+    }
+    body[data-route="hisalud-dashboard"] #cita-tabss {
+        height: 100vh;
+    }
+  </style>
+  <div id="bigbluebutton" style="display:none; padding: 0;">
+  <div id="videointro" style="display:none;position: absolute;z-index: 99;width: 100%;background: #212121;height: 100%;text-align: center;padding-top: calc(100vh - 810px);">
+    <button class="btn btn-danger btn-small" onclick="cerrarIntro()" style="float: right;top: 20px;position: absolute;right: 20px;">Cerrar introduccion</button>
+    <iframe allowfullscreen="allowfullscreen" id="introframe" frameborder="no" width="960" height="540" src=""></iframe>
+  </div>
+  <div class="container" style="width: 100%; padding: 0px;">
+        <div class="row" style="margin: 0;">
+            <div class="col-xs-6 card" style="background: white;margin:0;padding: 0;box-shadow: none;border-radius: 0;">
+                <div class="card-body cita-body" id="cita-tabss" style="overflow: auto;display: flex;padding: 0;margin: 0;">
 
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Historia</a></li>
-                        <li role="presentation"><a href="#Encuentro" aria-controls="Encuentro" role="tab" data-toggle="tab">Encuentro</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Signos Vitales</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Prueba de Laboratorio</a></li>
+                    <ul class="nav nav-tabs" role="tablist" style="background: #212121;color: white;width: 100px!important;max-width: 100px!important;height: 100%;position: fixed;border-bottom: 0;">
+                        <li style="float: none;max-width: 100px;padding: 20px;background: #323232;">
+                          <img src="/files/logo.png" class="img-responsive">
+                        </li>  
+                        <li role="presentation" style="float: none;max-width: 100px;" class="active">
+                          <a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="color: white;border: none;border-radius: 0;text-align: center;"><i class="octicon octicon-graph" style="
+                              font-size: 30px;
+                              display: block;
+                          "></i> Historia </a></li>
+                      
+                        <li role="presentation" style="float: none;max-width: 100px;">
+                          <a href="#Encuentro" aria-controls="Encuentro" role="tab" data-toggle="tab" style="color: white;border: none;text-align: center;border-radius: 0;"><i class="octicon octicon-broadcast" style="
+                              font-size: 30px;
+                              display: block;
+                          "></i> Encuentro </a></li>
+                        <li role="presentation" style="float: none;max-width: 100px;">
+                          <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: white;border: none;border-radius: 0;text-align: center;" aria-expanded="true"><i class="fa fa-heartbeat" style="
+                              display: block;
+                              font-size: 30px;
+                          "></i> Signos Vitales </a></li>
+                        <li role="presentation" style="float: none;max-width: 100px;">
+                          <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="color: white;text-align: center;border: none;border-radius: 0;" aria-expanded="false"> <i class="octicon octicon-organization" style="
+                              font-size: 30px;
+                              display: block;
+                          "></i>Unir a otro médico</a></li>
                     </ul>
+                  
 
                     <!-- Tab panes -->
-                    <div class="tab-content">
+                    <div class="tab-content" style="padding: 20px;margin-left: 100px;width: 100%;">
                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                         
                                 <div class="row">
@@ -178,6 +334,8 @@
                         <div role="tabpanel" class="tab-pane fade in" id="Encuentro">
                           <form id="Encuentro-form"  class="form">
                             <div class="row">
+                              
+                              <div class="col-md-12"><h5>Encuentro con el paciente</h5><hr></div>
                               <div class="col-md-6 form_patient_info"></div>
                               <div class="col-md-6 form_practtioner_info"></div>
                             </div>
@@ -194,32 +352,23 @@
                                     <div class="col-md-6 medicamentos1"></div>
                                     <div class="col-md-6 medicamentos2"></div>
                                     <div class="col-md-12">
-                                      <button class="btn btn-primary" type="button" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">Agregar el medicamento</button>
+                                      <button class="btn btn-primary" type="button" onclick="agregar_medicamento()" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">Agregar el medicamento</button>
                                     </div>
                                     <div class="col-md-12 tabla_medicamentos">
-                                      <table id="example" class="display" style="width:100%">
+                                      <table class="display table" style="width:100%">
                                           <thead>
                                               <tr>
                                                   <th></th>
                                                   <th>Medicamento</th>
-                                                  <th>Fuerza</th>
-                                                  <th>Dosificacion</th>
-                                                  <th>Periodo</th><!--https://datatables.net/manual/ajax#Live-examples-->
-                                                  <th>Forma de dosificacion</th> <!--https://datatables.net/examples/api/row_details.html-->
-                                                  <th>Comentarios</th>
-                                              </tr>
-                                          </thead>
-                                          <tfoot>
-                                              <tr>
-                                                  <th></th>
-                                                  <th>Medicamento</th>
-                                                  <th>Fuerza</th>
+                                                  <th>Presentacion</th>
                                                   <th>Dosificacion</th>
                                                   <th>Periodo</th>
-                                                  <th>Forma de dosificacion</th>
-                                                  <th>Comentarios</th>
+                                                  <th></th>
                                               </tr>
-                                          </tfoot>
+                                          </thead>
+                                          <tbody id="drug_prescription">
+                                            
+                                          </tbody>
                                       </table>
                                     </div>
                                   </div>
@@ -228,24 +377,46 @@
                             </div>
                           </form>
                       </div>
-                        <div role="tabpanel" class="tab-pane fade in" id="profile"><form id="Vital-form"  class="form"></form></div>
-                        <div role="tabpanel" class="tab-pane fade in" id="settings"><form id="labs-form"  class="form"></form></div>
+                        <div role="tabpanel" class="tab-pane fade in" id="profile"><form id="Vital-form"  class="form"></form>
+                          
+                          <div class="row">
+                            <div class="col-md-12"><h5>Signos Vitales</h5><hr></div>
+                            <div class="col-md-6 vital1"></div>
+                            <div class="col-md-6 vital2"></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12"><h5>Valores Nutricionales</h5><hr></div>
+                            <div class="col-md-6 vital3"></div>
+                            <div class="col-md-6 vital4"></div>
+                          </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in" id="settings">
+                          <form id="other-form"  class="form">
+                            
+                          </form>
+                          <button type="button" onclick="conferencia.addOtherUser()" class="btn btn-large btn-block btn-primary">Crear link para unir a otro médico</button>
+                          <div class="card enlace-creado" style="display:none">
+                              <div class="card-body">
+                                  <h1>Enlace creado</h1>
+                                  <div id="mensajefinal">
+
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 card" style="margin:0">
-                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="float: right;position: absolute;z-index: 9;right: 14px;">Finalizar cita</button>
+            <div class="col-xs-6 card" style="margin:0;padding: 0;box-shadow: none;border-radius: 0;">
+                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="float: right;position: absolute;z-index: 9;
+                  right: 0;
+                  border-radius: 0;
+                  padding-bottom: 6px;">
+                  Guardar todo y finalizar cita</button>
                 <iframe id="bbb-frame" src="https://meet.hisalud.com" frameborder="0"  allow="display-capture * ; geolocation * ; microphone * ; camera *"
-                style="
-                    width: 100%;
-                    height: calc(100vh - 40px);
-                    border-radius: 5px;
-                "></iframe>
+                style="width: 100%;height: 100vh;border-radius: 0px;"></iframe>
             </div>
         </div>
    </div>
-<div>
-<script>
-show_patient_info("Whiny Guevara Merma","paciente-body");
-get_documents("Whiny Guevara Merma",".registros-paciente");
-</script>
+</div>
+</div>
