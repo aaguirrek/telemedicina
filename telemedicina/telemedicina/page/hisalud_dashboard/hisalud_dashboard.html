@@ -1,6 +1,6 @@
 <style>
 </style>
-<div  class="container" style="margin:0;width: calc(100vw - 120px);padding: 0;margin-left: 120px;">
+<div  class="container" style="margin:0;width: calc(100vw - 120px);padding: 0;margin-left: 120px;height: 100vh;">
     <div id="pageprincipal" class="row ini-page" style="margin-right: 0;margin-left: 0;">
         <div id="pageprincipal2" class="col-xs-12">
             
@@ -19,7 +19,7 @@
                                                     </div>  
                                                     <div class="col-xs-2 hsalud1 menu active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
                                                     <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user"></i>Datos Médicos</div>
-                                                    <div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="especialidad"><i class="fa fa-check-square-o"></i>Especialidad</div>
+                                                    <!--<div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="especialidad"><i class="fa fa-check-square-o"></i>Especialidad</div>-->
                                                     <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
                                                     <div class="col-xs-2 hsalud5 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
                                             </div>
@@ -31,13 +31,13 @@
                                         <img src="/assets/telemedicina/img/profile.jpeg" class="img-responsive img-profile" alt="Image">
                                     </div>
                                     <div class="profile-content"> 
-                                      <h1 class="medico-full-name" style="margin-top: 0;">Melissa Hu</h1> 
-                                      <h3 style="margin-top: 0;">Urología</h3> 
+                                      <h1 class="medico-full-name" style="margin-top: 0;"></h1> 
+                                      <h3 style="margin-top: 0;" class="laespecialidad"></h3> 
                                     </div>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 saldo-medico">
-                                    <h1 style="margin-top: 0;">Acomulado</h1> 
-                                  <h3 style="margin-top: 0;">S/.100.00</h3> 
+                                    <h1 style="margin-top: 0;">Acumulado</h1> 
+                                  <h3 style="margin-top: 0;" class="saldos-acumulado">S/. 0</h3> 
                                 </div>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                                                 <div align="center">
                                                     <a id="btn-paciente" class="btn octicon octicon-chevron-down btn-default btn-xs btn-more" style="float: right;margin-top: 10px;"></a>
                                                 </div>
-                                                <h4 style="">Datos del paciente</h4>
+                                                <h4>Datos del paciente</h4>
                                             <div id="paciente-body">
                                             </div>
                                         </div>  
@@ -182,6 +182,44 @@
                         </div>
                   </div>
               </div>
+              <div class="col-md-12">
+                  <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6 datosespecialidad"></div>
+                              <div class="col-md-6 datosespecialidad2"></div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6 datoslabores"></div>
+                              <div class="col-md-6 datoslabores2"></div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-md-6 datoscobros"></div>
+                              <div class="col-md-6 datoscobros2"></div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              
+              <button type="button" onclick="telemedicina.datosmedico.save()" class="btn btn-large btn-block btn-primary" style="
+                margin-left: 20px;
+                margin-bottom: 40px;
+                width: calc(100% - 40px);
+                height: 50px;
+                font-size: 1.9rem;
+            ">Guardar Cambios</button>
             </div>
           <div class="row vpanel horarioMedico" style="display:none">
             <div class="col-md-12">
@@ -190,57 +228,116 @@
                    <!-- Nav tabs -->
                     <ul class="nav nav-tabs pacients horario" role="tablist">
                       <li role="presentation" class="active" style="grid-area: menu;">
-                        <a href="#hlunes" aria-controls="hlunes" role="tab" data-toggle="tab">
+                        <a href="#hMonday" aria-controls="hMonday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Lunes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu2;">
-                        <a href="#hmartes" aria-controls="hmartes" role="tab" data-toggle="tab">
+                        <a href="#hTuesday" aria-controls="hTuesday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Martes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu3;">
-                        <a href="#hmiercoles" aria-controls="hmiercoles" role="tab" data-toggle="tab">
+                        <a href="#hWednesday" aria-controls="hWednesday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Miercoles
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu4;">
-                        <a href="#hjueves" aria-controls="hjueves" role="tab" data-toggle="tab">
+                        <a href="#hThursday" aria-controls="hThursday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Jueves
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu5;">
-                        <a href="#hviernes" aria-controls="hviernes" role="tab" data-toggle="tab">
+                        <a href="#hFriday" aria-controls="hFriday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Viernes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu6;">
-                        <a href="#hsabado" aria-controls="hsabado" role="tab" data-toggle="tab">
+                        <a href="#hSaturday" aria-controls="hSaturday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Sábado
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu7;">
-                        <a href="#hdomingo" aria-controls="hdomingo" role="tab" data-toggle="tab">
+                        <a href="#hSunday" aria-controls="hSunday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Domingo
                         </a>
                       </li>
                     </ul>
                     <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane fade in active" id="hlunes"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hmartes"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hmiercoles"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hjueves"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hviernes"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hsabado"></div>
-                      <div role="tabpanel" class="tab-pane fade" id="hdomingo"></div>
+                      <div role="tabpanel" class="tab-pane fade in active" id="hMonday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hTuesday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hWednesday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hThursday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hFriday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hSaturday"></div>
+                      <div role="tabpanel" class="tab-pane fade" id="hSunday"></div>
                     </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row vpanel especialidad" style="display:none"></div>
-          <div class="row vpanel misCobros" style="display:none"></div>
+          <div class="row vpanel misCobros" style="display:none">
+            
+              <div class="col-md-12">
+                <div class="card">
+                      <div class="card-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                                
+                                <div class="empty-state" id="sinoperaciones" style="
+                                      text-align: center;
+                                      padding: 150px;
+                                      border: 0;
+                                      border-radius: 5px;
+                                      background: white;
+                                      margin-top: 7px;
+                                  ">
+                                  <span style="margin-top: -100px;color: #aaa;">
+                                    <i class="mega-octicon octicon-telescope status-icon">
+                                      <i class="fa fa-square cover twinkle-one hide" style="left:0px;"></i>
+                                      <i class="fa fa-square cover twinkle-two hide" style="left:8px; top:5px;"></i>
+                                      <i class="fa fa-square cover twinkle-three hide" style="left:13px; top:-3px;"></i>
+                                    </i>
+                                    <p></p>
+                                    <p>no cuenta con saldo acumulado a su favor por el momento</p>
+                                    <p></p>
+                                  </span>
+                                </div>
+                                <h1 id="tienesacomulado">Tienes S/.<span class="saldo-acumulado"></span> acumulado desde el último retiro</h1>
+                                <h3 id="las20citas">Mostrando las últimas 20 citas</h3>
+                                <table class="table" id="saldosyotros">
+                                  <thead>
+                                    <tr>
+                                      <th>
+                                        Cita
+                                      </th>
+                                      <th>
+                                        Paciente
+                                      </th>
+                                      <th>
+                                        Monto
+                                      </th>
+                                      <th>
+                                        Fecha
+                                      </th>
+                                      <th>
+                                        Estado
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody id="tbod-saldos">
+                                    
+                                  </tbody>
+                                </table>
+                              </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+          </div>
 
+            
+          
       </div>    
   </div>
 
@@ -315,7 +412,7 @@
                                                 <div align="center">
                                                     <a id="btn-cita" class="btn octicon octicon-chevron-down btn-default btn-xs btn-more" style="float: right;margin-top: 10px;"></a>
                                                 </div>
-                                                <h4 style="">Datos del paciente</h4>
+                                                <h4 >Datos del paciente</h4>
                                                 <div id="cita-body">
                                                 </div>
                                             </div>

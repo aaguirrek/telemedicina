@@ -1,29 +1,80 @@
 telemedicina.user = {};
-telemedicina.user.name="humelissa@hotmail.com";
+telemedicina.user.name=frappe.user.name;
 telemedicina.medico= {};
 telemedicina.pacientes = {};
 telemedicina.tables={};
 telemedicina.tables.drug_prescription = [];
 telemedicina.data={};
 
+telemedicina.saldos={};
+telemedicina.saldos.init=()=>{
+  $(".saldo-acumulado").html(0);
+  $("#tbod-saldos").html("");
+  $("#sinoperaciones").show();
+  $("#las20citas").hide();
+  $("#tienesacomulado").hide();
+  $("#saldosyotros").hide();
+  frappe.call({
+    method:"frappe.client.get_list",
+    args:{
+      doctype: 'Saldos y Pagos',
+      fields:["*"],
+      filters:[[ "medico","=", "Ficha-"+frappe.user.name ],["estado","=","Por Retirar"]] ,
+      order_by:"fecha_y_hora desc"
+    },
+    callback: function(r) {
+      if(r.message.length > 0){
+        $(".saldo-acumulado").html(r.message[0].monto);
+        $("#saldosyotros").show();
+        $("#sinoperaciones").hide();
+        $("#tienesacomulado").show();
+        $("#las20citas").show();
+        $(".saldos-acumulado").html("S/. "+r.message[0].monto);
+        r.message.forEach(e => {
+          $("#tbod-saldos").append(`
+          <tr>
+            <td>
+              ${r.message[0].cita}
+            </td>
+            <td>
+              ${r.message[0].paciente}
+            </td>
+            <td>
+            ${r.message[0].monto}
+            </td>
+            <td>
+            ${r.message[0].fecha_y_hora}
+            </td>
+            <td>
+            ${r.message[0].estado}
+            </td>
+          </tr>
+          `)
+        });
+      
+      }
+    }
+  })
+}
+
 telemedicina.medico.init = () => {
     frappe.call({
-        method:"frappe.client.get_list",
+        method:"frappe.client.get",
         args:{
-          doctype: 'Healthcare Practitioner',
-          fields:["*"],
-          filters:[[ "user_id","=", telemedicina.user.name ]],
-          
+          doctype: 'Ficha de Registro de Medicos',
+          name: 'Ficha-'+telemedicina.user.name,
         },
       freeze:1,
         callback: function(r) {
-          
-          telemedicina.data.medico = r.message[0];
-          
+          telemedicina.data.medico = r.message;
+          localStorage.setItem("medico-name",telemedicina.data.medico.dni);
+          $(".medico-full-name").html(telemedicina.data.medico.nombre);
+          $(".laespecialidad").html(telemedicina.data.medico.especialidad);
+          $(".img-profile").attr('src',telemedicina.data.medico.foto);
           telemedicina.pacientes.init();
-
         }
     })
+    
 }
 telemedicina.pacientes.init = () => {
   var  dat = DateTime.local();
@@ -119,7 +170,8 @@ telemedicina.pacientes.init = () => {
           })
         }
     })
-}
+    
+ }
 
 
 

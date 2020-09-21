@@ -19,26 +19,36 @@ def get_data():
                 },
                 {
                     "type": "doctype",
-                    "name": "Healthcare Practitioner",
-                    "label": "Medico",
+                    "name": "Ficha de Registro de Medicos",
+                    "label":"Ficha de Registro de Medicos",
 					"onboard": 0
+                    
+                },
+                {
+                    "type": "doctype",
+                    "name": "Saldos y Pagos",
+                    "label":"Saldos y Pagos",
+					"onboard": 0
+                    
                 }
             ]
         },
         {
             "label": _("Conferencia"),
             "items": [
+                
                 {
                     "type": "page",
                     "name": "video-conferencia",
-                    "label":"Iniciar Conferencia",
+                    "label":"Mi Espacio de trabajo",
+					"link": "hisalud-dashboard",
 					"onboard": 1
                 },
                 {
                     "type": "doctype",
                     "name": "Video Conferencia",
 					"onboard": 1
-                }
+                },
             ]
         }
     ]

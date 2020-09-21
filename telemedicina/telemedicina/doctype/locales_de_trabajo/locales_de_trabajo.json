@@ -1,0 +1,37 @@
+{
+ "creation": "2020-09-13 21:01:01.358794",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "centro_del_salud",
+  "ubicacion"
+ ],
+ "fields": [
+  {
+   "fieldname": "centro_del_salud",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Centro de salud",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ubicacion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Ubicaci\u00f3n",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-09-13 21:01:01.358794",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Locales de trabajo",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

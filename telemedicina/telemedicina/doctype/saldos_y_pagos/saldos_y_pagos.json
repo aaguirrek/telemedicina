@@ -1,0 +1,99 @@
+{
+ "autoname": "format: Pago-{cita}-{monto}",
+ "creation": "2020-09-20 21:15:52.051171",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cita",
+  "medico",
+  "paciente",
+  "column_break_4",
+  "monto",
+  "acumulado",
+  "estado",
+  "fecha_y_hora"
+ ],
+ "fields": [
+  {
+   "fieldname": "cita",
+   "fieldtype": "Link",
+   "label": "Cita",
+   "options": "Patient Appointment"
+  },
+  {
+   "fieldname": "medico",
+   "fieldtype": "Link",
+   "label": "Medico",
+   "options": "Ficha de Registro de Medicos"
+  },
+  {
+   "fieldname": "paciente",
+   "fieldtype": "Link",
+   "label": "Paciente",
+   "options": "Patient"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monto",
+   "fieldtype": "Currency",
+   "label": "Monto"
+  },
+  {
+   "default": "Por Retirar",
+   "fieldname": "estado",
+   "fieldtype": "Select",
+   "label": "Estado",
+   "options": "Por Retirar\nRetirado"
+  },
+  {
+   "fieldname": "acumulado",
+   "fieldtype": "Currency",
+   "label": "Acomulado"
+  },
+  {
+   "fieldname": "fecha_y_hora",
+   "fieldtype": "Datetime",
+   "label": "Fecha y hora"
+  }
+ ],
+ "modified": "2020-09-20 21:43:54.394196",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Saldos y Pagos",
+ "name_case": "Title Case",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "cita",
+ "track_changes": 1
+}

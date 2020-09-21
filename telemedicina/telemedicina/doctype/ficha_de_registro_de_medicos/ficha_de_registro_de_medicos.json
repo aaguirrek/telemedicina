@@ -1,18 +1,21 @@
 {
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "format:COL-{colegio_profesional}-{numero_de_colegiatura}",
+ "autoname": "format:Ficha-{user}",
  "creation": "2020-08-07 22:01:52.335828",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "dni",
+  "salto_columna",
+  "codigo_de_verificacion",
+  "salto_seccion",
   "nombre",
   "apellidos",
   "column_break_2",
-  "codigo_de_verificaci\u00f3n",
   "fecha_de_nacimiento",
+  "sexo",
   "archivos_verificacion",
   "firma",
   "column_break_9",
@@ -27,16 +30,39 @@
   "column_break_7",
   "fecha_de_colegiatura",
   "especialidad",
+  "especialidades_secundarias_section",
+  "segunda_especialidad",
+  "cuarta_especialidad",
+  "column_break_24",
+  "tercera_especialidad",
+  "quinta_especialidad",
   "experiencia_laboral_section",
-  "experiencia_laboral",
-  "column_break_21",
-  "ubicacion"
+  "centro_de_labores_1",
+  "centro_de_labores_2",
+  "centro_de_labores_3",
+  "centro_de_labores_4",
+  "centro_de_labores_5",
+  "column_break_33",
+  "ubicacion_1",
+  "ubicacion_2",
+  "ubicacion_3",
+  "ubicacion_4",
+  "ubicacion_5",
+  "precio_de_consulta_section",
+  "precio",
+  "user"
  ],
  "fields": [
   {
    "fieldname": "nombre",
    "fieldtype": "Data",
-   "label": "Nombre"
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Nombre",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "column_break_2",
@@ -45,7 +71,13 @@
   {
    "fieldname": "apellidos",
    "fieldtype": "Data",
-   "label": "Apellidos"
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Apellidos",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "colegiatura_section",
@@ -55,12 +87,14 @@
   {
    "fieldname": "colegio_profesional",
    "fieldtype": "Data",
-   "label": "Colegio Profesional"
+   "label": "Colegio Profesional",
+   "reqd": 1
   },
   {
    "fieldname": "numero_de_colegiatura",
    "fieldtype": "Data",
-   "label": "N\u00famero de colegiatura"
+   "label": "N\u00famero de colegiatura",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_7",
@@ -69,57 +103,59 @@
   {
    "fieldname": "fecha_de_colegiatura",
    "fieldtype": "Date",
-   "label": "Fecha de Colegiatura"
+   "label": "Fecha de Colegiatura",
+   "reqd": 1
   },
   {
    "fieldname": "especialidad",
-   "fieldtype": "Data",
-   "label": "Especialidad Principal"
+   "fieldtype": "Link",
+   "label": "Especialidad Principal",
+   "options": "Medical Department",
+   "reqd": 1
   },
   {
    "fieldname": "dni",
    "fieldtype": "Data",
-   "label": "DNI"
-  },
-  {
-   "fieldname": "codigo_de_verificaci\u00f3n",
-   "fieldtype": "Data",
-   "label": "Codigo de Verificaci\u00f3n"
+   "in_list_view": 1,
+   "label": "DNI",
+   "reqd": 1
   },
   {
    "fieldname": "fecha_de_nacimiento",
    "fieldtype": "Date",
-   "label": "Fecha de nacimiento"
-  },
-  {
-   "fieldname": "experiencia_laboral",
-   "fieldtype": "Data",
-   "label": "Centro de salud"
+   "label": "Fecha de nacimiento",
+   "read_only": 1,
+   "reqd": 1
   },
   {
    "fieldname": "firma",
    "fieldtype": "Attach Image",
-   "label": "Firma"
+   "label": "Foto de la firma en fondo blanco",
+   "reqd": 1
   },
   {
    "fieldname": "foto",
    "fieldtype": "Attach Image",
-   "label": "Foto de perfil"
+   "label": "Foto de perfil",
+   "reqd": 1
   },
   {
    "fieldname": "selfie",
    "fieldtype": "Attach Image",
-   "label": "Selfie sujentando su DNI"
+   "label": "Selfie sujentando su DNI",
+   "reqd": 1
   },
   {
    "fieldname": "dni_frontal",
    "fieldtype": "Attach Image",
-   "label": "DNI frontal"
+   "label": "DNI frontal",
+   "reqd": 1
   },
   {
    "fieldname": "dni_trasero",
    "fieldtype": "Attach Image",
-   "label": "DNI trasero"
+   "label": "DNI trasero",
+   "reqd": 1
   },
   {
    "collapsible": 1,
@@ -128,18 +164,10 @@
    "label": "Archivos de verificaci\u00f3n"
   },
   {
+   "collapsible": 1,
    "fieldname": "experiencia_laboral_section",
    "fieldtype": "Section Break",
-   "label": "Donde trabajas"
-  },
-  {
-   "fieldname": "column_break_21",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "ubicacion",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n"
+   "label": "Donde Trabajas"
   },
   {
    "fieldname": "column_break_9",
@@ -148,12 +176,147 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "especialidades_secundarias_section",
+   "fieldtype": "Section Break",
+   "label": "Especialidades secundarias"
+  },
+  {
+   "fieldname": "segunda_especialidad",
+   "fieldtype": "Link",
+   "label": "Segunda Especialidad",
+   "options": "Medical Department"
+  },
+  {
+   "fieldname": "cuarta_especialidad",
+   "fieldtype": "Link",
+   "label": "Cuarta Especialidad",
+   "options": "Medical Department"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tercera_especialidad",
+   "fieldtype": "Link",
+   "label": "Tercera Especialidad",
+   "options": "Medical Department"
+  },
+  {
+   "fieldname": "quinta_especialidad",
+   "fieldtype": "Link",
+   "label": "Quinta Especialidad",
+   "options": "Medical Department"
+  },
+  {
+   "fieldname": "centro_de_labores_1",
+   "fieldtype": "Data",
+   "label": "Centro de labores 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "centro_de_labores_2",
+   "fieldtype": "Data",
+   "label": "Centro de labores 2"
+  },
+  {
+   "fieldname": "centro_de_labores_3",
+   "fieldtype": "Data",
+   "label": "Centro de labores 3"
+  },
+  {
+   "fieldname": "centro_de_labores_4",
+   "fieldtype": "Data",
+   "label": "Centro de labores 4"
+  },
+  {
+   "fieldname": "centro_de_labores_5",
+   "fieldtype": "Data",
+   "label": "Centro de labores 5"
+  },
+  {
+   "fieldname": "column_break_33",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ubicacion_1",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n 1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ubicacion_2",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n 2"
+  },
+  {
+   "fieldname": "ubicacion_3",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n 3"
+  },
+  {
+   "fieldname": "ubicacion_4",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n 4"
+  },
+  {
+   "fieldname": "ubicacion_5",
+   "fieldtype": "Data",
+   "label": "Ubicaci\u00f3n 5"
+  },
+  {
+   "fieldname": "codigo_de_verificacion",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Codigo de Verificaci\u00f3n",
+   "reqd": 1
+  },
+  {
+   "fieldname": "salto_columna",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "salto_seccion",
+   "fieldtype": "Section Break",
+   "label": "Datos Personales"
+  },
+  {
+   "fieldname": "sexo",
+   "fieldtype": "Select",
+   "label": "Sexo",
+   "options": "Masculino\nFemenino\nOtro",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "precio_de_consulta_section",
+   "fieldtype": "Section Break",
+   "label": "Precio de Consulta"
+  },
+  {
+   "fieldname": "precio",
+   "fieldtype": "Currency",
+   "label": "Precio de la consulta virtual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "usuario",
+   "options": "User"
   }
  ],
- "modified": "2020-09-09 14:37:38.717154",
+ "image_field": "foto",
+ "modified": "2020-09-20 20:15:46.614907",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",
+ "name_case": "Title Case",
  "owner": "Administrator",
  "permissions": [
   {
@@ -205,10 +368,9 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "colegio_profesional",
+ "title_field": "dni",
  "track_changes": 1
 }

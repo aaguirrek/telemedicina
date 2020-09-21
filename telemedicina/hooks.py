@@ -119,6 +119,9 @@ doc_events = {
 	},
     "Sales Invoice": {
         "on_submit": "telemedicina.api.create_conference"
+	},
+    "Ficha de Registro de Medicos": {
+        "after_insert": "telemedicina.events.ficha_registro_store"
 	}
 }
 

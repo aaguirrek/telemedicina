@@ -1,15 +1,8 @@
 
 var page;
  
-var horario_dias={
-  lunes:[],
-  martes:[],
-  miercoles:[],
-  jueves:[],
-  viernes:[],
-  sabado:[],
-  domingo:[]
-};
+var horario_dias=[];
+var doc_horario;
 frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 	page = frappe.ui.make_app_page({
 		parent: wrapper,
@@ -22,44 +15,52 @@ frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 			"background-size": "cover",
 			"background-position-y": "center"});
   })
-  localStorage.setItem("medico-name","Melissa Hu");
+
+	//localStorage.setItem("medico-name","Melissa Hu");
+	  
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
     telemedicina.DocType.patient_encounter();
     telemedicina.DocType.vital_sings();
     telemedicina.DocType.addOther();
     telemedicina.datosmedico.init();
+    telemedicina.saldos.init();
 		
 	});
   var horario_id ="";
-	$("#hlunes").html( frappe.render_template("horario",{"dia":"lunes",dia_n:1 } ));
-	$("#hmartes").html( frappe.render_template("horario",{"dia":"martes",dia_n:2 } ));
-	$("#hmiercoles").html( frappe.render_template("horario",{"dia":"miercoles",dia_n:3 } ));
-	$("#hjueves").html( frappe.render_template("horario",{"dia":"jueves",dia_n:4 } ));
-	$("#hviernes").html( frappe.render_template("horario",{"dia":"viernes",dia_n:5 } ));
-	$("#hsabado").html( frappe.render_template("horario",{"dia":"sabado",dia_n:6 } ));
-  $("#hdomingo").html( frappe.render_template("horario",{"dia":"domingo",dia_n:7 } )).promise().done(function(){
-				horario_dias = JSON.parse(localStorage.getItem("horario_del_medico"));
-        for(var key in horario_dias){
-          horario_dias[key].forEach(function(value,item){
-              horario_id = key+"_"+value.replace(":","");
-              $("#"+horario_id).addClass("selected");
-          })
-        }
-        
-			});
+  
+	$("#hMonday").html( frappe.render_template("horario",{"dia":"Monday" } ));
+	$("#hTuesday").html( frappe.render_template("horario",{"dia":"Tuesday" } ));
+	$("#hWednesday").html( frappe.render_template("horario",{"dia":"Wednesday" } ));
+	$("#hThursday").html( frappe.render_template("horario",{"dia":"Thursday" } ));
+	$("#hFriday").html( frappe.render_template("horario",{"dia":"Friday" } ));
+	$("#hSaturday").html( frappe.render_template("horario",{"dia":"Saturday" } ));
+  	$("#hSunday").html( frappe.render_template("horario",{"dia":"Sunday" } )).promise().done(function(){
+		frappe.db.get_doc('Practitioner Schedule', 'horario '+telemedicina.user.name).then(doc => {
+			doc_horario = doc;
+			horario_dias = doc_horario.time_slots;
+			horario_dias.forEach(function(value,item){
+				horario_id = value.day+"_"+value.from_time.replace(/:/g,"");
+				$("#"+horario_id).addClass("selected");
+			})
+		});
+	});
 }
 
 var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
-  /**/
-  telemedicina.doc.signs.docstatus = 1;
-  telemedicina.doc.patient_encounter.docstatus = 1;
-  telemedicina.DocType.insert_patient_encounter();
-  telemedicina.DocType.insert_sign();
-  /**/
+	/**/
+	if(telemedicina.frm_c.patient_encounter == 1 ){
+		telemedicina.doc.patient_encounter.docstatus = 1;
+		telemedicina.DocType.insert_patient_encounter();
+	}
+	if(telemedicina.frm_c.signs == 1 ){
+		telemedicina.doc.signs.docstatus = 1;
+		telemedicina.DocType.insert_sign();
+	}
+	/**/
 	$("#bigbluebutton").fadeOut("slow");
-  $("#bbb-frame").attr("src","");
+  	$("#bbb-frame").attr("src","");
 }
 var  abrirIntro = () =>{
   $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");

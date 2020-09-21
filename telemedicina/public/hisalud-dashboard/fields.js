@@ -21,7 +21,7 @@ function agregar_medicamento(){
   drug_count++;
   telemedicina.DocType.insert_patient_encounter();
 }
-function selecthora(e,dia){
+function selecthora(e,day,inicio,fin){
   var index =0;
   var bandera=1;
   if($(e).hasClass("selected")){
@@ -31,88 +31,25 @@ function selecthora(e,dia){
      $(e).addClass("selected");
     bandera=1;
   }
-  
-  switch(dia){
-    case 1:{
-      if(bandera==1){
-        horario_dias.lunes.push( $(e).text() )
-      }else{
-        index = horario_dias.lunes.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.lunes.splice(index, 1);
-        }
+  if(bandera==1){
+    horario_dias.push({ 
+        day: day,
+        from_time: inicio,
+        to_time: fin
+    });
+  }else{
+    horario_dias.forEach(element => {
+      if(element.day == day && element.from_time == inicio){
+        horario_dias.splice((element.idx - 1), 1);
       }
-      break;
-    }
-    case 2:{
-      if(bandera==1){
-        horario_dias.martes.push( $(e).text() )
-      }else{
-        index = horario_dias.martes.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.martes.splice(index, 1);
-        }
-      }
-      break;
-    }
-    case 3:{
-      if(bandera==1){
-        horario_dias.miercoles.push( $(e).text() )
-      }else{
-        index = horario_dias.miercoles.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.miercoles.splice(index, 1);
-        }
-      }
-      break;
-    }
-    case 4:{
-      if(bandera==1){
-        horario_dias.jueves.push( $(e).text() )
-      }else{
-        index = horario_dias.jueves.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.jueves.splice(index, 1);
-        }
-      }
-      break;
-    }
-    case 5:{
-      if(bandera==1){
-        horario_dias.viernes.push( $(e).text() )
-      }else{
-        index = horario_dias.viernes.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.viernes.splice(index, 1);
-        }
-      }
-      break;
-    }
-    case 6:{
-      if(bandera==1){
-        horario_dias.sabado.push( $(e).text() )
-      }else{
-        index = horario_dias.sabado.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.sabado.splice(index, 1);
-        }
-      }
-      break;
-    }
-    case 7:{
-      if(bandera==1){
-        horario_dias.domingo.push( $(e).text() )
-      }else{
-        index = horario_dias.domingo.indexOf($(e).text());
-        if (index > -1) {
-          horario_dias.domingo.splice(index, 1);
-        }
-      }
-      break;
-    }
-    default: break;
+    });
   }
-  localStorage.setItem("horario_del_medico",JSON.stringify(horario_dias))
+  frappe.db.set_value('Practitioner Schedule', 'horario '+telemedicina.user.name, {
+    time_slots:horario_dias
+  }).then(r => {
+      let doc = r.message;
+      console.log(doc);
+  })
 }
 function cambiarmenu(e){
   $(".vpanel").hide();
