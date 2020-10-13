@@ -78,7 +78,7 @@ telemedicina.medico.init = () => {
 }
 telemedicina.pacientes.init = () => {
   var  dat = DateTime.local();
-  var dat2 = dat.minus({minutes:20});
+  var dat2 = dat.minus({minutes:10});
   var txt = dat2.toISODate() +" "+ dat2.toISOTime().split(".")[0];
   telemedicina.data.citas = [];
   frappe.call({
@@ -86,7 +86,7 @@ telemedicina.pacientes.init = () => {
         args:{
           doctype: 'Patient Appointment',
           fields:["*"],
-          filters:[[ "practitioner","=", telemedicina.data.medico.name ],["appointment_datetime",">",txt]],
+          filters:[[ "practitioner","=", telemedicina.data.medico.dni ],["appointment_datetime",">",txt]],
           order_by:"appointment_datetime desc"
         },
       freeze:1, 
@@ -112,7 +112,7 @@ telemedicina.pacientes.init = () => {
           r.message.forEach(function(value, index){
             
             $("#pacienteslista").append(`
-              <div class="card pacientes" onclick="open_patient('${value.patient}','${index}');">
+              <div class="card pacientes" onclick="open_patient('${value.patient}','${index}',true);">
                   <div class="card-body">   
                       <div class="person-card">
                           <div class="card-content">
@@ -131,7 +131,7 @@ telemedicina.pacientes.init = () => {
         args:{
           doctype: 'Patient Appointment',
           fields:["*"],
-          filters:[[ "practitioner","=", telemedicina.data.medico.name ],["appointment_datetime","<",txt]] ,
+          filters:[[ "practitioner","=", telemedicina.data.medico.dni ],["appointment_datetime","<",txt]] ,
           order_by:"appointment_datetime desc"
         },
       freeze:1, 
@@ -156,7 +156,7 @@ telemedicina.pacientes.init = () => {
           r.message.forEach(function(value, index){
             
             $("#pacienteslistaAnt").append(`
-              <div class="card pacientes pacientesAnt" onclick="open_patient('${value.patient}','${index}');">
+              <div class="card pacientes pacientesAnt" onclick="open_patient('${value.patient}','${index}',false);">
                   <div class="card-body">   
                       <div class="person-card">
                           <div class="card-content">

@@ -1,12 +1,32 @@
-{% extends "templates/web.html" %}
-<div class="col-12 col-md-12 col-xl-8 col-left">
-
-	{% block title %}{{ blog_title or _("Blog") }}{% endblock %}
+{% extends "templates/pageweb.html" %}
+{% block title %}{{ blog_title or _("Blog") }}{% endblock %}
 	{% block header %}<h1>{{ blog_title or _("Blog") }}</h1>{% endblock %}
 	{% block hero %}{% endblock %}
 	{% block page_content %}
 	
-</div>
+<section class="row page_intro">
+	<div class="row m0 inner" style="padding-top: 120px;">
+		<div class="container">
+			<div class="row">
+				<h5>{{_("Blog")}}</h5>
+				{% block header %}<h2>{{ blog_title or _("Blog") }}</h2>{% endblock %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	#introduction_1 span{
+		background-color:transparent!important;
+	}
+	.page_intro.row .inner:after{
+		background: transparent;
+	}
+	.contact_intro.row .inner .col-sm-5 img {
+		padding-top: 40px;
+	}
+</style>
+
 
 <!-- no-header -->
 <!-- no-breadcrumbs -->

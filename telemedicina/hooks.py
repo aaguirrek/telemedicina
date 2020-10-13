@@ -30,7 +30,7 @@ app_include_js = [
   ]
 
 # include js, css files in header of web template
-# web_include_css = "/assets/telemedicina/css/telemedicina.css"
+web_include_css = "/assets/telemedicina/css/telemedicina.css"
 web_include_js = "/assets/telemedicina/js/sha1.min.js"
 
 

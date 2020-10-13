@@ -1,0 +1,170 @@
+{% extends "templates/pageweb.html" %}
+
+{% set title = heading or "Contact Us" %}
+{% block header %}<h1>{{ heading or "Contact Us" }}</h1>{% endblock %}
+
+{% block page_content %}
+<section class="row page_intro">
+	<div class="row m0 inner" style="padding-top: 120px;">
+		<div class="container">
+			<div class="row">
+				<h5>{{_("Contact Us")}}</h5>
+				<h2>Mantente en contacto con Hisalud</h2>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	#introduction_1 span{
+		background-color:transparent!important;
+	}
+	.page_intro.row .inner:after{
+		background: transparent;
+	}
+	.contact_intro.row .inner .col-sm-5 img {
+		padding-top: 40px;
+	}
+</style>
+<section class="row contact_intro">
+	<div class="container">
+		<div class="row inner m0">
+			<div class="col-sm-5 p0">
+				<img src="/assets/telemedicina/web/images/pages/contact/1.png" alt="">
+			</div>
+			<div class="col-sm-7">
+				<h2>{{ title }}.</h2>
+				{% if introduction %}
+					<div id="introduction_1">
+						{{ introduction or "" }}<br>
+					</div>
+				{% endif %}
+				<div class="row m0 phone_fax"><div class="fleft phone">{{ phone}}</div></div>
+				<div class="row m0 email_address" style="padding-bottom:20px">E-Mail: {{ email_id }}</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+    
+<section class="row contact_form_row">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 contact_form_area">
+				<h3 class="contact_section_title">get in touch</h3>
+				<div class="contactForm row m0">
+					<form action="contact_process.php" class="row contact_form" id="contactForm">
+						<div class="row m0">
+							
+							<div class="col-sm-12">
+								<div class="input-group">
+									<label for="contact_fname">First Name</label>
+									
+									<select name="subject" class="form-control" style="height: 50px;">
+									{% if query_options -%}
+										{% for option in query_options.split("\n") -%}
+										<option value="{{ option }}">{{ option }}</option>
+										{%- endfor %}
+									{% else %}
+										<option value="General">General</option>
+									{% endif %}
+									</select>
+								</div>
+								<div class="input-group">
+									<label for="contact_femail">E-mail Address</label>
+									<input class="form-control" name="email" type="text" placeholder="{{ _('Your email address') }}" />
+								</div>
+							</div>
+							
+						</div>
+						<div class="row m0">
+							<div class="col-sm-12">
+								<label for="message">Details/Comments</label>
+								<textarea name="message" id="message" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="row m0 security_captcha">
+							<div class="col-sm-12">
+								<div class="fleft security_label"><label for="contact_fsc">security captcha</label></div>
+								<div class="fleft security_captcha_input"><input type="text" class="form-control" id="contact_fsc" name="contact_fsc"><input type="text" value="1v0h92" class="hidden" id="contact_fsc_hidden"></div>
+								<div class="fleft security_img"><img src="images/captcha.png" alt=""></div>
+							</div>
+						</div>
+						<div class="row m0">
+							<div class="col-sm-12">
+								<button class="btn btn-primary btn-send submit_btn">{{ _("Send") }}</button>
+							</div>
+						</div>
+					</form>
+					<div id="success">
+						<span class="green textcenter">
+							Your message was sent successfully! I will be in touch as soon as I can.
+						</span>
+					</div>
+					<div id="error">
+						<span>
+							Something went wrong, try refreshing and submitting the form again.
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 contact_address">
+				<h3 class="contact_section_title">Address</h3>
+				<div class="row address m0">
+					{% if address_title %}
+					<div class="media address_line">
+						<div class="media-left icon"><i class="fa fa-map-marker"></i></div>
+						
+						<div class="media-body address_text">
+						<i class="fa fa-map-marker"></i> {{ address_title }}
+						{% if address_line1 %}
+							<span itemprop="streetAddress">{{ address_line1 }}</span><br>
+						{% endif %}
+						{% if address_line2 %}
+							<span itemprop="streetAddress">{{ address_line2 }}</span><br>
+						{% endif %}
+						{% if city %}
+							<span itemprop="addressLocality">{{ city }}</span><br>
+						{% endif %}
+						{% if state %}
+							<span itemprop="addressRegion">{{ state }}</span><br>
+						{% endif %}
+						{% if pincode %}
+							<span itemprop="postalCode">{{ pincode }}</span><br>
+						{% endif %}
+						{% if country %}
+							<span itemprop="addressCountry">{{ country }}</span><br><br>
+						{% endif %}
+						</div>
+					</div>
+					{% endif %}
+					{% if phone %}
+					<div class="media address_line">
+						<div class="media-left icon"><i class="fa fa-envelope"></i></div>
+						<div class="media-body address_text">{{ email_id }}</div>
+					</div>
+					{% endif %}
+					{% if email_id %}
+					<div class="media address_line">
+						<div class="media-left icon"><i class="fa fa-phone"></i></div>
+						<div class="media-body address_text">{{ phone }}</div>
+					</div>
+					{% endif %}
+					
+					{% if skype %}
+						<div class="media address_line">
+							<div class="media-left icon"><i class="fa fa-skype"></i></div>
+							<div class="media-body address_text">{{ skype }}</div>
+						</div>
+					{% endif %}
+					<!-- <a href="#" class="view_all">get directions</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	{% include "templates/includes/contact.js" %}
+</script>
+{% endblock %}

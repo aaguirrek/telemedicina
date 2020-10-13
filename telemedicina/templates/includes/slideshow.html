@@ -1,0 +1,46 @@
+
+    {% if slideshow %}
+    {{ slideshow_header or '' }}
+    <section class="row bannercontainer p0">
+        <div class="preloader"><img src="/assets/telemedicina/web/vendors/rs-plugin/assets/loader.gif" alt=""></div>
+        <div class="row m0 banner main_slider">
+            {% if slides | len > 1 %}
+            <ul>
+                {% for slide in slides %}
+                
+                <li data-transition="random" data-slotamount="7" data-masterspeed="200" class="first-slide">
+                    <!--Main Image-->
+                    <img src="{{ slide.image }}" alt="Main Image 1" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+                    <!--Main Image-->
+                    <div class="container">
+                        <div class="heading tp-caption random fade"
+                        data-speed="3000"
+                        data-start="500"
+                        data-easing="Cubic.easeInOut">
+                        one-stop solution <br> medical services
+                        </div>
+                        <!--layer1-->
+                        <div class="para tp-caption slideleft incube"
+                            data-speed="3000"
+                            data-start="200"
+                            data-easing="easeOutBounce">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.                             
+                            <br>                            
+                            Etiam sed augue vitae ex vulputate venenatis.
+                        </div>
+                        <!--layer2-->
+                        <div class="link tp-caption slideup slideup"
+                            data-speed="3000"
+                            data-start="200"
+                            data-easing="easeInQuad">
+                            <a href="/login" class="view_all">view services</a>
+                        </div>
+                        <!--layer 3-->                        
+                    </div>
+                </li> <!--Slide-->
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </section> 
+{% endif %}

@@ -6,7 +6,7 @@
             
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="card cabecera-medico" style="background-color: #15558d;">
+                    <div class="card cabecera-medico" style="background-color: #4e73df;">
                         <div class="card-body">
                             <div class="row">
                               
@@ -19,9 +19,9 @@
                                                     </div>  
                                                     <div class="col-xs-2 hsalud1 menu active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
                                                     <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user"></i>Datos Médicos</div>
-                                                    <!--<div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="especialidad"><i class="fa fa-check-square-o"></i>Especialidad</div>-->
-                                                    <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
-                                                    <div class="col-xs-2 hsalud5 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
+                                                    <div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
+                                                    <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
+                                                    <div class="col-xs-2 hsalud5 menu" onclick="return frappe.app.logout();"><i class="fa fa-sign-out"></i>Salir</div>
                                             </div>
                                         </div>
                                     </div>
@@ -119,6 +119,9 @@
                                 <div class="iniciar-conferencia" style="margin-bottom: 15px;">
                                     <button type="button" onclick="iniciarCita()" class="btn btn-large btn-block btn-primary">Haga click aquí para empezar la cita</button>
                                 </div>
+                                <div class="enviar-receta" style="margin-bottom: 15px;">
+                                  <button type="button" onclick="enviarreceta()" class="btn btn-large btn-block btn-warning">Haga click aquí para enviar la receta</button>
+                              </div>
                                 <div class="descripcion">
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-3 col-md-2">

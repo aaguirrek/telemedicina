@@ -43,6 +43,27 @@
   "centro_de_labores_4",
   "centro_de_labores_5",
   "column_break_33",
+  "ubigeo_1",
+  "departamento_1",
+  "provincia_1",
+  "distrito_1",
+  "ubigeo_2",
+  "departamento_2",
+  "provincia_2",
+  "distrito_2",
+  "ubigeo_3",
+  "departamento_3",
+  "provincia_3",
+  "distrito_3",
+  "ubigeo_4",
+  "departamento_4",
+  "provincia_4",
+  "distrito_4",
+  "ubigeo_5",
+  "departamento_5",
+  "provincia_5",
+  "distrito_5",
+  "column_break_43",
   "ubicacion_1",
   "ubicacion_2",
   "ubicacion_3",
@@ -130,32 +151,27 @@
   {
    "fieldname": "firma",
    "fieldtype": "Attach Image",
-   "label": "Foto de la firma en fondo blanco",
-   "reqd": 1
+   "label": "Foto de la firma en fondo blanco"
   },
   {
    "fieldname": "foto",
    "fieldtype": "Attach Image",
-   "label": "Foto de perfil",
-   "reqd": 1
+   "label": "Foto de perfil"
   },
   {
    "fieldname": "selfie",
    "fieldtype": "Attach Image",
-   "label": "Selfie sujentando su DNI",
-   "reqd": 1
+   "label": "Selfie sujentando su DNI"
   },
   {
    "fieldname": "dni_frontal",
    "fieldtype": "Attach Image",
-   "label": "DNI frontal",
-   "reqd": 1
+   "label": "DNI frontal"
   },
   {
    "fieldname": "dni_trasero",
    "fieldtype": "Attach Image",
-   "label": "DNI trasero",
-   "reqd": 1
+   "label": "DNI trasero"
   },
   {
    "collapsible": 1,
@@ -304,15 +320,155 @@
    "reqd": 1
   },
   {
+   "default": "frappe.user_id",
    "fieldname": "user",
    "fieldtype": "Link",
    "hidden": 1,
    "label": "usuario",
    "options": "User"
+  },
+  {
+   "fetch_from": "ubigeo_1.departamento",
+   "fieldname": "departamento_1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Departamento 1"
+  },
+  {
+   "fetch_from": "ubigeo_1.provincia",
+   "fieldname": "provincia_1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Provincia 1"
+  },
+  {
+   "fetch_from": "ubigeo_1.distrito",
+   "fieldname": "distrito_1",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Distrito 1"
+  },
+  {
+   "fieldname": "ubigeo_1",
+   "fieldtype": "Link",
+   "label": "Ubigeo 1",
+   "options": "Ubigeo"
+  },
+  {
+   "fetch_from": "ubigeo_2.departamento",
+   "fieldname": "departamento_2",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Departamento 2"
+  },
+  {
+   "fieldname": "ubigeo_2",
+   "fieldtype": "Link",
+   "label": "Ubigeo 2",
+   "options": "Ubigeo"
+  },
+  {
+   "fieldname": "column_break_43",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "ubigeo_2.provincia",
+   "fieldname": "provincia_2",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Provincia 2"
+  },
+  {
+   "fetch_from": "ubigeo_2.distrito",
+   "fieldname": "distrito_2",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Distrito 2"
+  },
+  {
+   "fieldname": "ubigeo_3",
+   "fieldtype": "Link",
+   "label": "Ubigeo 3",
+   "options": "Ubigeo"
+  },
+  {
+   "fetch_from": "ubigeo_3.departamento",
+   "fieldname": "departamento_3",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Departamento 3"
+  },
+  {
+   "fetch_from": "ubigeo_3.provincia",
+   "fieldname": "provincia_3",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Provincia 3"
+  },
+  {
+   "fetch_from": "ubigeo_3.distrito",
+   "fieldname": "distrito_3",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Distrito 3"
+  },
+  {
+   "fieldname": "ubigeo_4",
+   "fieldtype": "Link",
+   "label": "Ubigeo 4",
+   "options": "Ubigeo"
+  },
+  {
+   "fetch_from": "ubigeo_4.departamento",
+   "fieldname": "departamento_4",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Departamento 4"
+  },
+  {
+   "fetch_from": "ubigeo_4.provincia",
+   "fieldname": "provincia_4",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Provincia 4"
+  },
+  {
+   "fetch_from": "ubigeo_4.distrito",
+   "fieldname": "distrito_4",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Distrito 4"
+  },
+  {
+   "fieldname": "ubigeo_5",
+   "fieldtype": "Link",
+   "label": "Ubigeo 5",
+   "options": "Ubigeo"
+  },
+  {
+   "fetch_from": "ubigeo_5.departamento",
+   "fieldname": "departamento_5",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Departamento 5"
+  },
+  {
+   "fetch_from": "ubigeo_5.provincia",
+   "fieldname": "provincia_5",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Provincia 5"
+  },
+  {
+   "fetch_from": "ubigeo_5.distrito",
+   "fieldname": "distrito_5",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Distrito 5"
   }
  ],
  "image_field": "foto",
- "modified": "2020-09-20 20:15:46.614907",
+ "modified": "2020-10-12 23:30:57.241860",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",
@@ -333,7 +489,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -364,6 +519,17 @@
    "read": 1,
    "report": 1,
    "role": "All",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Patient",
    "share": 1,
    "write": 1
   }

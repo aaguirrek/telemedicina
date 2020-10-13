@@ -58,6 +58,22 @@ var finalizarCita = function(){
 		telemedicina.doc.signs.docstatus = 1;
 		telemedicina.DocType.insert_sign();
 	}
+	if($(".iniciar-conferencia").is(':visible') ){
+		$(".iniciar-conferencia").hide();
+		$(".enviar-receta").show();
+		  frappe.db.get_list('Patient Encounter', {
+			fields: ['name'],
+			filters: {
+				patient: localStorage.getItem("patient-name"),
+				practitioner: telemedicina.data.medico.dni
+			},
+		}).then(records => {
+			localStorage.setItem("ultimo_encuentro",records[0].name);
+		})
+	   }else{
+		   	$(".iniciar-conferencia").show();
+			$(".enviar-receta").hide();
+	  }
 	/**/
 	$("#bigbluebutton").fadeOut("slow");
   	$("#bbb-frame").attr("src","");
@@ -74,7 +90,7 @@ var iniciarCita = function(){
 		$('#pageprincipal').hide();
 		$('#pageprincipal2').hide();
     if(intro == "no"){
-      abrirIntro();
+      // abrirIntro();
     }
     
 	});
@@ -105,10 +121,8 @@ var show_patient_info = function(patient, me){
 		callback: function (r) {
 			var data = r.message;
 			var details = "";
-			if(data.image){
-				$("#patient-image").attr("src",data.image);
-				$("#patient-bg").attr("src",data.image);
-			}
+			frappe.db.get_value("User",data.email,"user_image",function(e){$("#patient-image").attr("src",e.user_image); $("#patient-bg").attr("src",e.user_image);});
+			
 			$("#patient-name").html(data.patient_name);
 			if(data.sex == "Female"){data.sex = "Femenino"}
 			if(data.sex == "Male"){data.sex = "Masculino"}
@@ -381,4 +395,12 @@ var get_less = function(e){
 	var docname = $(e).attr("data-docname");
 	$("."+docname).parent().find('.document-id').show();
 	$("."+docname).parent().find('.document-html').hide();
+}
+function enviarreceta(){
+	frappe.db.set_value('Patient Encounter', localStorage.getItem("ultimo_encuentro"), 'email', frappe.utils.get_random(10))
+    .then(r => {
+        let doc = r.message;
+        console.log(doc);
+    })
+
 }

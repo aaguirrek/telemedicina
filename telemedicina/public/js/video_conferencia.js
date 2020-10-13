@@ -356,7 +356,7 @@ conferencia.Patient_dashboard_create = function() {
         txt += '&autoStartRecording=true';
         txt += '&record=true';
         txt += '&meetingID='+"room-"+n;
-        //txt += '&duration=30';
+        txt += '&duration=180';
         txt += '&moderatorPW='+frappe.utils.get_random(12);
         txt += '&checksum='+sha1('create'+txt+conferencia.secret);
     
@@ -406,7 +406,7 @@ conferencia.Patient_dashboard_create = function() {
 }
 $(document).ready(function(e) {
   
-      if( frappe.user_roles.length == 3 && ( frappe.user_roles[0] == "Physician" || frappe.user_roles[1] == "Physician" || frappe.user_roles[2] == "Physician" ) && window.location.href != "https://hisalud.com/desk#hisalud-dashboard" )
+      if( frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& window.location.href != "https://hisalud.com/desk#hisalud-dashboard" )
       {
         location.href="https://hisalud.com/desk#hisalud-dashboard"; 
       }

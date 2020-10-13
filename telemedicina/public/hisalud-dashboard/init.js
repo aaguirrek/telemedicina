@@ -12,7 +12,23 @@ if(localStorage.getItem("intro")){
 }
 luxon.Settings.defaultOuputCalendar = 'spanish';
 var Ncita="";
-var open_patient = (e,i) => {
+var open_patient = (e,i,b=true) => {
+  if(b){
+    $(".iniciar-conferencia").show();
+    $(".enviar-receta").hide();
+  }else{
+    $(".iniciar-conferencia").hide();
+    $(".enviar-receta").show();
+      frappe.db.get_list('Patient Encounter', {
+        fields: ['name'],
+        filters: {
+            patient: localStorage.getItem("patient-name"),
+            practitioner: telemedicina.data.medico.dni
+        },
+    }).then(records => {
+        localStorage.setItem("ultimo_encuentro",records[0].name);
+    })
+   }
   show_patient_info(e,"paciente-body");
   get_documents(e,".registros-paciente");
   show_patient_info(e,"cita-body");
