@@ -30,23 +30,27 @@ telemedicina.saldos.init=()=>{
         $("#tienesacomulado").show();
         $("#las20citas").show();
         $(".saldos-acumulado").html("S/. "+r.message[0].monto);
+        var tot=0;
         r.message.forEach(e => {
+          tot += parseFloat(e.monto);
+          $(".saldos-acumulado").html("S/. "+tot);
+          $(".saldo-acumulado").html(tot);
           $("#tbod-saldos").append(`
           <tr>
             <td>
-              ${r.message[0].cita}
+              ${e.cita}
             </td>
             <td>
-              ${r.message[0].paciente}
+              ${e.paciente}
             </td>
             <td>
-            ${r.message[0].monto}
+            ${e.monto}
             </td>
             <td>
-            ${r.message[0].fecha_y_hora}
+            ${e.fecha_y_hora}
             </td>
             <td>
-            ${r.message[0].estado}
+            ${e.estado}
             </td>
           </tr>
           `)

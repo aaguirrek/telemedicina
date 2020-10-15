@@ -21,6 +21,13 @@ function agregar_medicamento(){
   drug_count++;
   telemedicina.DocType.insert_patient_encounter();
 }
+function eliminarDrg(a,b){
+  
+  telemedicina.tables.drug_prescription.splice(b, 1);
+  drug_count--;
+  $("#"+a).remove();
+  telemedicina.DocType.insert_patient_encounter();
+}
 function selecthora(e,day,inicio,fin){
   var index =0;
   var bandera=1;

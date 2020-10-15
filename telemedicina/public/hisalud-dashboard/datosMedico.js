@@ -95,6 +95,7 @@ telemedicina.datosmedico.init = () => {
     },
     render_input: true
   });
+  parent = $(".datosespecialidad2");
   form.tercera_especialidad = frappe.ui.form.make_control({
     parent: parent,
     df: {
@@ -109,8 +110,7 @@ telemedicina.datosmedico.init = () => {
     render_input: true
   });
   
-  parent = $(".datosespecialidad2");
-  form.cuarta_especialidad = frappe.ui.form.make_control({
+  /*form.cuarta_especialidad = frappe.ui.form.make_control({
     parent: parent,
     df: {
         label: 'Cuarta Especialidad',
@@ -135,7 +135,7 @@ telemedicina.datosmedico.init = () => {
         }
     },
     render_input: true
-  });
+  });*/
   parent = $(".datoslabores");
   form.centro_de_labores_1 = frappe.ui.form.make_control({
     parent: parent,
@@ -161,7 +161,7 @@ telemedicina.datosmedico.init = () => {
     },
     render_input: true
   });
-  form.centro_de_labores_3 = frappe.ui.form.make_control({
+  /*form.centro_de_labores_3 = frappe.ui.form.make_control({
     parent: parent,
     df: {
         label: 'Centro de labores 3',
@@ -196,7 +196,7 @@ telemedicina.datosmedico.init = () => {
         }
     },
     render_input: true
-  });
+  });*/
   parent = $(".datoslabores2");
   form.ubicacion_1 = frappe.ui.form.make_control({
     parent: parent,
@@ -222,7 +222,7 @@ telemedicina.datosmedico.init = () => {
     },
     render_input: true
   });
-  form.ubicacion_3 = frappe.ui.form.make_control({
+  /*form.ubicacion_3 = frappe.ui.form.make_control({
     parent: parent,
     df: {
         label: 'Ubicación 3',
@@ -257,7 +257,7 @@ telemedicina.datosmedico.init = () => {
         }
     },
     render_input: true
-  });
+  });*/
   parent = $(".datoscobros");
   form.precio = frappe.ui.form.make_control({
     parent: parent,
