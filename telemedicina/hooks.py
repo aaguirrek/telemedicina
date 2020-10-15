@@ -22,6 +22,7 @@ app_include_css = [ "/assets/telemedicina/css/fullcalendar@5.2.0/main.min.css",
                   ]
 app_include_js = [
   "https://socket.hisalud.com/socket.io/socket.io.js",
+  "https://meet.jit.si/external_api.js",
   "/assets/telemedicina/js/sha1.min.js",
   "/assets/telemedicina/js/video_conferencia.js",
   "/assets/telemedicina/js/imgcache.js",

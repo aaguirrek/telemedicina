@@ -4,6 +4,9 @@ var page;
 var socket = io('https://peruintercorp.com:4103',{secure: true});
 var horario_dias=[];
 var doc_horario;
+var domain = null;
+var options = null;
+var api = null;
 socket.on('new message', (data) => {
 	
 	if(data.medico == telemedicina.data.medico.dni && data.tipo =="nueva cita"){
@@ -99,22 +102,50 @@ var finalizarCita = function(){
 		meetingid: conferencia.meetingID
 	});
 	$("#bigbluebutton").fadeOut("slow");
-  	$("#bbb-frame").attr("src","");
+  //	$("#bbb-frame").attr("src","");
 }
 var  abrirIntro = () =>{
   $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");
   $("#videointro").fadeIn();
 }
 var iniciarCita = function(){
-  conferencia.Patient_dashboard_create();
+  //conferencia.Patient_dashboard_create();
+  
 	$("#bigbluebutton").fadeIn("slow").promise().done(function(){
 		
 		//$("#cita-tabss").slimscroll({height:"auto"});
 		$('#pageprincipal').hide();
 		$('#pageprincipal2').hide();
-    if(intro == "no"){
-      // abrirIntro();
-    }
+		
+		domain = 'meet.jit.si';
+		options = {
+			roomName: Ncita,
+			width: "100%",
+			userInfo: {
+				email: 	telemedicina.data.user,
+				displayName: telemedicina.data.nombre,
+				avatarUrl: telemedicina.data.foto
+			},
+			parentNode: document.querySelector('#meet')
+			
+		};
+		api = new JitsiMeetExternalAPI(domain, options);
+		api.executeCommand('displayName', telemedicina.data.nombre);
+		api.addEventListener('participantRoleChanged', function (event) {
+			if(event.role === 'moderator') {
+				api.executeCommand('toggleLobby', true);
+			}
+		});
+		api.addEventListener('participantKickedOut', function (event) {
+			if (event._displayName == telemedicina.data.nombre) {
+				finalizarCita()
+			}
+		});
+		
+		
+		if(intro == "no"){
+		// abrirIntro();
+		}
     
 	});
 	
