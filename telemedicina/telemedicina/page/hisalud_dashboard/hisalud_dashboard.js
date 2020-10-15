@@ -122,25 +122,35 @@ var iniciarCita = function(){
 			roomName: Ncita,
 			width: "100%",
 			userInfo: {
-				email: 	telemedicina.data.user,
-				displayName: telemedicina.data.nombre,
+				email: 	telemedicina.data.medico.user,
+				displayName: telemedicina.data.medico.nombre,
 				avatarUrl: telemedicina.data.foto
 			},
 			parentNode: document.querySelector('#meet')
 			
 		};
 		api = new JitsiMeetExternalAPI(domain, options);
-		api.executeCommand('displayName', telemedicina.data.nombre);
+		api.executeCommand('displayName', telemedicina.data.medico.nombre);
 		api.addEventListener('participantRoleChanged', function (event) {
 			if(event.role === 'moderator') {
 				api.executeCommand('toggleLobby', true);
 			}
 		});
 		api.addEventListener('participantKickedOut', function (event) {
+			console.clear();
+			console.log(event);
 			if (event._displayName == telemedicina.data.nombre) {
 				finalizarCita()
 			}
 		});
+		api.addEventListener('participantLeft', function (event) {
+			console.clear();
+			console.log(event);
+			if (event._displayName == telemedicina.data.nombre) {
+				finalizarCita()
+			}
+		});
+		
 		
 		
 		if(intro == "no"){
