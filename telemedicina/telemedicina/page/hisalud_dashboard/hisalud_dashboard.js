@@ -72,6 +72,7 @@ var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
 	/**/
+	api.executeCommand('stopRecording', 'file');
 	if(telemedicina.frm_c.patient_encounter == 1 ){
 		telemedicina.doc.patient_encounter.docstatus = 1;
 		telemedicina.DocType.insert_patient_encounter();
@@ -100,7 +101,7 @@ var finalizarCita = function(){
 	/**/
 	socket.emit("new message", {
 		tipo: "finbbb",
-		meetingid: conferencia.meetingID
+		meetingid: Ncita
 	});
 	$("#bigbluebutton").fadeOut("slow");
   //	$("#bbb-frame").attr("src","");
@@ -125,13 +126,14 @@ var iniciarCita = function(){
 			userInfo: {
 				email: 	telemedicina.data.medico.user,
 				displayName: telemedicina.data.medico.nombre,
-				avatarUrl: telemedicina.data.foto
+				avatarUrl: telemedicina.data.medico.foto
 			},
 			parentNode: document.querySelector('#meet')
 			
 		};
 		api = new JitsiMeetExternalAPI(domain, options);
 		api.executeCommand('displayName', telemedicina.data.medico.nombre);
+		api.executeCommand('avatarUrl', "https://hisalud.com" + telemedicina.data.medico.foto);
 		api.addEventListener('participantRoleChanged', function (event) {
 			if(event.role === 'moderator') {
 				api.executeCommand('toggleLobby', true);
@@ -144,8 +146,15 @@ var iniciarCita = function(){
 				finalizarCita()
 			}
 		});
-		
-		setTimeout(api.executeCommand('displayName', telemedicina.data.medico.nombre), 5000)
+		api.executeCommand('startRecording', {
+			mode: 'file' //recording mode, either `file` or `stream`.
+		});
+		setTimeout(
+			function(){
+				api.executeCommand('displayName', telemedicina.data.medico.nombre)
+				api.executeCommand('avatarUrl', "https://hisalud.com" + telemedicina.data.medico.foto);
+			}
+		, 5000)
 		if(intro == "no"){
 		// abrirIntro();
 		}

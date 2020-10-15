@@ -542,14 +542,15 @@
             </div>
             <div class="col-xs-6 card" style="margin:0;padding: 0;box-shadow: none;border-radius: 0;">
               <style>
+                #meet{
+                  background: #232323;
+                }
                 #meet > iframe{
-                  height:100vh!important;
+                  height: calc(100vh - 20px)!important;
+                  margin-top: 20px;
                 }
               </style>
-                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="float: right;position: absolute;z-index: 9;
-                  right: 0;
-                  border-radius: 0;
-                  padding-bottom: 6px;">
+                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="position: absolute;z-index: 9;border-radius: 0;padding-bottom: 6px;margin: auto;width: 100%;">
                   Guardar todo y finalizar cita</button>
                 <!--<iframe id="bbb-frame" src="https://meet.hisalud.com" frameborder="0"  allow="display-capture * ; geolocation * ; microphone * ; camera *"
                 style="width: 100%;height: 100vh;border-radius: 0px;"></iframe>-->
