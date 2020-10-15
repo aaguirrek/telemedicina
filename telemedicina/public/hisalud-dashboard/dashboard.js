@@ -283,9 +283,12 @@ telemedicina.DocType = {
           label: 'Nombre del medicamento',
           fieldname: 'drug_code',
           fieldtype: 'Link',
-          options: 'Item',
-          filters:{'item_group': 'Droga'},
-          change(){}
+          options: 'Medicamentos',
+          change(){
+            frappe.db.get_value("Medicamentos",telemedicina.Form.patient_encounter.drug_code.get_value(),"presentacion",function(e){
+              telemedicina.Form.patient_encounter.drug_name.set_value(e.presentacion);
+            });
+          }
       },
       render_input: true
     });
@@ -300,17 +303,6 @@ telemedicina.DocType = {
       },
       render_input: true
     });
-    telemedicina.Form.patient_encounter.dosage_form = frappe.ui.form.make_control({
-      parent: parent,
-      df: {
-          label: 'Forma de dosificación',
-          fieldname: 'dosage_form',
-          fieldtype: 'Link',
-          options: 'Dosage Form',
-          change(){}
-      },
-      render_input: true
-    });
     parent = $('.medicamentos2');
     telemedicina.Form.patient_encounter.drug_name = frappe.ui.form.make_control({
       parent: parent,
@@ -318,6 +310,7 @@ telemedicina.DocType = {
           label: 'Presentacion del producto',
           fieldname: 'drug_name',
           fieldtype: 'Data',
+          fetch_from:"drug_code.presentacion",
           change(){}
       },
       render_input: true
@@ -333,18 +326,29 @@ telemedicina.DocType = {
       },
       render_input: true
     });
-    telemedicina.Form.patient_encounter.comment = frappe.ui.form.make_control({
+    
+    parent = $('.laboratorio1');
+    telemedicina.Form.patient_encounter.nombre_de_analisis = frappe.ui.form.make_control({
       parent: parent,
       df: {
-          label: 'Comentario',
-          fieldname: 'comment',
+          label: 'Nombre del examen',
+          fieldname: 'nombre_de_analisis',
+          fieldtype: 'Data',
+          change(){}
+      },
+      render_input: true
+    });
+    parent = $('.laboratorio2');
+    telemedicina.Form.patient_encounter.descripcion_analisis = frappe.ui.form.make_control({
+      parent: parent,
+      df: {
+          label: 'Descripción',
+          fieldname: 'descripcion_analisis',
           fieldtype: 'Text',
           change(){}
       },
       render_input: true
     });
-    
-    
     
 	}
 }

@@ -80,6 +80,7 @@ var finalizarCita = function(){
 		telemedicina.doc.signs.docstatus = 1;
 		telemedicina.DocType.insert_sign();
 	}
+	$("#meet").html("");
 	if($(".iniciar-conferencia").is(':visible') ){
 		$(".iniciar-conferencia").hide();
 		$(".enviar-receta").show();
@@ -117,7 +118,7 @@ var iniciarCita = function(){
 		$('#pageprincipal').hide();
 		$('#pageprincipal2').hide();
 		
-		domain = 'meet.jit.si';
+		domain = 'meet.hisalud.com';
 		options = {
 			roomName: Ncita,
 			width: "100%",
@@ -138,21 +139,13 @@ var iniciarCita = function(){
 		});
 		api.addEventListener('participantKickedOut', function (event) {
 			console.clear();
-			console.log(event);
-			if (event._displayName == telemedicina.data.nombre) {
-				finalizarCita()
-			}
-		});
-		api.addEventListener('participantLeft', function (event) {
-			console.clear();
-			console.log(event);
+			console.log(event)
 			if (event._displayName == telemedicina.data.nombre) {
 				finalizarCita()
 			}
 		});
 		
-		
-		
+		setTimeout(api.executeCommand('displayName', telemedicina.data.medico.nombre), 5000)
 		if(intro == "no"){
 		// abrirIntro();
 		}

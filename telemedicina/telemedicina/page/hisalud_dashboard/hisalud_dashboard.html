@@ -463,10 +463,43 @@
                                                   <th>Presentacion</th>
                                                   <th>Dosificacion</th>
                                                   <th>Periodo</th>
-                                                  <th></th>
                                               </tr>
                                           </thead>
                                           <tbody id="drug_prescription">
+                                            
+                                          </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <button class="btn btn-default collapsed" type="button" 
+                              data-toggle="collapse" 
+                              data-target="#laboratorio" aria-expanded="false" 
+                              aria-controls="laboratorio" 
+                              style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">
+                              
+                              <a class="btn octicon octicon-chevron-up btn-default btn-xs btn-more" style="float: right;margin-top: 0;"></a>Solicitar examen de laboratorio</button>
+                              <div class="collapse" id="laboratorio">
+                                <div class="well" id="laboratorio_table">
+                                  <div class="row">
+                                    <div class="col-md-6 laboratorio1"></div>
+                                    <div class="col-md-6 laboratorio2"></div>
+                                    <div class="col-md-12">
+                                      <button class="btn btn-primary" type="button" onclick="agregar_laboratorio()" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">Agregar solicitud de examen</button>
+                                    </div>
+                                    <div class="col-md-12 tabla_laboratorio">
+                                      <table class="display table" style="width:100%">
+                                          <thead>
+                                              <tr>
+                                                  <th></th>
+                                                  <th>Nombre del examen</th>
+                                                  <th>descripcion</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody id="lab_test_prescription">
                                             
                                           </tbody>
                                       </table>

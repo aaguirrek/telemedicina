@@ -4,8 +4,8 @@ telemedicina.medico= {};
 telemedicina.pacientes = {};
 telemedicina.tables={};
 telemedicina.tables.drug_prescription = [];
+telemedicina.tables.lab_test_prescription=[];
 telemedicina.data={};
-
 telemedicina.saldos={};
 telemedicina.saldos.init=()=>{
   $(".saldo-acumulado").html(0);

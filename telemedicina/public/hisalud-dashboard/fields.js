@@ -1,4 +1,5 @@
 var drug_count=0;
+var labs_count=0;
 function agregar_medicamento(){
   
   let drugs={};
@@ -16,15 +17,38 @@ function agregar_medicamento(){
     <td>${ drugs.drug_name }</td>
     <td>${ drugs.dosage }</td>
     <td>${ drugs.period }</td>
-    <td><button class="btn btn-primary" type="button">Detalles</button></td>
   </tr>`);
   drug_count++;
   telemedicina.DocType.insert_patient_encounter();
 }
-function eliminarDrg(a,b){
+
+
+function agregar_laboratorio(){
   
+  let labs={};
+  labs.nombre_de_analisis = telemedicina.Form.patient_encounter.nombre_de_analisis.get_value();
+  labs.descripcion = telemedicina.Form.patient_encounter.descripcion_analisis.get_value();
+  telemedicina.tables.lab_test_prescription.push(labs);
+  telemedicina.doc.patient_encounter.lab_test_prescription = telemedicina.tables.lab_test_prescription;
+  $("#lab_test_prescription").append(`
+  <tr id="labs_count_${labs_count}">
+    <td><a class="btn octicon octicon-trashcan btn-danger btn-xs btn-more" onclick="eliminarLabs('labs_count_${labs_count}','${labs_count}')"></a></td>
+    <td>${ labs.nombre_de_analisis }</td>
+    <td>${ labs.descripcion }</td>
+  </tr>`
+  );
+  labs_count++;
+  telemedicina.DocType.insert_patient_encounter();
+}
+function eliminarLabs(a,b){
+  telemedicina.tables.lab_test_prescription.splice(b, 1);
+  //labs_count--;
+  $("#"+a).remove();
+  telemedicina.DocType.insert_patient_encounter();
+}
+function eliminarDrg(a,b){
   telemedicina.tables.drug_prescription.splice(b, 1);
-  drug_count--;
+  //drug_count--;
   $("#"+a).remove();
   telemedicina.DocType.insert_patient_encounter();
 }
