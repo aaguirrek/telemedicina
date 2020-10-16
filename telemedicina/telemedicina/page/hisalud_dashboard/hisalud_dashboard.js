@@ -8,11 +8,10 @@ var domain = null;
 var options = null;
 var api = null;
 socket.on('new message', (data) => {
-	
 	if(data.medico == telemedicina.data.medico.dni && data.tipo =="nueva cita"){
-    	reloadcitas();
+		reloadcitas();
 	}
-  });
+});
 function reloadcitas(){
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
 		telemedicina.DocType.patient_encounter();
@@ -99,12 +98,28 @@ var finalizarCita = function(){
 			$(".enviar-receta").hide();
 	  }
 	/**/
-	socket.emit("new message", {
+	io("https://peruintercorp.com:4103", {
+		secure: true
+		}).emit("new message", {
 		tipo: "finbbb",
-		meetingid: Ncita
+		meetingid:Ncita
 	});
 	$("#bigbluebutton").fadeOut("slow");
-  //	$("#bbb-frame").attr("src","");
+  	//	$("#bbb-frame").attr("src","");
+  	frappe.call({
+		method:"frappe.client.get_list",
+		args:{ 
+			doctype     : 'Video Conferencia', 
+			fields      : "*", 
+			filters     : [ ["cita","=", Ncita ] ] 
+		},
+		async:false,
+		callback: function(r) {
+			if(r.message.length > 0){doc = r.message[0];}
+		}
+	});
+	doc.returncode = "FINALIZE";
+	frappe.db.set_value('Video Conferencia', doc.name, doc ).then(r => {});
 }
 var  abrirIntro = () =>{
   $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");
@@ -112,9 +127,28 @@ var  abrirIntro = () =>{
 }
 var iniciarCita = function(){
   //conferencia.Patient_dashboard_create();
-  
+	frappe.call({
+		method:"frappe.client.get_list",
+		args:{ 
+			doctype     : 'Video Conferencia', 
+			fields      : "*", 
+			filters     : [ ["cita","=", Ncita ] ] 
+		},
+		async:false,
+		callback: function(r) {
+			console.log(r);
+			if(r.message.length > 0){
+				doc = r.message[0];
+				doc.returncode = "SUCCESS";
+				frappe.db.set_value('Video Conferencia', doc.name, doc ).then(r => {});
+			}else{
+				return frappe.msgprint("El paciente no ha completado el pago");
+			}
+		}
+	});
+
+	
 	$("#bigbluebutton").fadeIn("slow").promise().done(function(){
-		
 		//$("#cita-tabss").slimscroll({height:"auto"});
 		$('#pageprincipal').hide();
 		$('#pageprincipal2').hide();
