@@ -405,10 +405,20 @@ conferencia.Patient_dashboard_create = function() {
         }})
 }
 $(document).ready(function(e) {
-  
-      if( frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& window.location.href != "https://hisalud.com/desk#hisalud-dashboard" )
+    $(".main-section").change("height", function() {
+        console.log("ola");
+        //$(e).css("height", $("iframe").contents().find("body").height());
+    });
+
+      if( frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
+            && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name
+      )
       {
         location.href="https://hisalud.com/desk#hisalud-dashboard"; 
       }
   
  })
+
+ function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+  }

@@ -1,0 +1,51 @@
+{
+ "creation": "2020-10-16 20:38:28.827461",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nombre_del_curso",
+  "entidad_emisora",
+  "desde",
+  "hasta"
+ ],
+ "fields": [
+  {
+   "fieldname": "nombre_del_curso",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nombre del curso",
+   "reqd": 1
+  },
+  {
+   "fieldname": "desde",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Desde",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hasta",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Hasta"
+  },
+  {
+   "fieldname": "entidad_emisora",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Entidad emisora"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-10-16 21:04:10.262173",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Cursos y Eventos",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

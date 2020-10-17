@@ -161,42 +161,6 @@ telemedicina.datosmedico.init = () => {
     },
     render_input: true
   });
-  /*form.centro_de_labores_3 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Centro de labores 3',
-        fieldname: 'centro_de_labores_3',
-        fieldtype: 'Data',
-        change(){
-          doc.centro_de_labores_3 = form.centro_de_labores_3.get_value();
-        }
-    },
-    render_input: true
-  });
-  form.centro_de_labores_4 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Centro de labores 4',
-        fieldname: 'centro_de_labores_4',
-        fieldtype: 'Data',
-        change(){
-          doc.centro_de_labores_4 = form.centro_de_labores_4.get_value();
-        }
-    },
-    render_input: true
-  });
-  form.centro_de_labores_5 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Centro de labores 5',
-        fieldname: 'centro_de_labores_5',
-        fieldtype: 'Data',
-        change(){
-          doc.centro_de_labores_5 = form.centro_de_labores_4.get_value();
-        }
-    },
-    render_input: true
-  });*/
   parent = $(".datoslabores2");
   form.ubicacion_1 = frappe.ui.form.make_control({
     parent: parent,
@@ -222,42 +186,6 @@ telemedicina.datosmedico.init = () => {
     },
     render_input: true
   });
-  /*form.ubicacion_3 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Ubicación 3',
-        fieldname: 'ubicacion_3',
-        fieldtype: 'Data',
-        change(){
-          doc.ubicacion_3 = form.ubicacion_3.get_value();
-        }
-    },
-    render_input: true
-  });
-  form.ubicacion_4 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Ubicación 4',
-        fieldname: 'ubicacion_4',
-        fieldtype: 'Data',
-        change(){
-          doc.ubicacion_4 = form.ubicacion_4.get_value();
-        }
-    },
-    render_input: true
-  });
-  form.ubicacion_5 = frappe.ui.form.make_control({
-    parent: parent,
-    df: {
-        label: 'Ubicación 5',
-        fieldname: 'ubicacion_5',
-        fieldtype: 'Data',
-        change(){
-          doc.ubicacion_5 = form.ubicacion_5.get_value();
-        }
-    },
-    render_input: true
-  });*/
   parent = $(".datoscobros");
   form.precio = frappe.ui.form.make_control({
     parent: parent,
@@ -293,19 +221,9 @@ telemedicina.datosmedico.populate = () =>{
       telemedicina.Form.datosmedico.fecha_de_colegiatura.set_value(medico.fecha_de_colegiatura);
       telemedicina.Form.datosmedico.especialidad.set_value(medico.especialidad);
       telemedicina.Form.datosmedico.segunda_especialidad.set_value(medico.segunda_especialidad);
-      telemedicina.Form.datosmedico.tercera_especialidad.set_value(medico.tercera_especialidad);
-      telemedicina.Form.datosmedico.cuarta_especialidad.set_value(medico.cuarta_especialidad);
-      telemedicina.Form.datosmedico.quinta_especialidad.set_value(medico.quinta_especialidad);
       telemedicina.Form.datosmedico.centro_de_labores_1.set_value(medico.centro_de_labores_1);
       telemedicina.Form.datosmedico.centro_de_labores_2.set_value(medico.centro_de_labores_2);
-      telemedicina.Form.datosmedico.centro_de_labores_3.set_value(medico.centro_de_labores_3);
-      telemedicina.Form.datosmedico.centro_de_labores_4.set_value(medico.centro_de_labores_4);
-      telemedicina.Form.datosmedico.centro_de_labores_5.set_value(medico.centro_de_labores_5);
       telemedicina.Form.datosmedico.ubicacion_1.set_value(medico.ubicacion_1);
-      telemedicina.Form.datosmedico.ubicacion_2.set_value(medico.ubicacion_2);
-      telemedicina.Form.datosmedico.ubicacion_3.set_value(medico.ubicacion_3);
-      telemedicina.Form.datosmedico.ubicacion_4.set_value(medico.ubicacion_4);
-      telemedicina.Form.datosmedico.ubicacion_5.set_value(medico.ubicacion_5);
       telemedicina.Form.datosmedico.precio.set_value(medico.precio);
     }
   })

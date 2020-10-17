@@ -26,22 +26,17 @@
   "dni_trasero",
   "colegiatura_section",
   "colegio_profesional",
-  "numero_de_colegiatura",
   "column_break_7",
+  "numero_de_colegiatura",
+  "column_break_23",
   "fecha_de_colegiatura",
-  "especialidad",
   "especialidades_secundarias_section",
+  "especialidad",
+  "column_break_26",
   "segunda_especialidad",
-  "cuarta_especialidad",
-  "column_break_24",
-  "tercera_especialidad",
-  "quinta_especialidad",
   "experiencia_laboral_section",
   "centro_de_labores_1",
   "centro_de_labores_2",
-  "centro_de_labores_3",
-  "centro_de_labores_4",
-  "centro_de_labores_5",
   "column_break_33",
   "ubigeo_1",
   "departamento_1",
@@ -51,24 +46,15 @@
   "departamento_2",
   "provincia_2",
   "distrito_2",
-  "ubigeo_3",
-  "departamento_3",
-  "provincia_3",
-  "distrito_3",
-  "ubigeo_4",
-  "departamento_4",
-  "provincia_4",
-  "distrito_4",
-  "ubigeo_5",
-  "departamento_5",
-  "provincia_5",
-  "distrito_5",
   "column_break_43",
   "ubicacion_1",
   "ubicacion_2",
-  "ubicacion_3",
-  "ubicacion_4",
-  "ubicacion_5",
+  "curriculum_vitae_section",
+  "curriculum_vitae",
+  "estudios_superiores",
+  "cursos_y_eventos",
+  "aptitudes",
+  "idiomas",
   "precio_de_consulta_section",
   "precio",
   "user"
@@ -101,6 +87,7 @@
    "reqd": 1
   },
   {
+   "collapsible": 1,
    "fieldname": "colegiatura_section",
    "fieldtype": "Section Break",
    "label": "Colegiatura"
@@ -139,7 +126,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "DNI",
-   "reqd": 1
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "fecha_de_nacimiento",
@@ -197,34 +185,12 @@
    "collapsible": 1,
    "fieldname": "especialidades_secundarias_section",
    "fieldtype": "Section Break",
-   "label": "Especialidades secundarias"
+   "label": "Especialidades"
   },
   {
    "fieldname": "segunda_especialidad",
    "fieldtype": "Link",
    "label": "Segunda Especialidad",
-   "options": "Medical Department"
-  },
-  {
-   "fieldname": "cuarta_especialidad",
-   "fieldtype": "Link",
-   "label": "Cuarta Especialidad",
-   "options": "Medical Department"
-  },
-  {
-   "fieldname": "column_break_24",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "tercera_especialidad",
-   "fieldtype": "Link",
-   "label": "Tercera Especialidad",
-   "options": "Medical Department"
-  },
-  {
-   "fieldname": "quinta_especialidad",
-   "fieldtype": "Link",
-   "label": "Quinta Especialidad",
    "options": "Medical Department"
   },
   {
@@ -237,21 +203,6 @@
    "fieldname": "centro_de_labores_2",
    "fieldtype": "Data",
    "label": "Centro de labores 2"
-  },
-  {
-   "fieldname": "centro_de_labores_3",
-   "fieldtype": "Data",
-   "label": "Centro de labores 3"
-  },
-  {
-   "fieldname": "centro_de_labores_4",
-   "fieldtype": "Data",
-   "label": "Centro de labores 4"
-  },
-  {
-   "fieldname": "centro_de_labores_5",
-   "fieldtype": "Data",
-   "label": "Centro de labores 5"
   },
   {
    "fieldname": "column_break_33",
@@ -269,26 +220,12 @@
    "label": "Ubicaci\u00f3n 2"
   },
   {
-   "fieldname": "ubicacion_3",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n 3"
-  },
-  {
-   "fieldname": "ubicacion_4",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n 4"
-  },
-  {
-   "fieldname": "ubicacion_5",
-   "fieldtype": "Data",
-   "label": "Ubicaci\u00f3n 5"
-  },
-  {
    "fieldname": "codigo_de_verificacion",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Codigo de Verificaci\u00f3n",
-   "reqd": 1
+   "reqd": 1,
+   "set_only_once": 1
   },
   {
    "fieldname": "salto_columna",
@@ -325,7 +262,8 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "usuario",
-   "options": "User"
+   "options": "User",
+   "set_only_once": 1
   },
   {
    "fetch_from": "ubigeo_1.departamento",
@@ -386,89 +324,52 @@
    "label": "Distrito 2"
   },
   {
-   "fieldname": "ubigeo_3",
-   "fieldtype": "Link",
-   "label": "Ubigeo 3",
-   "options": "Ubigeo"
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "ubigeo_3.departamento",
-   "fieldname": "departamento_3",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Departamento 3"
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
   },
   {
-   "fetch_from": "ubigeo_3.provincia",
-   "fieldname": "provincia_3",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Provincia 3"
+   "collapsible": 1,
+   "fieldname": "curriculum_vitae_section",
+   "fieldtype": "Section Break",
+   "label": "Curriculum Vitae"
   },
   {
-   "fetch_from": "ubigeo_3.distrito",
-   "fieldname": "distrito_3",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Distrito 3"
+   "fieldname": "curriculum_vitae",
+   "fieldtype": "Table",
+   "label": "Colegio",
+   "options": "Secundarios"
   },
   {
-   "fieldname": "ubigeo_4",
-   "fieldtype": "Link",
-   "label": "Ubigeo 4",
-   "options": "Ubigeo"
+   "fieldname": "estudios_superiores",
+   "fieldtype": "Table",
+   "label": "Estudios Superiores",
+   "options": "Estudios Universitarios"
   },
   {
-   "fetch_from": "ubigeo_4.departamento",
-   "fieldname": "departamento_4",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Departamento 4"
+   "fieldname": "cursos_y_eventos",
+   "fieldtype": "Table",
+   "label": "Cursos y Eventos",
+   "options": "Cursos y Eventos"
   },
   {
-   "fetch_from": "ubigeo_4.provincia",
-   "fieldname": "provincia_4",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Provincia 4"
+   "fieldname": "idiomas",
+   "fieldtype": "Table",
+   "label": "Idiomas",
+   "options": "Idiomas cv"
   },
   {
-   "fetch_from": "ubigeo_4.distrito",
-   "fieldname": "distrito_4",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Distrito 4"
-  },
-  {
-   "fieldname": "ubigeo_5",
-   "fieldtype": "Link",
-   "label": "Ubigeo 5",
-   "options": "Ubigeo"
-  },
-  {
-   "fetch_from": "ubigeo_5.departamento",
-   "fieldname": "departamento_5",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Departamento 5"
-  },
-  {
-   "fetch_from": "ubigeo_5.provincia",
-   "fieldname": "provincia_5",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Provincia 5"
-  },
-  {
-   "fetch_from": "ubigeo_5.distrito",
-   "fieldname": "distrito_5",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Distrito 5"
+   "fieldname": "aptitudes",
+   "fieldtype": "Table",
+   "label": "Aptitudes",
+   "options": "Aptitudes cv"
   }
  ],
  "image_field": "foto",
- "modified": "2020-10-12 23:30:57.241860",
+ "modified": "2020-10-16 20:46:19.707142",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",
@@ -513,13 +414,8 @@
   {
    "create": 1,
    "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
    "role": "All",
-   "share": 1,
    "write": 1
   },
   {

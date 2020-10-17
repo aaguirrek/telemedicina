@@ -1,4 +1,5 @@
 
+frappe.provide("frappe.ui.form.ControlTable")
 var page;
 
 var socket = io('https://peruintercorp.com:4103',{secure: true});
@@ -7,22 +8,29 @@ var doc_horario;
 var domain = null;
 var options = null;
 var api = null;
+var iframec=0;
 socket.on('new message', (data) => {
 	if(data.medico == telemedicina.data.medico.dni && data.tipo =="nueva cita"){
 		reloadcitas();
 	}
 });
+function reloadheightframe(e){
+	iframec++;
+	resizeIframe(e);
+	if(iframec<6){
+		//setTimeout(reloadheightframe($("iframe")[0]),1000)
+	}
+}
 function reloadcitas(){
-	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
+	page.wrapper.html(frappe.render_template("hisalud_dashboard",{user:frappe.user.name} )).promise().done(()=>{
 		telemedicina.DocType.patient_encounter();
 		telemedicina.DocType.vital_sings();
 		telemedicina.DocType.addOther();
 		telemedicina.datosmedico.init();
 		telemedicina.saldos.init();
 		telemedicina.medico.init();
-		
-			
-	});
+		//setTimeout(reloadheightframe($("iframe")[0]),1000)
+		});
 }
 frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 	page = frappe.ui.make_app_page({

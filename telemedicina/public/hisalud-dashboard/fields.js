@@ -88,4 +88,7 @@ function cambiarmenu(e){
   var target = $(e).data("ref");
   $(".vpanel."+target).show();
   $(e).addClass("active");
+  if(target == "datosmedico"){
+//    setTimeout(reloadheightframe($("iframe")[0]),150)
+  }
 }

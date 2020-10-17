@@ -1,0 +1,45 @@
+{
+ "creation": "2020-10-16 20:30:17.695926",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entidad",
+  "desde",
+  "hasta"
+ ],
+ "fields": [
+  {
+   "fieldname": "entidad",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Entidad",
+   "reqd": 1
+  },
+  {
+   "fieldname": "desde",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Desde",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hasta",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Hasta",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-10-16 20:30:17.695926",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "Secundarios",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

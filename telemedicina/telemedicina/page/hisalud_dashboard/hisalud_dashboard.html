@@ -5,9 +5,16 @@
         <div id="pageprincipal2" class="col-xs-12">
             
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="card cabecera-medico" style="background-color: #4e73df;">
-                        <div class="card-body">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" 
+                style="z-index: 10;margin-left: -100px;width: calc(100% + 100px);margin-top: -25px;border-radius: 0;
+                padding: 0;"
+                >
+                    <div class="card cabecera-medico" style="background-color: #4e73df;padding-left: 130px;margin: 0;border-radius: 0;
+                    margin-bottom: 40px;">
+                        <div class="card-body" style="
+                        padding-top: 15px;
+                        padding-bottom: 0;
+                    ">
                             <div class="row">
                               
                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -28,7 +35,9 @@
                                 </div>
                                 <div class="col-xs-12 col-md-9 profile">
                                     <div>
-                                        <img src="/assets/telemedicina/img/profile.jpeg" class="img-responsive img-profile" alt="Image">
+                                        <img src="/assets/telemedicina/img/profile.jpeg" class="img-responsive img-profile" alt="Image" style="
+                                        max-height: 5rem;
+                                    ">
                                     </div>
                                     <div class="profile-content"> 
                                       <h1 class="medico-full-name" style="margin-top: 0;"></h1> 
@@ -39,6 +48,17 @@
                                     <h1 style="margin-top: 0;">Acumulado</h1> 
                                   <h3 style="margin-top: 0;" class="saldos-acumulado">S/. 0</h3> 
                                 </div>
+                                <style>body[data-route="hisalud-dashboard"] .medico-full-name {
+                                  font-size: 19pt !important;
+                                  margin-bottom: 3px !important;
+                              }
+                              body[data-route="hisalud-dashboard"]  .h3, h3 {
+                                font-size: 12pt !important;
+                              }
+                              body[data-route="hisalud-dashboard"] .h1, h1 {
+                                          font-size: 19pt !important;
+                                      }
+                              </style>
                             </div>
                         </div>
                     </div>
@@ -173,7 +193,15 @@
           </div>
           <div class="row vpanel datosmedico" style="display:none">
               <div class="col-md-12">
-                  <div class="card">
+                <div class="card" ">
+                  <div class="card-body">
+                    <iframe src="https://hisalud.com/desk#Form/Ficha de Registro de Medicos/Ficha-{{user}}" 
+                    height="200" width="300"
+                    style="width: 100%;background: white;border: 0px;position: fixed;left: 0;top: 0;height: 100%;z-index: 0;"
+                    onload="iframeload(this)"></iframe>
+                  </div>
+                </div>
+                  <div class="card" style="display:none;">
                         <div class="card-body">
                             <div class="row">
                               <div class="col-md-6 datosbase"></div>
@@ -185,7 +213,7 @@
                         </div>
                   </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12" style="display:none;">
                   <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -195,7 +223,7 @@
                         </div>
                   </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12" style="display:none;">
                   <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -205,7 +233,7 @@
                         </div>
                   </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12" style="display:none;">
                   <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -222,6 +250,7 @@
                 width: calc(100% - 40px);
                 height: 50px;
                 font-size: 1.9rem;
+                display:none;
             ">Guardar Cambios</button>
             </div>
           <div class="row vpanel horarioMedico" style="display:none">
@@ -560,3 +589,65 @@
    </div>
 </div>
 </div>
+
+
+
+<script>
+  function iframeload(e){
+    $(e).contents().find("head").append($(`
+          <style>
+          .navbar {
+            display:none!important;
+          }
+          body .page-head{
+            top:160px!important;
+          }
+          body .content.editable-form{
+            background:white!important;
+          }
+          body .flex.fill-width.title-area,
+          body .page-icon-group,
+          body .btn-group.menu-btn-group,
+          body .ellipsis.sub-heading.text-muted{
+            display:none!important;
+          }
+          .col-md-10.layout-main-section-wrapper {
+              width: 100%!important;
+              max-width: 100%!important;
+              min-width: 100%!important;
+          }
+          .col-md-2.layout-side-section{
+            display: none !important;
+          }
+          html, body{
+            background:#efefef!important;
+          }
+          .content.page-container {
+              margin-left: 150px;
+              margin-top: 120px!important;
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              margin-right: 40px;
+              border-radius: 7px;
+              margin-bottom: 15px;
+          }
+          body .page-head {
+              left: 0;
+              top: 0!important;
+              right: 0;
+              position: relative;
+              background: transparent;
+          }
+          .form-footer {
+            display: none;
+          }
+          .page-content {
+              margin-top: 0px;
+          }
+          .modal-dialog.msgprint-dialog{
+            margin-top:110px!important;
+          }
+          </style>
+      `));
+      
+}
+</script>
