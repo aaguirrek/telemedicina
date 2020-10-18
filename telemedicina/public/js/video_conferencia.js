@@ -289,11 +289,8 @@ conferencia.addOther = function (){
     primary_action_label: 'Invitar',
     primary_action(values) {
         var med = values.medico;
-        var url = 'https://meet.hisalud.com/bigbluebutton/api/join?';
-        var txt = '&meetingID='+conferencia.meetingID;
-            txt += '&fullName='+values.medico;
-            txt += '&password='+conferencia.attendeePW;
-        txt += '&checksum='+sha1('getRecordings'+txt+conferencia.secret);
+        var url = 'https://meet.hisalud.com/';
+        var txt = Ncita;
         frappe.db.insert({
             doctype: 'UrlShortener',
             url: url+txt,
@@ -405,19 +402,31 @@ conferencia.Patient_dashboard_create = function() {
         }})
 }
 $(document).ready(function(e) {
-    $(".main-section").change("height", function() {
-        console.log("ola");
-        //$(e).css("height", $("iframe").contents().find("body").height());
+    window.addEventListener('popstate', function(e){
+        if( 
+            frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& 
+            window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
+            && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name 
+            && window.location.href != "https://hisalud.com/desk#Form/User/"+frappe.user.name
+        )
+        {
+            location.href="https://hisalud.com/desk#hisalud-dashboard"; 
+        }
     });
 
-      if( frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
-            && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name
+
+      if( 
+            frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& 
+            window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
+            && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name 
+            && window.location.href != "https://hisalud.com/desk#Form/User/"+frappe.user.name
       )
       {
         location.href="https://hisalud.com/desk#hisalud-dashboard"; 
       }
   
  })
+ 
 
  function resizeIframe(obj) {
     obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';

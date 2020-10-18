@@ -25,9 +25,10 @@
                                                       <img src="/files/logo.png" class="img-responsive">
                                                     </div>  
                                                     <div class="col-xs-2 hsalud1 menu active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
-                                                    <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user"></i>Datos Médicos</div>
+                                                    <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user-md"></i>Datos Médicos</div>
                                                     <div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
                                                     <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
+                                                    <div class="col-xs-2 hsalud5 menu" onclick="cambiarmenu(this)" data-ref="miperfil"><i class="fa fa-user"></i>Mi Perfil</div>
                                                     <div class="col-xs-2 hsalud5 menu" onclick="return frappe.app.logout();"><i class="fa fa-sign-out"></i>Salir</div>
                                             </div>
                                         </div>
@@ -48,16 +49,16 @@
                                     <h1 style="margin-top: 0;">Acumulado</h1> 
                                   <h3 style="margin-top: 0;" class="saldos-acumulado">S/. 0</h3> 
                                 </div>
-                                <style>body[data-route="hisalud-dashboard"] .medico-full-name {
-                                  font-size: 19pt !important;
-                                  margin-bottom: 3px !important;
-                              }
-                              body[data-route="hisalud-dashboard"]  .h3, h3 {
-                                font-size: 12pt !important;
-                              }
-                              body[data-route="hisalud-dashboard"] .h1, h1 {
-                                          font-size: 19pt !important;
-                                      }
+                                <style>
+                                body[data-route="hisalud-dashboard"] li.dropdown.dropdown-navbar-user.dropdown-mobile {
+                                  display: none;
+                                }
+                                body[data-route="hisalud-dashboard"] .chat-form button.btn.undefined.btn-default.dropdown-toggle{
+                                    display: none;
+                                }
+                                body[data-route="hisalud-dashboard"] .frappe-chat .panel .chat-form textarea.form-control {
+                                      padding-left: 7px;
+                                  }
                               </style>
                             </div>
                         </div>
@@ -192,67 +193,29 @@
         </div>
           </div>
           <div class="row vpanel datosmedico" style="display:none">
-              <div class="col-md-12">
-                <div class="card" ">
-                  <div class="card-body">
-                    <iframe src="https://hisalud.com/desk#Form/Ficha de Registro de Medicos/Ficha-{{user}}" 
-                    height="200" width="300"
-                    style="width: 100%;background: white;border: 0px;position: fixed;left: 0;top: 0;height: 100%;z-index: 0;"
-                    onload="iframeload(this)"></iframe>
-                  </div>
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <iframe src="https://hisalud.com/desk#Form/Ficha de Registro de Medicos/Ficha-{{user}}" 
+                  height="200" width="300"
+                  style="width: 100%;background: white;border: 0px;position: fixed;left: 0;top: 0;height: 100%;z-index: 0;"
+                  onload="iframeload(this)"></iframe>
                 </div>
-                  <div class="card" style="display:none;">
-                        <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6 datosbase"></div>
-                              <div class="col-md-6 datosbase2"></div>
-                           </div>
-                          <div class="row">
-                              <div class="col-md-12 curriculumVitae"></div>
-                            </div>
-                        </div>
-                  </div>
               </div>
-              <div class="col-md-12" style="display:none;">
-                  <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6 datosespecialidad"></div>
-                              <div class="col-md-6 datosespecialidad2"></div>
-                          </div>
-                        </div>
-                  </div>
-              </div>
-              <div class="col-md-12" style="display:none;">
-                  <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6 datoslabores"></div>
-                              <div class="col-md-6 datoslabores2"></div>
-                          </div>
-                        </div>
-                  </div>
-              </div>
-              <div class="col-md-12" style="display:none;">
-                  <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                              <div class="col-md-6 datoscobros"></div>
-                              <div class="col-md-6 datoscobros2"></div>
-                          </div>
-                        </div>
-                  </div>
-              </div>
-              
-              <button type="button" onclick="telemedicina.datosmedico.save()" class="btn btn-large btn-block btn-primary" style="
-                margin-left: 20px;
-                margin-bottom: 40px;
-                width: calc(100% - 40px);
-                height: 50px;
-                font-size: 1.9rem;
-                display:none;
-            ">Guardar Cambios</button>
             </div>
+          </div>
+          <div class="row vpanel miperfil" style="display:none">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <iframe src="https://hisalud.com/desk#Form/User/{{user}}" 
+                  height="200" width="300"
+                  style="width: 100%;background: white;border: 0px;position: fixed;left: 0;top: 0;height: 100%;z-index: 0;"
+                  onload="iframeload2(this)"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row vpanel horarioMedico" style="display:none">
             <div class="col-md-12">
               <div class="card">
@@ -392,8 +355,12 @@
     body[data-route="hisalud-dashboard"] #cita-tabss {
         height: 100vh;
     }
+    .frappe-chat > .frappe-chat-popper {
+      z-index: 1000000;
+    }
   </style>
   <div id="bigbluebutton" style="display:none; padding: 0;">
+  
   <div id="videointro" style="display:none;position: absolute;z-index: 99;width: 100%;background: #212121;height: 100%;text-align: center;padding-top: calc(100vh - 810px);">
     <button class="btn btn-danger btn-small" onclick="cerrarIntro()" style="float: right;top: 20px;position: absolute;right: 20px;">Cerrar introduccion</button>
     <iframe allowfullscreen="allowfullscreen" id="introframe" frameborder="no" width="960" height="540" src=""></iframe>
@@ -429,8 +396,9 @@
                               font-size: 30px;
                               display: block;
                           "></i>Unir a otro médico</a></li>
+                          
                     </ul>
-                  
+                    
 
                     <!-- Tab panes -->
                     <div class="tab-content" style="padding: 20px;margin-left: 100px;width: 100%;">
@@ -578,6 +546,7 @@
                   height: calc(100vh - 20px)!important;
                   margin-top: 20px;
                 }
+                
               </style>
                 <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="position: absolute;z-index: 9;border-radius: 0;padding-bottom: 6px;margin: auto;width: 100%;">
                   Guardar todo y finalizar cita</button>
@@ -645,6 +614,75 @@
           }
           .modal-dialog.msgprint-dialog{
             margin-top:110px!important;
+          }
+          
+          html, body{
+            background: url(/assets/telemedicina/web/images/pages/about/about.png) repeat scroll 0 0 #efefef !important;
+          }
+
+          </style>
+      `));
+      
+}
+function iframeload2(e){
+    $(e).contents().find("head").append($(`
+          <style>
+          .navbar {
+            display:none!important;
+          }
+          body .page-head{
+            top:160px!important;
+          }
+          body .content.editable-form{
+            background:white!important;
+          }
+          body .flex.fill-width.title-area,
+          body .page-icon-group,
+          body .btn-group.menu-btn-group,
+          body .ellipsis.sub-heading.text-muted{
+            display:none!important;
+          }
+          .col-md-10.layout-main-section-wrapper {
+              width: 100%!important;
+              max-width: 100%!important;
+              min-width: 100%!important;
+          }
+          .col-md-2.layout-side-section{
+            display: none !important;
+          }
+          html, body{
+            background:#efefef!important;
+          }
+          .content.page-container {
+              margin-left: 150px;
+              margin-top: 120px!important;
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              margin-right: 40px;
+              border-radius: 7px;
+              margin-bottom: 15px;
+          }
+          body .page-head {
+              left: 0;
+              top: 0!important;
+              right: 0;
+              position: relative;
+              background: transparent;
+          }
+          .form-footer {
+            display: none;
+          }
+          .page-content {
+              margin-top: 0px;
+          }
+          .modal-dialog.msgprint-dialog{
+            margin-top:110px!important;
+          }
+          
+          html, body{
+            background: url(/assets/telemedicina/web/images/pages/about/about.png) repeat scroll 0 0 #efefef !important;
+          }
+          button[data-label="Crear%20correo%20electr%C3%B3nico%20de%20usuario"], .form-page .form-section:nth-child(3), .form-page .form-section:nth-child(4), .form-page .form-section:nth-child(8) {
+              display: none!important;
           }
           </style>
       `));

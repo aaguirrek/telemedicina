@@ -74,7 +74,9 @@ frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 		});
 	});
 }
-
+function chatToggleF(){
+	return $(".dropdown-toggle.frappe-chat-toggle").trigger("click");
+  }
 var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
@@ -128,6 +130,9 @@ var finalizarCita = function(){
 	});
 	doc.returncode = "FINALIZE";
 	frappe.db.set_value('Video Conferencia', doc.name, doc ).then(r => {});
+
+	$(".dropdown-toggle.frappe-chat-toggle").css({left:"unset",right:"30px"});	
+	
 }
 var  abrirIntro = () =>{
   $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");
@@ -155,6 +160,8 @@ var iniciarCita = function(){
 		}
 	});
 
+	$(".dropdown-toggle.frappe-chat-toggle").css({left:"20px",right:"unset"});	
+	
 	
 	$("#bigbluebutton").fadeIn("slow").promise().done(function(){
 		//$("#cita-tabss").slimscroll({height:"auto"});

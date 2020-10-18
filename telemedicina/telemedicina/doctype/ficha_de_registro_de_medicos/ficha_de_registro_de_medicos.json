@@ -49,7 +49,10 @@
   "column_break_43",
   "ubicacion_1",
   "ubicacion_2",
+  "biografia_section",
+  "biografia",
   "curriculum_vitae_section",
+  "lugares_de_trabajo",
   "curriculum_vitae",
   "estudios_superiores",
   "cursos_y_eventos",
@@ -366,10 +369,27 @@
    "fieldtype": "Table",
    "label": "Aptitudes",
    "options": "Aptitudes cv"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "biografia_section",
+   "fieldtype": "Section Break",
+   "label": "Biograf\u00eda"
+  },
+  {
+   "fieldname": "biografia",
+   "fieldtype": "Long Text",
+   "label": "Biograf\u00eda"
+  },
+  {
+   "fieldname": "lugares_de_trabajo",
+   "fieldtype": "Table",
+   "label": "Lugares de trabajo",
+   "options": "Lugares de trabajo"
   }
  ],
  "image_field": "foto",
- "modified": "2020-10-16 20:46:19.707142",
+ "modified": "2020-10-17 22:00:27.369787",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",

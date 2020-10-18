@@ -1,21 +1,27 @@
 {
- "creation": "2020-10-16 20:38:28.827461",
+ "creation": "2020-10-17 21:58:29.911844",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tipo",
-  "nombre_del_curso",
-  "entidad_emisora",
+  "centro_de_trabajo",
+  "cargo",
   "desde",
   "hasta"
  ],
  "fields": [
   {
-   "fieldname": "nombre_del_curso",
+   "fieldname": "centro_de_trabajo",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Nombre del curso",
+   "label": "Centro de trabajo",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cargo",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Cargo",
    "reqd": 1
   },
   {
@@ -30,28 +36,13 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Hasta"
-  },
-  {
-   "fieldname": "entidad_emisora",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Entidad emisora"
-  },
-  {
-   "default": "Curso",
-   "fieldname": "tipo",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Tipo",
-   "options": "Curso\nWebinar\nEvento\nCongreso\nCapacitaci\u00f3n\nOtro",
-   "reqd": 1
   }
  ],
  "istable": 1,
- "modified": "2020-10-17 21:53:30.862634",
+ "modified": "2020-10-17 21:58:29.911844",
  "modified_by": "Administrator",
  "module": "Telemedicina",
- "name": "Cursos y Eventos",
+ "name": "Lugares de trabajo",
  "owner": "Administrator",
  "permissions": [],
  "quick_entry": 1,

@@ -302,8 +302,73 @@ body[data-route="hisalud-dashboard"] .card {
 }
 div#page-hisalud-dashboard {
   margin-top: 0;
-  background:#efefef;
+  background: url(/assets/telemedicina/web/images/pages/about/about.png) repeat scroll 0 0 #efefef;
 }
-  
 
-
+body[data-route="hisalud-dashboard"] .medico-full-name {
+  font-size: 19pt !important;
+  margin-bottom: 3px !important;
+}
+body[data-route="hisalud-dashboard"]  .h3, h3 {
+font-size: 12pt !important;
+}
+body[data-route="hisalud-dashboard"] .h1, h1 {
+          font-size: 19pt !important;
+}
+body[data-route="hisalud-dashboard"] .navbar.navbar-default.navbar-fixed-top{
+background: transparent;
+border: none;
+z-index: 999999;
+display: flex;
+width: auto;
+position: absolute;
+max-width: 2px!important;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+body[data-route="hisalud-dashboard"] form.navbar-form.navbar-right[role="search"],
+body[data-route="hisalud-dashboard"] a.navbar-search-button {
+  display: none;
+}
+body[data-route="hisalud-dashboard"]  .navbar-header.navbar-desk {
+  display: none;
+}
+body[data-route="hisalud-dashboard"] i.octicon.octicon-comment-discussion {
+  color: white!important;
+  font-size: 35px;
+}
+body[data-route="hisalud-dashboard"] button.btn.btn-sm.btn-default.btn-action[icon="octicon octicon-screen-full"] {
+  display: none;
+}
+body[data-route="hisalud-dashboard"] .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  background-color: #323232!important;
+}
+body[data-route="hisalud-dashboard"] input.form-control.input-sm{
+width: 100%;
+}
+body[data-route="hisalud-dashboard"] button.btn.btn-sm.btn-default.btn-action[label="Nuevo"]{
+width: 100%;
+}
+body[data-route="hisalud-dashboard"] button.btn.btn-sm.btn-default.btn-action[label="Nuevo"] {
+  display: none;
+}
+body[data-route="hisalud-dashboard"] .frappe-chat-action-bar.level {
+width: 100%;
+}
+body[data-route="hisalud-dashboard"] .dropdown-toggle.frappe-chat-toggle{
+z-index: 100000000000;
+display: block;
+position: fixed;
+border: 0;
+bottom: 0;
+box-sizing: unset;
+width: 60px;
+height: 50px;
+padding: 0;
+background-color: #212121;
+border-radius: 50%;
+padding-top: 10px;
+margin-bottom: 20px;
+left: unset;
+right: 30px;
+}
