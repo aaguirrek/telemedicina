@@ -13,7 +13,7 @@ from frappe.utils.response import build_response
 
 
 @frappe.whitelist()
-def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None, start=0, page_length=20):
+def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None, start_limit=0, limit_end=20):
     sqlWhere = "where "
     first_filter = 0
     depa = 0
@@ -24,7 +24,6 @@ def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=N
         if(first_filter == 1 ):
             sqlWhere+="and "
         sqlWhere += "apellidos like '%"+apellidos+"%' "
-        depa=1
         first_filter=1
     if( departamento is not None and departamento != ""):
         if(first_filter == 1 ):
@@ -77,12 +76,10 @@ def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=N
             sqlWhere+="or "
         sqlWhere += "segunda_especialidad = '"+especialidad+"' )"
         first_filter=1
-
-    # where nombre like '%alejanro%' and apellidos like '%aguirr%' 
-    # and ( (departamento_1 = "LIMA" and provincia_1 = "LIMA") or (departamento_2 = "LIMA" and provincia_2 = "LIMA") )
-    # and (especialidad = 'Urología' or segunda_especialidad = 'urología)
+    if(first_filter==0):
+        sqlWhere=""
     
-    result = frappe.db.sql("""select * from `tabFicha de Registro de Medicos` """+sqlWhere+""" order by creation desc""", as_dict=True)
+    result = frappe.db.sql("""select * from `tabFicha de Registro de Medicos` """+sqlWhere+""" order by creation desc limit """+str(start_limit)+ ""","""+str(limit_end), as_dict=True)
     return result
 
 @frappe.whitelist( allow_guest = True )
