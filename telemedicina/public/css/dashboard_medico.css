@@ -340,7 +340,7 @@ body[data-route="hisalud-dashboard"] i.octicon.octicon-comment-discussion {
 body[data-route="hisalud-dashboard"] button.btn.btn-sm.btn-default.btn-action[icon="octicon octicon-screen-full"] {
   display: none;
 }
-body[data-route="hisalud-dashboard"] .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+body[data-route="hisalud-dashboard"] .navbar-default .navbar-nav>li>a:focus, body[data-route="hisalud-dashboard"] .navbar-default .navbar-nav>li>a:hover {
   background-color: #323232!important;
 }
 body[data-route="hisalud-dashboard"] input.form-control.input-sm{

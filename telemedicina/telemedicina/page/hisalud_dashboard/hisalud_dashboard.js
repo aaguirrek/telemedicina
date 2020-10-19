@@ -248,20 +248,23 @@ var show_patient_info = function(patient, me){
 			if(data.sex == "Male"){data.sex = "Masculino"}
 			if(data.sex == "Other"){data.sex = "Otro"}
 			$("#patient-subtitle").html(`${data.sex} - ${data.email} - ${data.mobile} <br> ${data.dob} `);
+			if(data.talla) details += `<div class="row"><div class="col-xs-4"><b>Talla:</b></div><div class="col-xs-8">${data.talla} metros</div></div>`;
+			if(data.peso) details += `<div class="row"><div class="col-xs-4"><b>Peso:</b></div><div class="col-xs-8">${data.peso} kg</div></div>`;
 			if(data.occupation) details += `<div class="row"><div class="col-xs-4"><b>Ocupación:</b></div><div class="col-xs-8">${data.occupation}</div></div>`;
 			if(data.blood_group) details += `<div class="row"><div class="col-xs-4"><b>Tipo de sangre: </b></div><div class="col-xs-8">${data.blood_group}</div></div>`;
 			if(data.allergies) details +=  `<div class="row"><div class="col-xs-4"><b>Alergias: </b></div><div class="col-xs-8">${data.allergies.replace("\n", "<br>")}</div></div>`;
 			if(data.medication) details +=  `<div class="row"><div class="col-xs-4"><b>Medicacion: </b></div><div class="col-xs-8">${data.medication.replace("\n", "<br>")}</div></div>`;
 			if(data.alcohol_current_use) details +=  `<div class="row"><div class="col-xs-4"><b>Uso de alcohol: </b></div><div class="col-xs-8">${data.alcohol_current_use}</div></div>`;
-			if(data.alcohol_past_use) details +=  `<div class="row"><div class="col-xs-4"><b>Uso pasado de alcohol: </b></div><div class="col-xs-8">${data.alcohol_past_use}</div></div>`;
 			if(data.tobacco_current_use) details +=  `<div class="row"><div class="col-xs-4"><b>Uso de tabaco: </b></div><div class="col-xs-8">${data.tobacco_current_use}</div></div>`;
-			if(data.tobacco_past_use) details +=  `<div class="row"><div class="col-xs-4"><b>Uso de tabaco en el pasado: </b></div><div class="col-xs-8">${data.tobacco_past_use}</div></div>`;
-			if(data.medical_history) details +=  `<div class="row"><div class="col-xs-4"><b>Historia médica: </b></div><div class="col-xs-8">${data.medical_history.replace("\n", "<br>")}</div></div>`;
+			if(data.consumo_marihuana) details +=  `<div class="row"><div class="col-xs-4"><b>Uso de marihuana: </b></div><div class="col-xs-8">${data.consumo_marihuana}</div></div>`;
+			if(data.consumo_otras_drogas) details +=  `<div class="row"><div class="col-xs-4"><b>Uso de otras drogas: </b></div><div class="col-xs-8">${data.consumo_otras_drogas}</div></div>`;
+			if(data.medical_history) details +=  `<div class="row"><div class="col-xs-4"><b>Enfermedades previas: </b></div><div class="col-xs-8">${data.medical_history.replace("\n", "<br>")}</div></div>`;
 			if(data.surgical_history) details +=  `<div class="row"><div class="col-xs-4"><b>Historia Quirúrgica: </b></div><div class="col-xs-8">${data.surgical_history.replace("\n", "<br>")}</div></div>`;
-			if(data.surrounding_factors) details +=  `<div class="row"><div class="col-xs-4"><b>Factores de riesgo laborales: </b></div><div class="col-xs-8">${data.surrounding_factors.replace("\n", "<br>")}</div></div>`;
-			if(data.other_risk_factors) details += `<div class="row"><div class="col-xs-4"><b>Otros factores de riego: </b></div><div class="col-xs-8">${data.other_risk_factors.replace("\n", "<br>")}</div></div>`;
+			if(data.other_risk_factors) details += `<div class="row"><div class="col-xs-4"><b>Deportes: </b></div><div class="col-xs-8">${data.other_risk_factors.replace("\n", "<br>")}</div></div>`;
 			if(data.patient_details) details += `<div class="row"><div class="col-xs-4"><b>Más información: </b></div><div class="col-xs-8"><textarea id="${me}moreinfo" class="form-control textarea-html" disabled>${data.patient_details}</textarea></div></div>`;
-      
+			if(data.apellidos_y_nombres_del_contacto) details += `<div class="row"><div class="col-xs-4"><b>Contacto de emergencia: </b></div><div class="col-xs-8">${data.apellidos_y_nombres_del_contacto} - ${data.relacion_del_contacto}</div></div>`;
+			if(data.celular_del_contacto) details += `<div class="row"><div class="col-xs-4"><b>Celular del contacto de emergencia: </b></div><div class="col-xs-8">${data.celular_del_contacto}</div></div>`;
+			
 			$("#"+me).html(details).promise().done(function(){
 				textAreaAdjust(me+"moreinfo",me);
 			});

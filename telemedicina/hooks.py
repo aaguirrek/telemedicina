@@ -33,7 +33,7 @@ app_include_js = [
 
 # include js, css files in header of web template
 web_include_css = "/assets/telemedicina/css/telemedicina.css"
-web_include_js = "/assets/telemedicina/js/sha1.min.js"
+web_include_js = ["/assets/telemedicina/js/sha1.min.js","/assets/telemedicina/js/redirects.js"]
 
 
 # include js in page
@@ -67,7 +67,7 @@ doctype_calendar_js = {
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# 	"Patient": "inicio"
 # }
 
 # Website user home page (by function)

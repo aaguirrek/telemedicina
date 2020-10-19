@@ -10,7 +10,57 @@ import datetime
 from frappe import _
 from frappe.utils import cint
 from frappe.utils.response import build_response
+from frappe.utils.password import update_password as _update_password
 
+@frappe.whitelist()
+def createWebUser( email, nombre, apellido, contrasena,sexo="Male" ):
+    doc = frappe.get_doc({
+                    "doctype": "User",
+                    "enabled":1,
+                    "email": email,
+                    "username": email,
+                    "first_name": nombre,
+                    "last_name": apellido,
+                    "send_welcome_email":1,
+                    "thread_notify":0,
+                    "new_password":contrasena,
+                    "user_type":"Website User",
+                    'roles':[{
+                            "doctype": "Has Role",
+                            "role":"Patient"
+                        },
+                        {
+                            "doctype": "Has Role",
+                            "role":"Customer"
+                        }]
+    })
+    doc.insert()
+    _update_password(user=email, pwd=contrasena, logout_all_sessions=1)
+    doc = frappe.get_doc("User",email)
+    
+    doc.save()
+    patient = frappe.get_doc({
+        "doctype": "Patient",
+        "patient_name": nombre + " " + apellido,
+        "sex":"Male",
+        "email":email,
+        "owner":email
+    } )
+    patient.insert(ignore_permissions=True)
+    return "creado"
+    
+@frappe.whitelist()
+def create_pacient(email, nombre, apellido, contrasena,sexo="Male" ):
+    
+    patient = frappe.get_doc({
+        "doctype": "Patient",
+        "patient_name": nombre + " " + apellido,
+        "email":email,
+        "sex":sexo,
+        "owner":email
+    } )
+    patient.insert(ignore_permissions=True)
+    return "creado"
 
 @frappe.whitelist()
 def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None, start_limit=0, limit_end=20):
