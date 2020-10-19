@@ -2,7 +2,14 @@
 
 {% block title %}{{ _("Home") }}{% endblock %}
 {% block page_content %}
-     
+     <style>
+         .btoleft{
+             margin-left:200px;
+         }
+         .bannercontainer .main_slider li .para {
+            font-size: 30px!important;
+         }
+     </style>
     <section class="row quick_blocks_row quick_blocks_row_home2">
         <div class="container">
             <div class="row">
@@ -89,6 +96,15 @@
                         </ul>
                     </div>
                 </div>
+                <style>
+                    .img-responsive, .thumbnail>img, .thumbnail a>img, .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 550px;
+    margin: auto;
+}
+                </style>
                <div class="col-sm-8 col-md-9 team_descss">
                     <div class="row">
                         <div class="tab-content">
@@ -198,7 +214,7 @@
                 <ul class="nav nav-tabs department_tab" role="tablist">
                     {% for child in profesionales %}
                     <li role="presentation" {% if loop.index == 1 %} class="active" {% endif %} >
-                        <a href="/assets/telemedicina/web/#dept1" aria-controls="dept1" role="tab" data-toggle="tab">
+                        <a href="#dept{{loop.index}}" aria-controls="dept{{loop.index}}" role="tab" data-toggle="tab">
                             {{ child.title }}
                         </a>
                     </li>
@@ -206,9 +222,9 @@
                 </ul>
                 <div class="tab-content">
                     {% for child in profesionales %}
-                    <div role="tabpanel" class="tab-pane {% if loop.index == 1 %} active {% endif %}" id="dept1">
+                    <div role="tabpanel" class="tab-pane {% if loop.index == 1 %} active {% endif %}" id="dept{{loop.index}}">
                         <div class="row m0 about_medicalpro">
-                            <div class="row m0 inner">
+                            <div class="row m0 inner" >
                                 <div class="col-sm-12 col-md-6 img">
                                     <div class="row">
                                         <img src="{{ child.image }}" alt="" class="img-responsive">
@@ -258,15 +274,20 @@
     <section class="row book_banner">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 col-md-9">
+                <div class="col-sm-4 col-md-6">
                     <div class="row m0">
-                        <h3 class="bannerTitle">Has tu reserva en linea ahora</h3>
-                        <h5>Ingresa o registrate en nuesta app web para hacer tu reserva en linea</h5>
+                        <h3 class="bannerTitle">REGISTRATE HOY MISMO </h3>
+                        <h5>Y DESCUBRE LOS BENEFICIOS DE LA TELESALUD</h5>
                     </div>
                 </div>
                 <div class="col-sm-4 col-md-3">
                     <div class="row m0">
-                        <a href="#" data-toggle="modal" data-target="#appointmefnt_form_pop" class="view_all">reserva tu cita en linea</a>
+                        <a href="https://web.hisalud.com" data-toggle="modal" data-target="#appointmefnt_form_pop" class="view_all">Regístrate como paciente</a>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-3">
+                    <div class="row m0">
+                        <a href="/login" data-toggle="modal" data-target="#appointmefnt_form_pop" class="view_all">Regístrate como profesional</a>
                     </div>
                 </div>
             </div>
