@@ -53,10 +53,11 @@
   "biografia",
   "curriculum_vitae_section",
   "lugares_de_trabajo",
-  "curriculum_vitae",
   "estudios_superiores",
   "cursos_y_eventos",
   "aptitudes",
+  "es_docente",
+  "curriculum_vitae",
   "idiomas",
   "precio_de_consulta_section",
   "precio",
@@ -114,8 +115,7 @@
   {
    "fieldname": "fecha_de_colegiatura",
    "fieldtype": "Date",
-   "label": "Fecha de Colegiatura",
-   "reqd": 1
+   "label": "Fecha de Colegiatura"
   },
   {
    "fieldname": "especialidad",
@@ -341,9 +341,10 @@
    "label": "Curriculum Vitae"
   },
   {
+   "depends_on": "eval:doc.es_docente == \"Si\"",
    "fieldname": "curriculum_vitae",
    "fieldtype": "Table",
-   "label": "Colegio",
+   "label": "Docencia",
    "options": "Secundarios"
   },
   {
@@ -367,7 +368,7 @@
   {
    "fieldname": "aptitudes",
    "fieldtype": "Table",
-   "label": "Aptitudes",
+   "label": "Investigaciones",
    "options": "Aptitudes cv"
   },
   {
@@ -386,10 +387,16 @@
    "fieldtype": "Table",
    "label": "Lugares de trabajo",
    "options": "Lugares de trabajo"
+  },
+  {
+   "fieldname": "es_docente",
+   "fieldtype": "Select",
+   "label": "Ha ejercido la docencia",
+   "options": "Si\nNo"
   }
  ],
  "image_field": "foto",
- "modified": "2020-10-17 22:00:27.369787",
+ "modified": "2020-10-18 23:37:08.811852",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",

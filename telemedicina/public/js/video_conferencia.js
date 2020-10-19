@@ -403,23 +403,32 @@ conferencia.Patient_dashboard_create = function() {
 }
 $(document).ready(function(e) {
     window.addEventListener('popstate', function(e){
+        var res = window.location.href.split( "/");
+        res.pop();
+        res= res.join("/");
         if( 
             frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& 
             window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
             && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name 
             && window.location.href != "https://hisalud.com/desk#Form/User/"+frappe.user.name
+            && window.location.href != "https://hisalud.com/desk#Form/Patient%20Encounter/Nuevo%20Encuentro%20con%20el%20Paciente%201"
+            && res != "https://hisalud.com/desk#Form/Patient%20Encounter"
         )
         {
             location.href="https://hisalud.com/desk#hisalud-dashboard"; 
         }
     });
-
+    var res = window.location.href.split( "/");
+    res.pop();
+    res= res.join("/");
 
       if( 
             frappe.user_roles.length < 6 && frappe.user.has_role ("Physician")&& 
             window.location.href != "https://hisalud.com/desk#hisalud-dashboard" 
             && window.location.href != "https://hisalud.com/desk#Form/Ficha%20de%20Registro%20de%20Medicos/Ficha-"+frappe.user.name 
             && window.location.href != "https://hisalud.com/desk#Form/User/"+frappe.user.name
+            && window.location.href != "https://hisalud.com/desk#Form/Patient%20Encounter/Nuevo%20Encuentro%20con%20el%20Paciente%201"
+            && res != "https://hisalud.com/desk#Form/Patient%20Encounter"
       )
       {
         location.href="https://hisalud.com/desk#hisalud-dashboard"; 

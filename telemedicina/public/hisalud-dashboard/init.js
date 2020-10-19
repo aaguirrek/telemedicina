@@ -34,12 +34,12 @@ var open_patient = (e,i,b=true) => {
   show_patient_info(e,"cita-body");
   get_documents(e,".registros-cita");
   Ncita = telemedicina.data.citas[i].name;
-  telemedicina.Form.patient_encounter.patient.set_value(e);
-  telemedicina.Form.patient_encounter.practitioner.set_value( telemedicina.data.medico.name  );
-  telemedicina.Form.patient_encounter.appointment.set_value( telemedicina.data.citas[i].name);
-  telemedicina.Form.patient_encounter.encounter_date.set_value( telemedicina.data.citas[i].appointment_date);
-  telemedicina.Form.patient_encounter.encounter_time.set_value(telemedicina.data.citas[i].appointment_time);
-  telemedicina.Form.patient_encounter.visit_department.set_value( telemedicina.data.citas[i].department);
+  //telemedicina.Form.patient_encounter.patient.set_value(e);
+  //telemedicina.Form.patient_encounter.practitioner.set_value( telemedicina.data.medico.name  );
+  //telemedicina.Form.patient_encounter.appointment.set_value( telemedicina.data.citas[i].name);
+  //telemedicina.Form.patient_encounter.encounter_date.set_value( telemedicina.data.citas[i].appointment_date);
+  //telemedicina.Form.patient_encounter.encounter_time.set_value(telemedicina.data.citas[i].appointment_time);
+  //telemedicina.Form.patient_encounter.visit_department.set_value( telemedicina.data.citas[i].department);
   
   telemedicina.Form.signs.patient.set_value(e);
   telemedicina.Form.signs.appointment.set_value( telemedicina.data.citas[i].name);

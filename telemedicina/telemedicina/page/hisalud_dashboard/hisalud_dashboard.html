@@ -386,11 +386,11 @@
                               font-size: 30px;
                               display: block;
                           "></i> Encuentro </a></li>
-                        <li role="presentation" style="float: none;max-width: 100px;">
+                        <!--<li role="presentation" style="float: none;max-width: 100px;">
                           <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: white;border: none;border-radius: 0;text-align: center;" aria-expanded="true"><i class="fa fa-heartbeat" style="
                               display: block;
                               font-size: 30px;
-                          "></i> Signos Vitales </a></li>
+                          "></i> Signos Vitales </a></li>-->
                         <li role="presentation" style="float: none;max-width: 100px;">
                           <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="color: white;text-align: center;border: none;border-radius: 0;" aria-expanded="false"> <i class="octicon octicon-organization" style="
                               font-size: 30px;
@@ -425,86 +425,20 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  registros-cita" style="padding-top: 20px;">
                                     </div>
                                 </div>
-
-
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="Encuentro">
                           <form id="Encuentro-form"  class="form">
                             <div class="row">
                               
-                              <div class="col-md-12"><h5>Encuentro con el paciente</h5><hr></div>
-                              <div class="col-md-6 form_patient_info"></div>
-                              <div class="col-md-6 form_practtioner_info"></div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 form_sintomas"></div>
-                              <div class="col-md-6 form_diagnostico"></div>
-                            </div>
-                            <div class="row">
-                              <button class="btn btn-default collapsed" type="button" data-toggle="collapse" data-target="#medicacion" aria-expanded="false" aria-controls="medicacion" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">
-                              <a class="btn octicon octicon-chevron-up btn-default btn-xs btn-more" style="float: right;margin-top: 0;"></a>Medicacion</button>
-                              <div class="collapse" id="medicacion">
-                                <div class="well" id="medicacion_table">
-                                  <div class="row">
-                                    <div class="col-md-6 medicamentos1"></div>
-                                    <div class="col-md-6 medicamentos2"></div>
-                                    <div class="col-md-12">
-                                      <button class="btn btn-primary" type="button" onclick="agregar_medicamento()" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">Agregar el medicamento</button>
-                                    </div>
-                                    <div class="col-md-12 tabla_medicamentos">
-                                      <table class="display table" style="width:100%">
-                                          <thead>
-                                              <tr>
-                                                  <th></th>
-                                                  <th>Medicamento</th>
-                                                  <th>Presentacion</th>
-                                                  <th>Dosificacion</th>
-                                                  <th>Periodo</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody id="drug_prescription">
-                                            
-                                          </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
+                              <!--<div class="col-md-12"><h5>Encuentro con el paciente</h5><hr></div>-->
+                              <div class="col-md-12">
+                                <iframe id="framenecuentro" src="" 
+                                height="200" width="300"
+                                style="width: calc(100% + 20px);background: white;border: 0px;position: relative;/* left: -20px; */top: -20px;height: calc(100vh - 25px);z-index: 0;"
+                                onload="loadiframe(this)"></iframe>
                               </div>
                             </div>
-                            <div class="row">
-                              <button class="btn btn-default collapsed" type="button" 
-                              data-toggle="collapse" 
-                              data-target="#laboratorio" aria-expanded="false" 
-                              aria-controls="laboratorio" 
-                              style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">
-                              
-                              <a class="btn octicon octicon-chevron-up btn-default btn-xs btn-more" style="float: right;margin-top: 0;"></a>Solicitar examen de laboratorio</button>
-                              <div class="collapse" id="laboratorio">
-                                <div class="well" id="laboratorio_table">
-                                  <div class="row">
-                                    <div class="col-md-6 laboratorio1"></div>
-                                    <div class="col-md-6 laboratorio2"></div>
-                                    <div class="col-md-12">
-                                      <button class="btn btn-primary" type="button" onclick="agregar_laboratorio()" style="text-align: left;width: 100%;padding-bottom: 10px;padding-top: 10px;">Agregar solicitud de examen</button>
-                                    </div>
-                                    <div class="col-md-12 tabla_laboratorio">
-                                      <table class="display table" style="width:100%">
-                                          <thead>
-                                              <tr>
-                                                  <th></th>
-                                                  <th>Nombre del examen</th>
-                                                  <th>descripcion</th>
-                                              </tr>
-                                          </thead>
-                                          <tbody id="lab_test_prescription">
-                                            
-                                          </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            
                           </form>
                       </div>
                         <div role="tabpanel" class="tab-pane fade in" id="profile"><form id="Vital-form"  class="form"></form>
@@ -561,9 +495,52 @@
 
 
 
+
+
 <script>
+  function loadiframe(e){
+    $(e).contents().find("head").append(
+      `
+      <style>
+          .navbar {
+            display:none!important;
+          }
+          .page-head.flex.align-center{
+            margin-top:-40px;
+          }
+          .form-inner-toolbar {
+              display: none;
+          }
+          .frappe-control.input-max-width[data-fieldname="appointment"] {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+}
+.frappe-control[data-fieldname="appointment"], .frappe-control[data-fieldname="patient"], .frappe-control[data-fieldname="patient_email"], .frappe-control[data-fieldname="email"], .frappe-control[data-fieldname="practitioner"], .frappe-control[data-fieldname="nombre_del_medico"], .frappe-control[data-fieldname="apellido_del_medico"], .frappe-control[data-fieldname="encounter_date"], .frappe-control[data-fieldname="encounter_time"], .frappe-control[data-fieldname="invoiced"] {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+}
+.form-column.col-sm-6 {
+    display: inline-flex;
+    width: 50%;
+}
+form {
+    width: 100%;
+}
+.form-in-grid .row.form-section.visible-section{
+  display: flex;
+    width: 100%;
+}
+.form-in-grid .section-body{
+  width: 100%;
+}
+      </style>
+          `
+    );
+  }
   function iframeload(e){
-    $(e).contents().find("head").append($(`
+    $(e).contents().find("head").append(`
           <style>
           .navbar {
             display:none!important;
@@ -619,13 +596,12 @@
           html, body{
             background: url(/assets/telemedicina/web/images/pages/about/about.png) repeat scroll 0 0 #efefef !important;
           }
-
           </style>
-      `));
+      `);
       
 }
 function iframeload2(e){
-    $(e).contents().find("head").append($(`
+    $(e).contents().find("head").append(`
           <style>
           .navbar {
             display:none!important;
@@ -685,7 +661,7 @@ function iframeload2(e){
               display: none!important;
           }
           </style>
-      `));
+      `);
       
 }
 </script>

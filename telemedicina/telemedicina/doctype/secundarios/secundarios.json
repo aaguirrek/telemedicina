@@ -13,26 +13,26 @@
    "fieldname": "entidad",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Entidad",
+   "label": "Donde",
    "reqd": 1
   },
   {
    "fieldname": "desde",
    "fieldtype": "Int",
+   "hidden": 1,
    "in_list_view": 1,
-   "label": "Desde",
-   "reqd": 1
+   "label": "Desde"
   },
   {
    "fieldname": "hasta",
    "fieldtype": "Int",
+   "hidden": 1,
    "in_list_view": 1,
-   "label": "Hasta",
-   "reqd": 1
+   "label": "Hasta"
   }
  ],
  "istable": 1,
- "modified": "2020-10-16 20:30:17.695926",
+ "modified": "2020-10-18 23:33:11.034404",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Secundarios",

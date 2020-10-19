@@ -23,10 +23,10 @@ function reloadheightframe(e){
 }
 function reloadcitas(){
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{user:frappe.user.name} )).promise().done(()=>{
-		telemedicina.DocType.patient_encounter();
+		//telemedicina.DocType.patient_encounter();
 		telemedicina.DocType.vital_sings();
 		telemedicina.DocType.addOther();
-		telemedicina.datosmedico.init();
+		//telemedicina.datosmedico.init();
 		telemedicina.saldos.init();
 		telemedicina.medico.init();
 		//setTimeout(reloadheightframe($("iframe")[0]),1000)
@@ -48,7 +48,7 @@ frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 	//localStorage.setItem("medico-name","Melissa Hu");
 	  
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
-    telemedicina.DocType.patient_encounter();
+    //telemedicina.DocType.patient_encounter();
     telemedicina.DocType.vital_sings();
     telemedicina.DocType.addOther();
     telemedicina.datosmedico.init();
@@ -80,7 +80,11 @@ function chatToggleF(){
 var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
-	/**/
+	/*
+	
+	
+	*/
+	$("#framenecuentro").attr("src","");
 	api.executeCommand('stopRecording', 'file');
 	if(telemedicina.frm_c.patient_encounter == 1 ){
 		telemedicina.doc.patient_encounter.docstatus = 1;
@@ -140,6 +144,7 @@ var  abrirIntro = () =>{
 }
 var iniciarCita = function(){
   //conferencia.Patient_dashboard_create();
+  	localStorage.setItem("appointment", Ncita)
 	frappe.call({
 		method:"frappe.client.get_list",
 		args:{ 
@@ -162,7 +167,7 @@ var iniciarCita = function(){
 
 	$(".dropdown-toggle.frappe-chat-toggle").css({left:"20px",right:"unset"});	
 	
-	
+	$("#framenecuentro").attr("src","https://hisalud.com/desk#Form/Patient%20Encounter/Nuevo%20Encuentro%20con%20el%20Paciente%201");
 	$("#bigbluebutton").fadeIn("slow").promise().done(function(){
 		//$("#cita-tabss").slimscroll({height:"auto"});
 		$('#pageprincipal').hide();
@@ -515,7 +520,7 @@ function enviarreceta(){
 	frappe.db.set_value('Patient Encounter', localStorage.getItem("ultimo_encuentro"), 'email', frappe.utils.get_random(10))
     .then(r => {
         let doc = r.message;
-        console.log(doc);
+        frappe.msgprint("La receta medica se ha enviado al paciente exitosamente")
     })
 
 }

@@ -8,7 +8,82 @@ import requests
 import frappe.handler
 import datetime
 from frappe import _
+from frappe.utils import cint
 from frappe.utils.response import build_response
+
+
+@frappe.whitelist()
+def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None, start=0, page_length=20):
+    sqlWhere = "where "
+    first_filter = 0
+    depa = 0
+    if( nombre is not None and nombre != ""):
+        sqlWhere += "nombre like \'%"+nombre+"%\' "
+        first_filter=1
+    if( apellidos is not None and apellidos != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "apellidos like '%"+apellidos+"%' "
+        depa=1
+        first_filter=1
+    if( departamento is not None and departamento != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "(( departamento_1 = '"+departamento+"' "
+        depa=1
+        first_filter=1
+    if( provincia is not None and provincia != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "provincia_1 = '"+provincia+"' "
+        depa=1
+        first_filter=1
+    if( distrito is not None and distrito != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "distrito_1 = '"+distrito+"' "
+        depa=1
+        first_filter=1
+    if( depa == 1 ):
+        sqlWhere += ") "
+    
+    if( departamento is not None and departamento != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="or "
+        sqlWhere += "( departamento_2 = '"+departamento+"' "
+        depa=1
+        first_filter=1
+    if( provincia is not None and provincia != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "provincia_2 = '"+provincia+"' "
+        depa=1
+        first_filter=1
+    if( distrito is not None and distrito != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "distrito_2 = '"+distrito+"' "
+        depa=1
+        first_filter=1
+    if( depa == 1):
+        sqlWhere += ") ) "
+    if( especialidad is not None and especialidad != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="and "
+        sqlWhere += "( especialidad = '"+especialidad+"' "
+        first_filter=1
+    if( especialidad is not None and especialidad != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="or "
+        sqlWhere += "segunda_especialidad = '"+especialidad+"' )"
+        first_filter=1
+
+    # where nombre like '%alejanro%' and apellidos like '%aguirr%' 
+    # and ( (departamento_1 = "LIMA" and provincia_1 = "LIMA") or (departamento_2 = "LIMA" and provincia_2 = "LIMA") )
+    # and (especialidad = 'Urología' or segunda_especialidad = 'urología)
+    
+    result = frappe.db.sql("""select * from `tabFicha de Registro de Medicos` """+sqlWhere+""" order by creation desc""", as_dict=True)
+    return result
 
 @frappe.whitelist( allow_guest = True )
 def dni(dni, code):
