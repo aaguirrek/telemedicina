@@ -17,11 +17,9 @@
   "fecha_de_nacimiento",
   "sexo",
   "archivos_verificacion",
-  "firma",
-  "column_break_9",
   "foto",
+  "firma",
   "selfie",
-  "column_break_12",
   "dni_frontal",
   "dni_trasero",
   "colegiatura_section",
@@ -60,6 +58,11 @@
   "curriculum_vitae",
   "idiomas",
   "precio_de_consulta_section",
+  "informacion_para_el_cobro_de_ganancias_section",
+  "numero_de_cuenta_bancaria",
+  "column_break_56",
+  "banco",
+  "section_break_58",
   "precio",
   "user"
  ],
@@ -152,16 +155,19 @@
   {
    "fieldname": "selfie",
    "fieldtype": "Attach Image",
+   "hidden": 1,
    "label": "Selfie sujentando su DNI"
   },
   {
    "fieldname": "dni_frontal",
    "fieldtype": "Attach Image",
+   "hidden": 1,
    "label": "DNI frontal"
   },
   {
    "fieldname": "dni_trasero",
    "fieldtype": "Attach Image",
+   "hidden": 1,
    "label": "DNI trasero"
   },
   {
@@ -175,14 +181,6 @@
    "fieldname": "experiencia_laboral_section",
    "fieldtype": "Section Break",
    "label": "Donde Trabajas"
-  },
-  {
-   "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_12",
-   "fieldtype": "Column Break"
   },
   {
    "collapsible": 1,
@@ -393,10 +391,34 @@
    "fieldtype": "Select",
    "label": "Ha ejercido la docencia",
    "options": "Si\nNo"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "informacion_para_el_cobro_de_ganancias_section",
+   "fieldtype": "Section Break",
+   "label": "Informacion para el cobro de ganancias"
+  },
+  {
+   "fieldname": "numero_de_cuenta_bancaria",
+   "fieldtype": "Data",
+   "label": "Numero de cuenta bancaria"
+  },
+  {
+   "fieldname": "column_break_56",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "banco",
+   "fieldtype": "Data",
+   "label": "Banco"
+  },
+  {
+   "fieldname": "section_break_58",
+   "fieldtype": "Section Break"
   }
  ],
  "image_field": "foto",
- "modified": "2020-10-18 23:37:08.811852",
+ "modified": "2020-10-20 12:29:12.763161",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",

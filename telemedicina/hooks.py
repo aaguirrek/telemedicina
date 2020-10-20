@@ -143,7 +143,7 @@ doc_events = {
 # 	],
 # 	"weekly": [
 # 		"telemedicina.tasks.weekly"
-# 	]
+# 	],
 # 	"monthly": [
 # 		"telemedicina.tasks.monthly"
 # 	]
@@ -166,5 +166,6 @@ doc_events = {
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
 # 	"Task": "telemedicina.task.get_dashboard_data"
-# }
+# } 
+# cron_events
 
