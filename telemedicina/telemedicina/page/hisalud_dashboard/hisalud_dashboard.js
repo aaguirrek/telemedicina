@@ -84,6 +84,20 @@ var finalizarCita = function(){
 	
 	
 	*/
+		if(localStorage.getItem("estadodeCita") != "guardado"){
+			return frappe.msgprint({
+				title: __('Desea salir sin guardar'),
+				message: '<b>Esta seguro que desea terminar la cita sin guardar los datos?</b> <br> si quiere guardar los datos presione sobre cerrar y luego en el botón dentro de la sección encuentro (en la barra oscura) y presione el boton que dice: <br><br>"<button type="button" class="btn btn-primary btn-sm">Guardar</button>"',
+				primary_action:{
+					'label': 'Salir sin guardar',
+					action(values) {
+						localStorage.setItem("estadodeCita", "guardado");  
+						finalizarCita();
+						this.hide();
+					}
+				}
+			});
+		}
 	$("#framenecuentro").attr("src","");
 	api.executeCommand('stopRecording', 'file');
 	if(telemedicina.frm_c.patient_encounter == 1 ){
@@ -144,7 +158,8 @@ var  abrirIntro = () =>{
 }
 var iniciarCita = function(){
   //conferencia.Patient_dashboard_create();
-  	localStorage.setItem("appointment", Ncita)
+	  localStorage.setItem("appointment", Ncita);
+	  localStorage.setItem("estadodeCita", "iniciado");
 	frappe.call({
 		method:"frappe.client.get_list",
 		args:{ 

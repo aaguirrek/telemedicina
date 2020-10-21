@@ -482,8 +482,7 @@
                 }
                 
               </style>
-                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="position: absolute;z-index: 9;border-radius: 0;padding-bottom: 6px;margin: auto;width: 100%;">
-                  Guardar todo y finalizar cita</button>
+                <button class="btn btn-danger btn-small" onclick="finalizarCita()"style="position: absolute;z-index: 9;border-radius: 0;padding-bottom: 6px;margin: auto;width: 100%;">Finalizar cita</button>
                 <!--<iframe id="bbb-frame" src="https://meet.hisalud.com" frameborder="0"  allow="display-capture * ; geolocation * ; microphone * ; camera *"
                 style="width: 100%;height: 100vh;border-radius: 0px;"></iframe>-->
                 <div id="meet"></div>
@@ -515,6 +514,13 @@
     visibility: hidden;
     height: 0;
     margin: 0;
+}
+span[data-label="Guardar"]{
+    display: block!important;
+}
+
+i.visible-xs.octicon.octicon-check {
+    display:none!important;
 }
 .frappe-control[data-fieldname="appointment"], .frappe-control[data-fieldname="patient"], .frappe-control[data-fieldname="patient_email"], .frappe-control[data-fieldname="email"], .frappe-control[data-fieldname="practitioner"], .frappe-control[data-fieldname="nombre_del_medico"], .frappe-control[data-fieldname="apellido_del_medico"], .frappe-control[data-fieldname="encounter_date"], .frappe-control[data-fieldname="encounter_time"], .frappe-control[data-fieldname="invoiced"] {
     visibility: hidden;
