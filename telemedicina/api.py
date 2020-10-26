@@ -147,7 +147,7 @@ def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=N
     if( tiempo is not None and tiempo != ""):
         if(first_filter == 1 ):
             sqlWhere+="AND "
-        sqlWhere += "timeslot.from_time LIKE '%"+tiempo+".000000' "
+        sqlWhere += "timeslot.from_time LIKE '"+tiempo+".000000' "
         first_filter=1
         tiempo_dia=1
     if( dia is not None and dia != ""):
@@ -160,13 +160,7 @@ def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=N
         sqlWhere=""
     if(tiempo_dia==0):
         sqlInnerJoin=""
-    result = frappe.db.sql(
-        sqlSelect +
-        sqlInnerJoin+sqlWhere +
-        " GROUP BY ficha.name ORDER BY ficha.creation DESC LIMIT " +
-        str(start_limit) +
-        "," +
-        str(limit_end), as_dict=True)
+    result = frappe.db.sql( sqlSelect + sqlInnerJoin+sqlWhere + " GROUP BY ficha.name ORDER BY ficha.creation DESC LIMIT " + str(start_limit) + "," + str(limit_end), as_dict=True)
     return result
 
 @frappe.whitelist( allow_guest = True )
