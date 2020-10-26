@@ -71,34 +71,39 @@ def create_pacient(email, nombre, apellido, contrasena,sexo="Male" ):
     return "creado"
 
 @frappe.whitelist()
-def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None, start_limit=0, limit_end=20):
-    sqlWhere = "where "
+def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=None,distrito=None,especialidad=None,tiempo=None, dia=None, estado=None, start_limit=0, limit_end=20):
+    sqlWhere = "WHERE "
+    sqlSelect = "select ficha.* from `tabFicha de Registro de Medicos` AS ficha "
+    sqlInnerJoin = " INNER JOIN `tabHealthcare Schedule Time Slot` AS timeslot ON ficha.owner = timeslot.owner "
+
     first_filter = 0
     depa = 0
+    tiempo_dia=0
+
     if( nombre is not None and nombre != ""):
-        sqlWhere += "nombre like \'%"+nombre+"%\' "
+        sqlWhere += "ficha.nombre like \'%"+nombre+"%\' "
         first_filter=1
     if( apellidos is not None and apellidos != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "apellidos like '%"+apellidos+"%' "
+            sqlWhere+="AND "
+        sqlWhere += "ficha.apellidos like '%"+apellidos+"%' "
         first_filter=1
     if( departamento is not None and departamento != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "(( departamento_1 = '"+departamento+"' "
+            sqlWhere+="AND "
+        sqlWhere += "(( ficha.departamento_1 = '"+departamento+"' "
         depa=1
         first_filter=1
     if( provincia is not None and provincia != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "provincia_1 = '"+provincia+"' "
+            sqlWhere+="AND "
+        sqlWhere += "ficha.provincia_1 = '"+provincia+"' "
         depa=1
         first_filter=1
     if( distrito is not None and distrito != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "distrito_1 = '"+distrito+"' "
+            sqlWhere+="AND "
+        sqlWhere += "ficha.distrito_1 = '"+distrito+"' "
         depa=1
         first_filter=1
     if( depa == 1 ):
@@ -106,38 +111,62 @@ def get_medicos_filtros(nombre=None,apellidos=None,departamento=None,provincia=N
     
     if( departamento is not None and departamento != ""):
         if(first_filter == 1 ):
-            sqlWhere+="or "
-        sqlWhere += "( departamento_2 = '"+departamento+"' "
+            sqlWhere+="OR "
+        sqlWhere += "( ficha.departamento_2 = '"+departamento+"' "
         depa=1
         first_filter=1
     if( provincia is not None and provincia != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "provincia_2 = '"+provincia+"' "
+            sqlWhere+="AND "
+        sqlWhere += "ficha.provincia_2 = '"+provincia+"' "
         depa=1
         first_filter=1
     if( distrito is not None and distrito != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "distrito_2 = '"+distrito+"' "
+            sqlWhere+="AND "
+        sqlWhere += "ficha.distrito_2 = '"+distrito+"' "
         depa=1
         first_filter=1
     if( depa == 1):
         sqlWhere += ") ) "
     if( especialidad is not None and especialidad != ""):
         if(first_filter == 1 ):
-            sqlWhere+="and "
-        sqlWhere += "( especialidad = '"+especialidad+"' "
+            sqlWhere+="AND "
+        sqlWhere += "( ficha.especialidad = '"+especialidad+"' "
+        first_filter=1
+    if( estado is not None and estado != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="AND "
+        sqlWhere += "( ficha.estado = '"+estado+"' "
         first_filter=1
     if( especialidad is not None and especialidad != ""):
         if(first_filter == 1 ):
-            sqlWhere+="or "
-        sqlWhere += "segunda_especialidad = '"+especialidad+"' )"
+            sqlWhere+="OR "
+        sqlWhere += "ficha.segunda_especialidad = '"+especialidad+"' )"
         first_filter=1
+    if( tiempo is not None and tiempo != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="AND "
+        sqlWhere += "timeslot.from_time LIKE '%"+tiempo+".000000' "
+        first_filter=1
+        tiempo_dia=1
+    if( dia is not None and dia != ""):
+        if(first_filter == 1 ):
+            sqlWhere+="AND "
+        sqlWhere += "timeslot.`day` = '"+dia+"' "
+        first_filter=1
+        tiempo_dia=1
     if(first_filter==0):
         sqlWhere=""
-    
-    result = frappe.db.sql("""select * from `tabFicha de Registro de Medicos` """+sqlWhere+""" order by creation desc limit """+str(start_limit)+ ""","""+str(limit_end), as_dict=True)
+    if(tiempo_dia==0):
+        sqlInnerJoin=""
+    result = frappe.db.sql(
+        sqlSelect +
+        sqlInnerJoin+sqlWhere +
+        " GROUP BY ficha.name ORDER BY ficha.creation DESC LIMIT " +
+        str(start_limit) +
+        "," +
+        str(limit_end), as_dict=True)
     return result
 
 @frappe.whitelist( allow_guest = True )

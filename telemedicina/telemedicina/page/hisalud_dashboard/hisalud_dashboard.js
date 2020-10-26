@@ -9,6 +9,7 @@ var domain = null;
 var options = null;
 var api = null;
 var iframec=0;
+
 socket.on('new message', (data) => {
 	if(data.medico == telemedicina.data.medico.dni && data.tipo =="nueva cita"){
 		reloadcitas();
@@ -18,18 +19,15 @@ function reloadheightframe(e){
 	iframec++;
 	resizeIframe(e);
 	if(iframec<6){
-		//setTimeout(reloadheightframe($("iframe")[0]),1000)
 	}
 }
 function reloadcitas(){
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{user:frappe.user.name} )).promise().done(()=>{
-		//telemedicina.DocType.patient_encounter();
 		telemedicina.DocType.vital_sings();
 		telemedicina.DocType.addOther();
-		//telemedicina.datosmedico.init();
 		telemedicina.saldos.init();
 		telemedicina.medico.init();
-		//setTimeout(reloadheightframe($("iframe")[0]),1000)
+		
 		});
 }
 frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
@@ -44,48 +42,35 @@ frappe.pages['hisalud-dashboard'].on_page_load = function(wrapper) {
 			"background-size": "cover",
 			"background-position-y": "center"});
   })
-
-	//localStorage.setItem("medico-name","Melissa Hu");
-	  
 	page.wrapper.html(frappe.render_template("hisalud_dashboard",{} )).promise().done(()=>{
-    //telemedicina.DocType.patient_encounter();
-    telemedicina.DocType.vital_sings();
-    telemedicina.DocType.addOther();
-    telemedicina.datosmedico.init();
-    telemedicina.saldos.init();
+    
+		telemedicina.DocType.addOther();
+		telemedicina.datosmedico.init();
+		telemedicina.saldos.init();
+		$('#menudebotones').slimScroll({
+			height: '100vh',
+			alwaysVisible: true,
+			color:"#efefef",
+			
+		});
+		
+		if(window.innerWidth < 992){
+			$("#ContainerPrincipal").removeClass("containeresponsivo");
+		}
 		
 	});
-  	var horario_id ="";
-  
-	$("#hMonday").html( frappe.render_template("horario",{"dia":"Monday" } ));
-	$("#hTuesday").html( frappe.render_template("horario",{"dia":"Tuesday" } ));
-	$("#hWednesday").html( frappe.render_template("horario",{"dia":"Wednesday" } ));
-	$("#hThursday").html( frappe.render_template("horario",{"dia":"Thursday" } ));
-	$("#hFriday").html( frappe.render_template("horario",{"dia":"Friday" } ));
-	$("#hSaturday").html( frappe.render_template("horario",{"dia":"Saturday" } ));
-  	$("#hSunday").html( frappe.render_template("horario",{"dia":"Sunday" } )).promise().done(function(){
-		frappe.db.get_doc('Practitioner Schedule', 'horario '+telemedicina.user.name).then(doc => {
-			doc_horario = doc;
-			horario_dias = doc_horario.time_slots;
-			horario_dias.forEach(function(value,item){
-				horario_id = value.day+"_"+value.from_time.replace(/:/g,"");
-				$("#"+horario_id).addClass("selected");
-			})
-		});
-	});
+	initHorario()
 }
 function chatToggleF(){
 	return $(".dropdown-toggle.frappe-chat-toggle").trigger("click");
   }
+var msgfrappe;
 var finalizarCita = function(){
 	$('#pageprincipal').show();
 	$('#pageprincipal2').show();
-	/*
-	
-	
-	*/
+	msgfrappe=null;
 		if(localStorage.getItem("estadodeCita") != "guardado"){
-			return frappe.msgprint({
+			return msgfrappe = frappe.msgprint({
 				title: __('Desea salir sin guardar'),
 				message: '<b>Esta seguro que desea terminar la cita sin guardar los datos?</b> <br> si quiere guardar los datos presione sobre cerrar y luego en el botón dentro de la sección encuentro (en la barra oscura) y presione el boton que dice: <br><br>"<button type="button" class="btn btn-primary btn-sm">Guardar</button>"',
 				primary_action:{
@@ -100,14 +85,7 @@ var finalizarCita = function(){
 		}
 	$("#framenecuentro").attr("src","");
 	api.executeCommand('stopRecording', 'file');
-	if(telemedicina.frm_c.patient_encounter == 1 ){
-		telemedicina.doc.patient_encounter.docstatus = 1;
-		telemedicina.DocType.insert_patient_encounter();
-	}
-	if(telemedicina.frm_c.signs == 1 ){
-		telemedicina.doc.signs.docstatus = 1;
-		telemedicina.DocType.insert_sign();
-	}
+	
 	$("#meet").html("");
 	if($(".iniciar-conferencia").is(':visible') ){
 		$(".iniciar-conferencia").hide();
@@ -156,10 +134,12 @@ var  abrirIntro = () =>{
   $("#introframe").attr("src","https://app.wideo.co/embed/28749161597381453659?width=960&height=540&repeat=false&autoplay=true");
   $("#videointro").fadeIn();
 }
+var vdconferencia={};
 var iniciarCita = function(){
   //conferencia.Patient_dashboard_create();
 	  localStorage.setItem("appointment", Ncita);
 	  localStorage.setItem("estadodeCita", "iniciado");
+	  vdconferencia={};
 	frappe.call({
 		method:"frappe.client.get_list",
 		args:{ 
@@ -169,8 +149,9 @@ var iniciarCita = function(){
 		},
 		async:false,
 		callback: function(r) {
-			console.log(r);
+			
 			if(r.message.length > 0){
+				vdconferencia = r.message[0];
 				doc = r.message[0];
 				doc.returncode = "SUCCESS";
 				frappe.db.set_value('Video Conferencia', doc.name, doc ).then(r => {});
@@ -206,6 +187,7 @@ var iniciarCita = function(){
 		api.addEventListener('participantRoleChanged', function (event) {
 			if(event.role === 'moderator') {
 				api.executeCommand('toggleLobby', true);
+				
 			}
 		});
 		api.addEventListener('participantKickedOut', function (event) {
@@ -220,13 +202,25 @@ var iniciarCita = function(){
 		});
 		setTimeout(
 			function(){
+				
 				api.executeCommand('displayName', telemedicina.data.medico.nombre)
 				api.executeCommand('avatarUrl', "https://hisalud.com" + telemedicina.data.medico.foto);
+				io("https://peruintercorp.com:4103", {
+					secure: true
+					}).emit("new message", {
+					tipo: "initbbb",
+					meetingid:Ncita,
+					titulo: `Dr. ${telemedicina.data.medico.nombre} ${telemedicina.data.medico.apellidos}`,
+					mensaje:`El Dr. ${telemedicina.data.medico.nombre} ${telemedicina.data.medico.apellidos} ha ingresado lo esta esperando haga click en Empezar la cita para ingresar a la cita.`,
+					userpacient: vdconferencia.userpacient,
+					paciente: vdconferencia.paciente
+				});
 			}
 		, 5000)
 		if(intro == "no"){
 		// abrirIntro();
 		}
+		
     
 	});
 	

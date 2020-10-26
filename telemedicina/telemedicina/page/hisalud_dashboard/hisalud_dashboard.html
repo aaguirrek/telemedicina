@@ -1,16 +1,15 @@
 <style>
 </style>
-<div  class="container" style="margin:0;width: calc(100vw - 120px);padding: 0;margin-left: 120px;height: 100vh;">
+<div id="ContainerPrincipal"  class="container containeresponsivo">
     <div id="pageprincipal" class="row ini-page" style="margin-right: 0;margin-left: 0;">
         <div id="pageprincipal2" class="col-xs-12">
             
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" 
-                style="z-index: 10;margin-left: -100px;width: calc(100% + 100px);margin-top: -25px;border-radius: 0;
-                padding: 0;"
-                >
-                    <div class="card cabecera-medico" style="background-color: #4e73df;padding-left: 130px;margin: 0;border-radius: 0;
-                    margin-bottom: 40px;">
+                style="z-index: 10;margin-left: -120px;width:100vw;margin-top: -25px;border-radius: 0;padding: 0;">
+                    <div class="card cabecera-medico" 
+                    style="background-color: #4e73df;padding-left: 130px;
+                    margin: 0;border-radius: 0;margin-bottom: 40px;width: 100%;left: 0;">
                         <div class="card-body" style="
                         padding-top: 15px;
                         padding-bottom: 0;
@@ -20,23 +19,31 @@
                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                   <div class="card" style="background: #212121;color: white;font-weight: 700;border-radius: 0;position: fixed;left: 0;max-width: 100px;display: flex;padding-top: 0px;height: 100%;top: 0;z-index: 1030;margin: 0;">
                                         <div class="card-body" style="padding: 0;">
-                                            <div class="row menu text-center" style="margin: 0;display: grid;border: none;">
-                                                    <div class="col-xs-2 menu" style="padding: 20px;background: #323232;">
-                                                      <img src="/files/logo.png" class="img-responsive">
-                                                    </div>  
-                                                    <div class="col-xs-2 hsalud1 menu active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
-                                                    <div class="col-xs-2 hsalud2 menu" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user-md"></i>Datos Médicos</div>
-                                                    <div class="col-xs-2 hsalud3 menu" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
-                                                    <div class="col-xs-2 hsalud4 menu" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
-                                                    <div class="col-xs-2 hsalud5 menu" onclick="cambiarmenu(this)" data-ref="miperfil"><i class="fa fa-user"></i>Mi Perfil</div>
-                                                    <div class="col-xs-2 hsalud5 menu" onclick="return frappe.app.logout();"><i class="fa fa-sign-out"></i>Salir</div>
+                                            <div id="menudebotones" class="row menu text-center hidden-xs hidden-sm visible-md visible-lg " style="margin: 0;display: block;border: none;overflow-y: auto;">
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 menu mengrande" style="padding: 20px;background: #323232;">
+                                                  <img src="/files/logo.png" class="img-responsive">
+                                                </div>  
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud1 menu mengrande active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud2 menu mengrande" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user-md"></i>Datos Médicos</div>
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud3 menu mengrande" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud4 menu mengrande" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud5 menu mengrande" onclick="cambiarmenu(this)" data-ref="miperfil"><i class="fa fa-user"></i>Mi Perfil</div>
+                                                <div class="hidden-xs hidden-sm visible-md visible-lg col-md-2 hsalud5 menu mengrande" onclick="return frappe.app.logout();"><i class="fa fa-sign-out"></i>Salir</div>
+                                            </div>
+                                            <div class="row menu text-center visible-xs visible-sm hidden-md hidden-lg menupequeno" style="margin: 0;display: block;">  
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud1 menu menpeque active" onclick="cambiarmenu(this)" data-ref="panelcitas"><i class="octicon octicon-pulse"></i>Citas</div>
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud2 menu menpeque" onclick="cambiarmenu(this)" data-ref="datosmedico"><i class="fa fa-user-md"></i>Datos Médicos</div>
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud3 menu menpeque" onclick="cambiarmenu(this)" data-ref="horarioMedico"><i class="octicon octicon-calendar"></i>Horarios de atención</div>
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud4 menu menpeque" onclick="cambiarmenu(this)" data-ref="misCobros"><i class="fa fa-dollar"></i>Mis Cobros</div>
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud5 menu menpeque" onclick="cambiarmenu(this)" data-ref="miperfil"><i class="fa fa-user"></i>Mi Perfil</div>
+                                                <div class="col-xs-2 hidden-md hidden-lg hsalud5 menu menpeque" onclick="return frappe.app.logout();"><i class="fa fa-sign-out"></i>Salir</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-9 profile">
                                     <div>
-                                        <img src="/assets/telemedicina/img/profile.jpeg" class="img-responsive img-profile" alt="Image" style="
+                                        <img src="/assets/telemedicina/img/profile.jpeg" class="hidden-xs visible-sm visible-md visible-lg img-responsive img-profile" alt="Image" style="
                                         max-height: 5rem;
                                     ">
                                     </div>
@@ -45,7 +52,7 @@
                                       <h3 style="margin-top: 0;" class="laespecialidad"></h3> 
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 saldo-medico">
+                                <div class="hidden-xs col-sm-3 col-md-3 col-lg-3 saldo-medico">
                                     <h1 style="margin-top: 0;">Acumulado</h1> 
                                   <h3 style="margin-top: 0;" class="saldos-acumulado">S/. 0</h3> 
                                 </div>
@@ -90,7 +97,7 @@
               </div>
             </div>
             <div class="row concitas" style="display:none">    
-                <div class="col-xs-4">
+                <div id="sellascitas" class="col-xs-12 col-sm-5 col-lg-4">
                     <div class="card">
                         <div class="card-body">
                            <!-- Nav tabs -->
@@ -117,7 +124,7 @@
                     </div>
                 </div>
               
-                  <div class="col-xs-8 noseleccionados">
+                  <div class="hidden-xs col-sm-7 col-lg-8 noseleccionados">
                     <div class="empty-state" style="text-align: center;padding: 150px;border: #dedede 1px solid;border-radius: 5px;background: white;margin-top: 7px;">
                       <span style="margin-top: -100px;color: #aaa;">
                         <i class="mega-octicon octicon-telescope status-icon">
@@ -131,8 +138,10 @@
                       </span>
                     </div>
                   </div>
-              
-                <div class="col-xs-8 seleccionado1" style="display:none">
+                  
+                  <div class="col-xs-12 col-sm-7 col-lg-8 seleccionado1" style="display:none">
+                    <button type="button" onclick="volverLisadoCitas()" class="hidden-md hidden-lg btn btn-large btn-block btn-primary" style="
+                    background: #212121;border: none;text-transform: uppercase;"><i class="fa fa-arrow-left"></i>Volver al listado de citas</button>
                     <div class="card" style="overflow:hidden">
                         <div class="card-body">
                             <div class="card-head descripcion">
@@ -217,43 +226,93 @@
             </div>
           </div>
           <div class="row vpanel horarioMedico" style="display:none">
-            <div class="col-md-12">
+            <div class="col-md-4">
               <div class="card">
                 <div class="card-body">
+                  <div class="row">
+                    <style>
+                     div.datepicker--time-row input[name="seconds"]{
+                       display: none;
+                      }
+                      .diaocupado{
+                        color: rgba(234,30,246,1)!important;
+                      }
+                     .datepicker--time-row:nth-child(3) {
+                          display: none;
+                      }
+                    </style>
+                    <div class="col-md-12" id="addDiasLapso">
+
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6" id="addDesde">
+
+                    </div>
+                    <div class="col-md-6" id="addHasta">
+
+                    </div>
+                    <script>
+                      addhorarioDash();
+                    </script>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6" id="agregarLapsoTiempo">
+                      <button type="button" class="btn btn-large btn-block btn-danger" onclick="limpiarhorario()">LIMPIAR HORARIO</button>
+                    </div>
+                    <div class="col-md-6" id="agregarLapsoTiempo">
+                      <button type="button" class="btn btn-large btn-block btn-primary" onclick="selecthoraLapso()">AGREGAR AL HORARIO</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12" id="ListaHorarios">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-body">
+                  <h3 
+                  style="margin-top: -16px;margin-bottom: 16px;padding: 15px;text-align: center;text-transform: uppercase;color: white;background: #4e73df;margin-left: -16px;margin-right: -16px;border-radius: 5px 5px 0 0;"
+                  >Seleccione un dia de la semana y luego haga click sobre la hora que desea atender
+                  </h3>
                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs pacients horario" role="tablist">
+                    <ul class="nav nav-tabs pacients horario" role="tablist" style="overflow-x: auto;overflow-y: hidden;">
                       <li role="presentation" class="active" style="grid-area: menu;">
-                        <a href="#hMonday" aria-controls="hMonday" role="tab" data-toggle="tab">
+                        <a id="ahMonday" href="#hMonday" aria-controls="hMonday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Lunes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu2;">
-                        <a href="#hTuesday" aria-controls="hTuesday" role="tab" data-toggle="tab">
+                        <a id="ahTuesday" href="#hTuesday" aria-controls="hTuesday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Martes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu3;">
-                        <a href="#hWednesday" aria-controls="hWednesday" role="tab" data-toggle="tab">
+                        <a id="ahWednesday" href="#hWednesday" aria-controls="hWednesday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Miercoles
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu4;">
-                        <a href="#hThursday" aria-controls="hThursday" role="tab" data-toggle="tab">
+                        <a id="ahThursday" href="#hThursday" aria-controls="hThursday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Jueves
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu5;">
-                        <a href="#hFriday" aria-controls="hFriday" role="tab" data-toggle="tab">
+                        <a id="ahFriday" href="#hFriday" aria-controls="hFriday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Viernes
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu6;">
-                        <a href="#hSaturday" aria-controls="hSaturday" role="tab" data-toggle="tab">
+                        <a id="ahSaturday" href="#hSaturday" aria-controls="hSaturday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Sábado
                         </a>
                       </li>
                       <li role="presentation" style="grid-area: menu7;">
-                        <a href="#hSunday" aria-controls="hSunday" role="tab" data-toggle="tab">
+                        <a id="ahSunday" href="#hSunday" aria-controls="hSunday" role="tab" data-toggle="tab">
                           <i class="octicon octicon-calendar" style="font-size: 18pt;padding-right: 10px;"></i>Domingo
                         </a>
                       </li>
@@ -357,6 +416,10 @@
     }
     .frappe-chat > .frappe-chat-popper {
       z-index: 1000000;
+      
+      right: unset;
+      left: 90px;
+
     }
   </style>
   <div id="bigbluebutton" style="display:none; padding: 0;">
@@ -367,7 +430,7 @@
   </div>
   <div class="container" style="width: 100%; padding: 0px;">
         <div class="row" style="margin: 0;">
-            <div class="col-xs-6 card" style="background: white;margin:0;padding: 0;box-shadow: none;border-radius: 0;">
+            <div class="col-xs-7 card" style="background: white;margin:0;padding: 0;box-shadow: none;border-radius: 0;">
                 <div class="card-body cita-body" id="cita-tabss" style="overflow: auto;display: flex;padding: 0;margin: 0;">
 
                     <!-- Nav tabs -->
@@ -401,16 +464,17 @@
                     
 
                     <!-- Tab panes -->
-                    <div class="tab-content" style="padding: 20px;margin-left: 100px;width: 100%;">
+                    <div class="tab-content" style="margin-left: 100px;width: 100%;padding: 0;">
                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                         
-                                <div class="row">
+                                <div class="row" style="margin: 10px;">
                                     
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="card">
-                                            <div class="card-body data-paciente" onclick="showcita()">
+                                            <div class="card-body data-paciente" onclick="showcita()" style="background: #5A6EB3;color: white;">
                                                 <div align="center">
-                                                    <a id="btn-cita" class="btn octicon octicon-chevron-down btn-default btn-xs btn-more" style="float: right;margin-top: 10px;"></a>
+                                                    <a id="btn-cita" class="btn octicon octicon-chevron-down btn-default btn-xs btn-more" style="float: right;margin-top: 10px;
+                                                    background: #6d7ebb;"></a>
                                                 </div>
                                                 <h4 >Datos del paciente</h4>
                                                 <div id="cita-body">
@@ -421,20 +485,26 @@
                                 
                                 </div>
 
-                                <div class="row">
+                                <div class="row" style="margin: 10px;">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  registros-cita" style="padding-top: 20px;">
                                     </div>
                                 </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade in" id="Encuentro">
+                        <div role="tabpanel" class="tab-pane fade in" id="Encuentro" style="overflow: hidden;max-height: 100vh;">
                           <form id="Encuentro-form"  class="form">
-                            <div class="row">
+                            <div class="row" style="
+                            margin: 0;
+                            padding: 0;
+                        ">
                               
                               <!--<div class="col-md-12"><h5>Encuentro con el paciente</h5><hr></div>-->
-                              <div class="col-md-12">
+                              <div class="col-md-12" style="
+                              padding: 0;
+                              padding: 0;
+                          ">
                                 <iframe id="framenecuentro" src="" 
                                 height="200" width="300"
-                                style="width: calc(100% + 20px);background: white;border: 0px;position: relative;/* left: -20px; */top: -20px;height: calc(100vh - 25px);z-index: 0;"
+                                style="width: 100%;background: white;border: 0px;position: relative;height: 100vh;z-index: 0;"
                                 onload="loadiframe(this)"></iframe>
                               </div>
                             </div>
@@ -454,7 +524,7 @@
                             <div class="col-md-6 vital4"></div>
                           </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade in" id="settings">
+                        <div role="tabpanel" class="tab-pane fade in" id="settings" style="padding: 50px;">
                           <form id="other-form"  class="form">
                             
                           </form>
@@ -471,7 +541,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 card" style="margin:0;padding: 0;box-shadow: none;border-radius: 0;">
+            <div class="col-xs-5 card" style="margin:0;padding: 0;box-shadow: none;border-radius: 0;">
               <style>
                 #meet{
                   background: #232323;
@@ -506,41 +576,183 @@
           }
           .page-head.flex.align-center{
             margin-top:-40px;
+            border:none!important
           }
           .form-inner-toolbar {
               display: none;
           }
           .frappe-control.input-max-width[data-fieldname="appointment"] {
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-}
-span[data-label="Guardar"]{
-    display: block!important;
-}
+              visibility: hidden;
+              height: 0;
+              margin: 0;
+          }
+          .grid-form-heading i.octicon.octicon-check.visible-xs {
+              display: block!important;
+          }
+          span[data-label="Guardar"]{
+              display: block!important;
+          }
 
-i.visible-xs.octicon.octicon-check {
-    display:none!important;
-}
-.frappe-control[data-fieldname="appointment"], .frappe-control[data-fieldname="patient"], .frappe-control[data-fieldname="patient_email"], .frappe-control[data-fieldname="email"], .frappe-control[data-fieldname="practitioner"], .frappe-control[data-fieldname="nombre_del_medico"], .frappe-control[data-fieldname="apellido_del_medico"], .frappe-control[data-fieldname="encounter_date"], .frappe-control[data-fieldname="encounter_time"], .frappe-control[data-fieldname="invoiced"] {
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-}
-.form-column.col-sm-6 {
-    display: inline-flex;
-    width: 50%;
-}
-form {
-    width: 100%;
-}
-.form-in-grid .row.form-section.visible-section{
-  display: flex;
-    width: 100%;
-}
-.form-in-grid .section-body{
-  width: 100%;
-}
+          .form-dashboard-wrapper, .row.form-section.form-dashboard.visible-section {
+              display: none!important;
+          }
+          button.btn.btn-default.btn-sm.dropdown-toggle {
+              display: none;
+          }
+          .section-head {
+              background: #5A6EB3;
+              margin: 0!important;
+              padding: 15px!important;
+              margin-bottom: 25px!important;
+              margin-right: 15px!important;
+              margin-left: 15px!important;
+          }
+          .row.form-section.visible-section {
+              padding: 0;
+              border: none!important;
+          }
+          .section-head.collapsed {
+              margin-bottom: 5px!important;
+          }
+          button.btn.btn-default.btn-xs.pull-right.grid-duplicate-row.hidden-xs {
+              display: none;
+          }
+          button.btn.btn-default.btn-xs.pull-right.grid-move-row.hidden-xs {
+              display: none;
+          }
+          button.btn.btn-default.btn-xs.pull-right.grid-insert-row-below.hidden-xs {
+              display: none;
+          }
+          button.btn.btn-default.btn-xs.pull-right.grid-insert-row {
+              display: none;
+          }
+          span.hidden-xs.octicon.octicon-triangle-up {
+              display: none;
+          }
+
+          .text-right.col-md-5.col-sm-4.col-xs-6.page-actions {
+              width: calc( 100% - 10px);
+          }
+          input.input-with-feedback.form-control[data-fieldname="visit_department"] {
+              user-select: none;
+              background: #f5f7fa;
+              pointer-events: none;
+              border: none;
+              color: #36414c;
+              font-weight: 700;
+          }
+          input.input-with-feedback.form-control[data-fieldname="patient_age"] {
+                user-select: none;
+                background: #f5f7fa;
+                pointer-events: none;
+                border: none;
+                color: #36414c;
+                font-weight: 700;
+          }
+          select.input-with-feedback.form-control[data-fieldname="patient_sex"] {
+              user-select: none;
+              background: #f5f7fa;
+              pointer-events: none;
+              border: none;
+              color: #36414c;
+              font-weight: 700;
+          }
+          textarea.input-with-feedback.form-control[data-fieldname="diagnosis"], textarea.input-with-feedback.form-control[data-fieldname="symptoms"] {
+            user-select: none;
+            background: #f5f8fd;
+            pointer-events: none;
+            border: none;
+            color: #36414c;
+            font-weight: 700;
+          }
+          div[data-fieldname="patient_sex"] i.octicon.octicon-chevron-down.text-muted {
+              display: none;
+          }
+          button.btn.btn-xs.btn-default.grid-add-row {
+              font-size: 12pt;
+              background: #1abc9c!important;
+              border-color: #1abc9c!important;
+              color: white;
+          }
+          button.btn.btn-xs.btn-danger.grid-remove-rows {
+              font-size: 12pt;
+          }
+          div[data-fieldname="diagnosis"] label.control-label {
+              visibility: hidden;
+          }
+          .col-md-10.layout-main-section-wrapper {
+              padding-left: 15px!important;
+              padding-right: 15px!important;
+          }
+          .container.page-body {
+              margin: 0!important;
+              padding: 0!important;
+              width: 100%;
+          }
+          h6.ellipsis.sub-heading.text-muted {
+              display: none;
+          }
+          .layout-main-section {
+              margin-right: 10px;
+              border: none!important;
+          }
+          button.btn.btn-primary.btn-sm.primary-action {
+              font-size: 13pt;
+              background: #1abc9c!important;
+              border-color: #1abc9c!important;
+          }
+          .toolbar.grid-header-toolbar button.btn.btn-default.btn-xs.pull-right {
+              margin-left: 20px!important;
+              width: 100px;
+              background: #1abc9c;
+              border-color: #1abc9c;
+          }
+          .toolbar.grid-header-toolbar button.btn.btn-default.btn-xs.pull-right i.octicon.octicon-check.visible-xs {
+              color: white;
+          }
+          .toolbar.grid-header-toolbar button.btn.btn-danger.btn-xs.pull-right.grid-delete-row {
+              width: 100px;
+              margin-right: 20px;
+          }
+          .section-head a.h6.uppercase {
+              color: #eaeef1;
+              font-weight: 700;
+              font-size: 11pt;
+              padding-left: 20px;
+          }
+
+          i.visible-xs.octicon.octicon-check {
+              display:none!important;
+          }
+          .frappe-control[data-fieldname="appointment"], .frappe-control[data-fieldname="patient"], .frappe-control[data-fieldname="patient_email"], .frappe-control[data-fieldname="email"], .frappe-control[data-fieldname="practitioner"], .frappe-control[data-fieldname="nombre_del_medico"], .frappe-control[data-fieldname="apellido_del_medico"], .frappe-control[data-fieldname="encounter_date"], .frappe-control[data-fieldname="encounter_time"], .frappe-control[data-fieldname="invoiced"] {
+              visibility: hidden;
+              height: 0;
+              margin: 0;
+          }
+          .form-column.col-sm-6 {
+              display: inline-flex;
+              width: 50%;
+          }
+          form {
+              width: 100%;
+          }
+          .container {
+              width: 100%!important;
+          }
+          .form-footer {
+              display: none!important;
+          }
+          .layout-main-section {
+              margin-right: 10px;
+          }
+
+          .form-in-grid .row.form-section.visible-section{
+            display: flex;
+              width: 100%;
+          }
+          .form-in-grid .section-body{
+            width: 100%;
+          }
       </style>
           `
     );
@@ -574,11 +786,15 @@ form {
           html, body{
             background:#efefef!important;
           }
-          .content.page-container {
+          @media(min-width: 992px){
+            .content.page-container {
               margin-left: 150px;
+              margin-right: 40px;
+          }  
+          }
+          .content.page-container {
               margin-top: 120px!important;
               box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-              margin-right: 40px;
               border-radius: 7px;
               margin-bottom: 15px;
           }
@@ -635,11 +851,16 @@ function iframeload2(e){
           html, body{
             background:#efefef!important;
           }
-          .content.page-container {
+          
+          @media(min-width: 992px){
+            .content.page-container {
               margin-left: 150px;
+              margin-right: 40px;
+          }  
+          }
+          .content.page-container {
               margin-top: 120px!important;
               box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-              margin-right: 40px;
               border-radius: 7px;
               margin-bottom: 15px;
           }

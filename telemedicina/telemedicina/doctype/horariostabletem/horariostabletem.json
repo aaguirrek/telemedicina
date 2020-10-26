@@ -1,0 +1,71 @@
+{
+ "autoname": "{medico}-{dias} desde:{desde} hasta:{hasta}",
+ "creation": "2020-10-22 21:22:52.841024",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "medico",
+  "dias",
+  "desde",
+  "hasta"
+ ],
+ "fields": [
+  {
+   "fieldname": "medico",
+   "fieldtype": "Link",
+   "label": "Medico",
+   "options": "User"
+  },
+  {
+   "fieldname": "dias",
+   "fieldtype": "Data",
+   "label": "Dias"
+  },
+  {
+   "fieldname": "desde",
+   "fieldtype": "Data",
+   "label": "Desde"
+  },
+  {
+   "fieldname": "hasta",
+   "fieldtype": "Data",
+   "label": "Hasta"
+  }
+ ],
+ "modified": "2020-10-22 21:25:27.918801",
+ "modified_by": "Administrator",
+ "module": "Telemedicina",
+ "name": "HorariosTableTem",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Physician",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

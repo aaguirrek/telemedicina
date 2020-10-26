@@ -21,8 +21,8 @@ app_include_css = [ "/assets/telemedicina/css/fullcalendar@5.2.0/main.min.css",
                    "/assets/telemedicina/css/guide.css"
                   ]
 app_include_js = [
-  "https://socket.hisalud.com/socket.io/socket.io.js",
-  "https://meet.hisalud.com/external_api.js",
+  "/assets/telemedicina/hisalud-dashboard/socket.io.js",
+  "/assets/telemedicina/hisalud-dashboard/external_api.js",
   "/assets/telemedicina/js/sha1.min.js",
   "/assets/telemedicina/js/video_conferencia.js",
   "/assets/telemedicina/js/imgcache.js",
@@ -45,6 +45,7 @@ page_js = {"hisalud-dashboard" : [
   "public/hisalud-dashboard/medico.js",
   "public/hisalud-dashboard/fields.js",
   "public/hisalud-dashboard/datosMedico.js",
+  "public/js/jquery.slimscroll.min.js",
   
 ]}
 

@@ -72,7 +72,7 @@ telemedicina.medico.init = () => {
         callback: function(r) {
           telemedicina.data.medico = r.message;
           localStorage.setItem("medico-name",telemedicina.data.medico.dni);
-          $(".medico-full-name").html(telemedicina.data.medico.nombre);
+          $(".medico-full-name").html("Dr. "+telemedicina.data.medico.apellidos);
           $(".laespecialidad").html(telemedicina.data.medico.especialidad);
           $(".img-profile").attr('src',telemedicina.data.medico.foto);
           telemedicina.pacientes.init();
@@ -95,6 +95,7 @@ telemedicina.pacientes.init = () => {
         },
       freeze:1, 
         callback: function(r) {
+          var initindex=telemedicina.data.citas.length
           telemedicina.data.citas = telemedicina.data.citas.concat(r.message);
           if(r.message.length > 0 ){ 
             $(".nocitas").hide(); $(".concitas").show();
@@ -116,7 +117,7 @@ telemedicina.pacientes.init = () => {
           r.message.forEach(function(value, index){
             
             $("#pacienteslista").append(`
-              <div class="card pacientes" onclick="open_patient('${value.patient}','${index}',true);">
+              <div class="card pacientes" onclick="open_patient('${value.patient}','${index + initindex }',true,'${value.name}');">
                   <div class="card-body">   
                       <div class="person-card">
                           <div class="card-content">
@@ -140,6 +141,7 @@ telemedicina.pacientes.init = () => {
         },
       freeze:1, 
         callback: function(r) {
+          var initindex=telemedicina.data.citas.length
           telemedicina.data.citas = telemedicina.data.citas.concat(r.message);
           if(r.message.length > 0 ){ 
             $(".nocitas").hide(); $(".concitas").show()
@@ -160,7 +162,7 @@ telemedicina.pacientes.init = () => {
           r.message.forEach(function(value, index){
             
             $("#pacienteslistaAnt").append(`
-              <div class="card pacientes pacientesAnt" onclick="open_patient('${value.patient}','${index}',false);">
+              <div class="card pacientes pacientesAnt" onclick="open_patient('${value.patient}','${index+initindex}',false,${value.name});">
                   <div class="card-body">   
                       <div class="person-card">
                           <div class="card-content">
