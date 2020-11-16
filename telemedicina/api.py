@@ -12,8 +12,10 @@ from frappe.utils import cint
 from frappe.utils.response import build_response
 from frappe.utils.password import update_password as _update_password
 
+
+    
 @frappe.whitelist()
-def createWebUser( email, nombre, apellido, contrasena,sexo="Male" ):
+def createWebUser( email, nombre, contrasena,apellido="",sexo="Male" ):
     nuevo = 0
     if( not frappe.db.exists("User",email) ):
         nuevo=1
@@ -23,7 +25,7 @@ def createWebUser( email, nombre, apellido, contrasena,sexo="Male" ):
                         "email": email,
                         "username": email,
                         "first_name": nombre,
-                        "last_name": apellido,
+                        "last_name": "",
                         "send_welcome_email":1,
                         "thread_notify":0,
                         "new_password":contrasena,
@@ -41,25 +43,23 @@ def createWebUser( email, nombre, apellido, contrasena,sexo="Male" ):
         _update_password(user=email, pwd=contrasena, logout_all_sessions=1)
         doc = frappe.get_doc("User",email)
         doc.save()
-
-    if (not frappe.db.exists({ 'doctype': 'Patient', "owner":email }) ):
-        nuevo=0
-        patient = frappe.get_doc({
-            "doctype": "Patient",
-            "patient_name": nombre + " " + apellido,
-            "sex":"Male",
-            "email":email,
-            "owner":email
-        } )
-        patient.insert()
+    
+    #if (not frappe.db.exists({ 'doctype': 'Patient', "owner":email }) ):
+    #    nuevo=0
+    #    patient = frappe.get_doc({
+    #        "doctype": "Patient",
+    #        "patient_name": nombre + " " + apellido,
+    #        "sex":"Male",
+    #        "email":email,
+    #        "owner":email
+    #    } )
+    #    patient.insert()
     if(nuevo == 0 ):
         return "usuario ya existe"
     else:
-        return "creado"
-    
+        return doc
 @frappe.whitelist()
-def create_pacient(email, nombre, apellido, contrasena,sexo="Male" ):
-    
+def create_pacient(email, nombre, apellido, contrasena,sexo="Male" ):    
     patient = frappe.get_doc({
         "doctype": "Patient",
         "patient_name": nombre + " " + apellido,
@@ -194,11 +194,16 @@ def edit_medico(user_id, campo, value, hospital, image):
     medico = frappe.db.set_value('User', frappe.session.user ,"user_image", image) 
     return medico
 
-
-def create_conference(doc, method=None):
-    invoicename = "Paid"
+def create_conference(doc, method=None, culqi=None, token="", amount="10000", email="richard@piedpiper.com", currency_code="PEN"):
+    invoicename = "Paid"    
     if(doc.doctype == "Payment Entry"):
+        paid_total = doc.total_allocated_amount
         doc = frappe.get_doc("Sales Invoice",doc.references[0].reference_name) 
+        if(doc.items[0].reference_dt == "Patient Appointment"):
+            appoint = frappe.get_doc(doc.items[0].reference_dt,doc.items[0].reference_dn) 
+            appoint.paid_amount = paid_total
+            appoint.estapagado = "Pagado"
+            appoint.save()
 
     if(doc.doctype == "Patient Appointment"):
         invoicename = frappe.db.get_value('Sales Invoice', { "reference_dt":"Patient Appointment","reference_dn":doc.name }, 'status')

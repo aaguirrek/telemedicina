@@ -10,9 +10,10 @@
  "fields": [
   {
    "fieldname": "idiomas",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Idiomas",
+   "options": "Espa\u00f1ol\nQuechua\nAymara\nAlem\u00e1n\n\u00c1rabe\nChino\nFranc\u00e9s\nIndonesio\nIngl\u00e9s\nItaliano\nJapon\u00e9s\nPortugu\u00e9s\nRuso\nSueco",
    "reqd": 1
   },
   {
@@ -25,7 +26,7 @@
   }
  ],
  "istable": 1,
- "modified": "2020-10-16 21:05:33.411955",
+ "modified": "2020-11-04 00:56:29.591958",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Idiomas cv",

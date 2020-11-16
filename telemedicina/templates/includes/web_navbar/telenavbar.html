@@ -47,14 +47,11 @@
                     {%- endif %}
                     {% if frappe.session.user != 'Guest' %}
                     <li class="nav-item">
-                        <a class="nav-link btn-login-area" href="/registro-de-medicos">Registro de Médicos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="dropdown-item switch-to-desk hidden" href="/desk#hisalud-dashboard">{{ _('Switch To Desk') }}</a>
+                        <a class="dropdown-item switch-to-desk" href="/desk">{{ _('Switch To Desk') }}</a>
                     </li>
                     {%else%}
                     <li class="nav-item">
-                        <a class="nav-link btn-login-area" href="/login">{{ _("Login") }}</a>
+                        <a class="nav-link btn-login-area" href="https://web.hisalud.com/">{{ _("Login") }}</a>
                     </li>
                     {% endif %}
             </ul>
