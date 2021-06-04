@@ -10,10 +10,22 @@ import datetime
 from frappe import _
 from frappe.utils import cint
 from frappe.utils.response import build_response
-from frappe.utils.password import update_password as _update_password
+from frappe.utils.password import update_password as _update_password, check_password
 
+  
+def correctLogin(usr,pwd):
+    try:
+        return check_password(usr, pwd)
+    except frappe.AuthenticationError:
+        return 'contraseña incorrecta'
 
-    
+@frappe.whitelist(allow_guest = True)
+def login(usr, pwd ):
+    response = correctLogin(usr,pwd)
+    if(response != "contraseña incorrecta"):
+        response = frappe.get_doc("User", usr)
+    return response
+
 @frappe.whitelist()
 def createWebUser( email, nombre, contrasena,apellido="",sexo="Male" ):
     nuevo = 0

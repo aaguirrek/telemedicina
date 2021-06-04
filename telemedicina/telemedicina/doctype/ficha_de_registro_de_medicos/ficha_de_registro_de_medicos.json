@@ -347,7 +347,7 @@
   {
    "fieldname": "estudios_superiores",
    "fieldtype": "Table",
-   "label": "Estudios Superiores",
+   "label": "Grado, postgrado, maestr\u00edas y doctorados",
    "options": "Estudios Universitarios"
   },
   {
@@ -433,7 +433,7 @@
   }
  ],
  "image_field": "foto",
- "modified": "2020-11-14 15:12:30.075216",
+ "modified": "2020-11-17 15:20:44.124543",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Ficha de Registro de Medicos",

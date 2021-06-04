@@ -5,6 +5,7 @@
  "engine": "InnoDB",
  "field_order": [
   "nombre_de_la_aptitud",
+  "fecha_publicacion",
   "nivel"
  ],
  "fields": [
@@ -18,13 +19,19 @@
   {
    "fieldname": "nivel",
    "fieldtype": "Data",
+   "hidden": 1,
+   "label": "nivel"
+  },
+  {
+   "fieldname": "fecha_publicacion",
+   "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Fecha de la publicaci\u00f3n",
    "reqd": 1
   }
  ],
  "istable": 1,
- "modified": "2020-10-18 23:30:06.585182",
+ "modified": "2020-11-17 15:17:49.339608",
  "modified_by": "Administrator",
  "module": "Telemedicina",
  "name": "Aptitudes cv",
